@@ -100,7 +100,7 @@ bot.on("message", async message => {
           },
           {
             name: "Хостинг",
-            value: "Glitch"
+            value: "Heroku"
           }
         ],
         footer: {
