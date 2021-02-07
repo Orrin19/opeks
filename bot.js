@@ -1,6 +1,7 @@
 // Bot settings
 const Discord = require("discord.js");
 const bot = new Discord.Client();
+
 const prefix = "!";
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL
