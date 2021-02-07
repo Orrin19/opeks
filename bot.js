@@ -2,15 +2,12 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const prefix = "!";
-const ownerID = '321170393295618049';
+const ownerID = process.env.OWNER_ID;
+const logChannel = process.env.LOG_CHANNEL
 
 const superagent = require("superagent");
 const pack = require("./package.json");
 require("events").EventEmitter.defaultMaxListeners = Infinity;
-
-const token = 'NjcyMDQzMjU3MjE5MjUyMjI0.XvcD0A.hOOzW6uD2Tu6h3bMw8RNmtHgNV0';
-const project_domain = 'opeks';
-const log_channel = '673017543249756189';
 
 // Database connection
 const data = require("./database.json");
@@ -18,7 +15,7 @@ const joke = data.joke;
 const maps = data.maps;
 
 // Bot connection
-bot.login(token);
+bot.login(process.env.TOKEN);
 bot.on("ready", () => {
   bot.user.setPresence({
     status: "dmd",
@@ -28,11 +25,6 @@ bot.on("ready", () => {
     }
   });
 });
-
-// Logs and Anti-Sleep
-setInterval(() => {
-  superagent.get(`http://${project_domain}.glitch.me/`);
-}, 60000);
 
 // Ordinary functions
 function getRandomInt(max) {
@@ -104,7 +96,7 @@ bot.on("message", async message => {
           },
           {
             name: "Хостинг",
-            value: "Heroku"
+            value: process.env.HOSTING
           }
         ],
         footer: {
@@ -383,7 +375,7 @@ bot.on("message", async message => {
         reason: "Чтобы было"
       }));
     bot.channels.cache
-      .get(log_channel)
+      .get(logChannel)
       .send(
         `${message.author.username} удалил ${amount - 1} сообщений в канале ${
           message.channel
@@ -430,7 +422,7 @@ bot.on("message", async message => {
       `${message.author.username} заглушил вас на сервере «${message.guild}» по причине: ${reason}`
     );
     bot.channels.cache
-      .get(log_channel)
+      .get(logChannel)
       .send(
         `${message.author.username} заглушил ${mUser.user.username} на сервере «${message.guild}» по причине: ${reason}`
       );
@@ -498,7 +490,7 @@ bot.on("message", async message => {
       `${message.author.username} кикнул вас с сервера «${message.guild}» по причине: ${reason}`
     );
     await bot.channels.cache
-      .get(log_channel)
+      .get(logChannel)
       .send(
         `${message.author.username} кикнул ${kUser.user.username} на сервере «${message.guild}» по причине: ${reason}`
       );
@@ -567,7 +559,7 @@ bot.on("message", async message => {
       `${message.author.username} заблокировал вас на сервере «${message.guild}» по причине: ${reason}`
     );
     bot.channels.cache
-      .get(log_channel)
+      .get(logChannel)
       .send(
         `${message.author.username} заблокировал ${bUser.user.username} на сервере «${message.guild}» по причине: ${reason}`
       );
