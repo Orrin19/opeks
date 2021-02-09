@@ -234,7 +234,7 @@ bot.on("message", async message => {
           "определённо, да!",
           "да, конечно!",
           "да, ясно дело!",
-          "почему бы и нет?",
+          "однозначно.",
           "конечно!",
           "да. А как может быть иначе?"
         ];
@@ -275,7 +275,7 @@ bot.on("message", async message => {
         "Да!",
         "Определённо, да!",
         "Да, конечно!",
-        "Да, ясно дело!",
+        "Однозначно.",
         "Почему бы и нет?",
         "Конечно!",
         "Да. А как может быть иначе?"
@@ -797,27 +797,23 @@ bot.on("message", async message => {
   }
 });
 
+// Выдача ролей на Ламоране
 bot.on("guildMemberAdd", async member => {
   if (member.guild.id === "664491015914258452") {
-    const channel = member.guild.channels.cache.find(
-      ch => ch.name === "приветствия"
-    );
-    if (!channel) return;
-    let role = member.guild.roles.cache.find(r => r.name == "Начинающий");
-    await member.roles.add(role.id)
+    await member.roles.add('664747333270896671')
   }
 });
 
 //////////////////////////////////////////
 ///////////Reaction → Role////////////////
 //////////////////////////////////////////
-bot.on("messageReactionAdd", async (MessageReaction, user) => {
+/*bot.on("messageReactionAdd", async (MessageReaction, user) => {
   if (MessageReaction.message.id === "740155922613141535") {
     console.log("Yes");
   } else {
     console.log("No");
   }
-});
+});*/
 
 ////////////////////////////////////////////////////////
 ////////////////Games///////////////////////////////////
@@ -876,30 +872,5 @@ bot.on("message", async message => {
         }
       });
     }
-  }
-});
-
-
-bot.on("message", async message => {
-  if (message.author.bot) return;
-  if (message.content.startsWith('*pidor b')) {
-    message.channel.send({
-      embed: {
-        author: {
-          name: 'ембед'
-        }/*,
-        color: "#ad1914",
-        fields: [
-          {
-            name: ":game_die: Выпало значение:",
-            value: `**${getRandomInt(value) + 1}**`
-          }
-        ],
-        footer: {
-          text: "Opeks powered by Оррин"
-        },
-        timestamp: new Date()*/
-      }
-    });
   }
 });
