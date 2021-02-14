@@ -31,8 +31,17 @@ bot.on("ready", () => {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
 function getRandArrIndex(arr) {
   return Math.floor(Math.random() * arr.length);
+}
+
+function logToChannel(msg) {
+  return await bot.channels.cache
+    .get(logChannel)
+    .send(
+      msg
+    );
 }
 
 // !say
@@ -799,8 +808,11 @@ bot.on("message", async message => {
 
 // Выдача ролей на Ламоране
 bot.on("guildMemberAdd", async member => {
+  logToChannel('yes');
   let role = member.guild.roles.cache.find(r => r.name === 'Начинающий');
-  await member.roles.add(role.id)
+  logToChannel(role.id);
+  await member.roles.add(role.id);
+  logToChannel('done');
 });
 
 //////////////////////////////////////////
