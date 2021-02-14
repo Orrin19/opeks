@@ -800,7 +800,7 @@ bot.on("message", async message => {
 // Выдача ролей на Ламоране
 bot.on("guildMemberAdd", async member => {
   let role = member.guild.roles.cache.find(r => r.name == "Начинающий");
-  await member.roles.add(role)
+  await member.roles.add(role.id)
 });
 
 //////////////////////////////////////////
