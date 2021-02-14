@@ -799,9 +799,8 @@ bot.on("message", async message => {
 
 // Выдача ролей на Ламоране
 bot.on("guildMemberAdd", async member => {
-  if (member.guild.id === "664491015914258452") {
-    await member.roles.add('664747333270896671')
-  }
+  let role = member.guild.roles.cache.find(r => r.name == "Начинающий");
+  await member.roles.add(role)
 });
 
 //////////////////////////////////////////
