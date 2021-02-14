@@ -37,7 +37,7 @@ function getRandArrIndex(arr) {
 }
 
 function logToChannel(msg) {
-  return await bot.channels.cache
+  return bot.channels.cache
     .get(logChannel)
     .send(
       msg
