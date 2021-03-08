@@ -831,14 +831,20 @@ bot.on('guildMemberAdd', async member => {
   await member.roles.add(role.id);
 })
 
+// Ссылки на вики на Ламоране
 bot.on('message', async message => {
   if (message.author.bot) return;
   if (message.content.includes('[[') && message.content.includes(']]') && message.guild.id === '664491015914258452') {
     let help = 0;
     let link = [];
     for (let symbol of message.content.split('')) {
+      if (help === 5) {
+        message.channel.send(`<https://lamoraun.fandom.com/ru/wiki/${link.join('')}>`);
+        help = 0;
+        link = [];
+      }
       if (help === 2 && symbol === ']') {
-        break;
+        help = 5;
       }
       if (help === 2 && symbol !== ']') {
         link.push(symbol);
@@ -850,7 +856,6 @@ bot.on('message', async message => {
         help = 1;
       }
     }
-    message.channel.send(`<https://lamoraun.fandom.com/ru/wiki/${link.join('')}>`);
   }
 });
 
