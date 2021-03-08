@@ -3,6 +3,8 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 
 const prefix = '!';
+const lineColor = '0xad1914';
+const footerText = 'Opeks powered by Оррин';
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
@@ -77,7 +79,7 @@ bot.on('message', async message => {
         author: {
           name: 'Opeks'
         },
-        color: '#ad1914',
+        color: lineColor,
         thumbnail: {
           url: bot.user.displayAvatarURL({
             dynamic: true,
@@ -109,7 +111,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -142,7 +144,7 @@ bot.on('message', async message => {
         author: {
           name: `🔢 Случайное число от 1 до ${value}`
         },
-        color: '#ad1914',
+        color: lineColor,
         fields: [
           {
             name: ':game_die: Выпало значение:',
@@ -150,7 +152,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -292,7 +294,7 @@ bot.on('message', async message => {
         author: {
           name: '🎲 Вероятность события'
         },
-        color: '#ad1914',
+        color: lineColor,
         fields: [
           {
             name: ':grey_question: Событие:',
@@ -308,7 +310,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -326,7 +328,7 @@ bot.on('message', async message => {
         author: {
           name: 'Внимание, анекдот!'
         },
-        color: '#ad1914',
+        color: lineColor,
         fields: [
           {
             name: `№${value}`,
@@ -334,7 +336,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -430,7 +432,7 @@ bot.on('message', async message => {
         author: {
           name: 'Мут пользователя'
         },
-        color: '#ad1914',
+        color: lineColor,
         fields: [
           {
             name: 'Заглушенный пользователь:',
@@ -450,7 +452,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -496,7 +498,7 @@ bot.on('message', async message => {
         author: {
           name: 'Кик пользователя'
         },
-        color: '#ad1914',
+        color: lineColor,
         fields: [
           {
             name: 'Удалённый пользователь:',
@@ -516,7 +518,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -564,7 +566,7 @@ bot.on('message', async message => {
         author: {
           name: 'Бан пользователя'
         },
-        color: '#ad1914',
+        color: lineColor,
         fields: [
           {
             name: 'Заблокированный пользователь:',
@@ -584,7 +586,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -609,7 +611,7 @@ bot.on('message', async message => {
         author: {
           name: 'Информация о пользователе'
         },
-        color: '#ad1914',
+        color: lineColor,
         thumbnail: {
           url: user.displayAvatarURL({
             dynamic: true,
@@ -634,7 +636,7 @@ bot.on('message', async message => {
           }
         ],
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -713,7 +715,7 @@ bot.on('message', async message => {
           author: {
             name: 'Голосование'
           },
-          color: '#ad1914',
+          color: lineColor,
           fields: [
             {
               name: 'Описание',
@@ -725,7 +727,7 @@ bot.on('message', async message => {
             }
           ],
           footer: {
-            text: 'Opeks powered by Оррин'
+            text: footerText
           },
           timestamp: new Date()
         }
@@ -783,12 +785,12 @@ bot.on('message', async message => {
       );
     message.channel.send({
       embed: {
-        color: '#ad1914',
+        color: lineColor,
         image: {
           url: body.url
         },
         footer: {
-          text: 'Opeks powered by Оррин'
+          text: footerText
         },
         timestamp: new Date()
       }
@@ -808,13 +810,13 @@ bot.on('message', async message => {
       let resp = await superagent.get(url);
       return message.channel.send({
         embed: {
-          color: '#ad1914',
+          color: lineColor,
           fields: {
             name: `Погода: ${city}`,
             value: resp.text
           },
           footer: {
-            text: 'Opeks powered by Оррин'
+            text: footerText
           },
           timestamp: new Date()
         }
@@ -824,7 +826,7 @@ bot.on('message', async message => {
       let url = encodeURI(`http://wttr.in/${city}.png?m&M&p&0&Q&lang=ru`);
       return message.channel.send({
         embed: {
-          color: '#ad1914',
+          color: lineColor,
           author: {
             name: `Погода: ${city}`
           },
@@ -832,7 +834,7 @@ bot.on('message', async message => {
             url: url
           },
           footer: {
-            text: 'Opeks powered by Оррин'
+            text: footerText
           },
           timestamp: new Date()
         }
@@ -846,6 +848,29 @@ bot.on('guildMemberAdd', async member => {
   let role = member.guild.roles.cache.find(r => r.name === 'Начинающий');
   await member.roles.add(role.id);
 })
+
+bot.on('message', async message => {
+  if (message.author.bot) return;
+  if (message.content.includes('[[') && message.content.includes(']]') && message.guild.id === '664491015914258452') {
+    let help = 0;
+    let link = [];
+    for (let symbol of message.content.split('')) {
+      if (help === 2 && symbol === ']') {
+        break;
+      }
+      if (help === 2 && symbol !== ']') {
+        link.push(symbol);
+      }
+      if (symbol === '[' && help === 1) {
+        help = 2;
+      }
+      if (symbol === '[' && help === 0) {
+        help = 1;
+      }
+    }
+    message.channel.send(`<https://lamoraun.fandom.com/ru/wiki/${link.join('')}>`);
+  }
+});
 
 // //////////////////////////////////////////////////////
 // //////////////Games///////////////////////////////////
@@ -882,7 +907,7 @@ bot.on('message', async message => {
       cell = getRandArrIndex(kmaps);
       message.channel.send({
         embed: {
-          color: '#ad1914',
+          color: lineColor,
           author: {
             name: 'Игра «Карта — Страна»'
           },
@@ -894,7 +919,7 @@ bot.on('message', async message => {
             value: 'Название страны, изображённой на карте.'
           },
           footer: {
-            text: 'Opeks powered by Оррин'
+            text: footerText
           },
           timestamp: new Date()
         }
