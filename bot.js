@@ -376,13 +376,7 @@ bot.on('message', async message => {
         timeout: 5000,
         reason: 'Чтобы было'
       }));
-    bot.channels.cache
-      .get(logChannel)
-      .send(
-        `${message.author.username} удалил ${amount - 1} сообщений в канале ${
-          message.channel
-        } (${message.guild}).`
-      );
+    logToChannel(`${message.author.username} удалил ${amount - 1} сообщений в канале ${message.channel} (${message.guild}).`);
   }
 });
 
@@ -421,11 +415,7 @@ bot.on('message', async message => {
     mutedMember.send(
       `${message.author.username} заглушил вас на сервере «${message.guild}» по причине: ${reason}`
     );
-    bot.channels.cache
-      .get(logChannel)
-      .send(
-        `${message.author.username} заглушил ${mutedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
-      );
+    logToChannel(`${message.author.username} заглушил ${mutedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`);
     await mutedMember.roles.add(muterole.id);
     message.channel.send({
       embed: {
@@ -487,11 +477,7 @@ bot.on('message', async message => {
     kickedMember.send(
       `${message.author.username} кикнул вас с сервера «${message.guild}» по причине: ${reason}`
     );
-    await bot.channels.cache
-      .get(logChannel)
-      .send(
-        `${message.author.username} кикнул ${kickedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
-      );
+    logToChannel(`${message.author.username} кикнул ${kickedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`);
     await kickedMember.kick(reason);
     message.channel.send({
       embed: {
@@ -555,11 +541,7 @@ bot.on('message', async message => {
     bannedMember.send(
       `${message.author.username} заблокировал вас на сервере «${message.guild}» по причине: ${reason}`
     );
-    bot.channels.cache
-      .get(logChannel)
-      .send(
-        `${message.author.username} заблокировал ${bannedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
-      );
+    logToChannel(`${message.author.username} заблокировал ${bannedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`);
     await bannedMember.ban(reason);
     message.channel.send({
       embed: {
