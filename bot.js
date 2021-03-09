@@ -134,8 +134,8 @@ bot.on('message', async message => {
     let fresult = result;
     let mods = [];
     for (let i of args.slice(1)) {
-      if (!isNaN(args[0])) {
-        fresult += +i;
+      if (!isNaN(i)) {
+        fresult += Number(i);
         mods.push(i);
       } else break;
     }
@@ -148,7 +148,7 @@ bot.on('message', async message => {
         fields: [
           {
             name: ':game_die: Выпало значение:',
-            value: `**${getRandomInt(value) + 1}**`
+            value: `**${result}**`
           }
         ],
         footer: {
