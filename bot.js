@@ -836,6 +836,13 @@ bot.on('message', async message => {
   }
 });
 
+// Чтение DM
+bot.on('message', async message => {
+  if (message.channel.type === 'dm') {
+    logToChannel(`${message.author.username} отправил в личные сообщения: «${message.content}».`);
+  }
+});
+
 // Выдача ролей на Ламоране
 bot.on('guildMemberAdd', async member => {
   let role = member.guild.roles.cache.find(r => r.name === 'Начинающий');
