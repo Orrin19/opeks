@@ -135,11 +135,11 @@ bot.on('message', async message => {
     let mods = [];
     for (let i of args.slice(1)) {
       if (!isNaN(args[0])) {
-        fresult += i;
-        mods.append(i);
-      }
+        fresult += +i;
+        mods.push(i);
+      } else break;
     }
-    message.channel.send({
+    let rollEmbed = {
       embed: {
         author: {
           name: `🔢 Случайное число от 1 до ${value}`
@@ -156,7 +156,18 @@ bot.on('message', async message => {
         },
         timestamp: new Date()
       }
-    });
+    };
+    if (fresult != result) {
+      rollEmbed.embed.fields.push({
+        name: ':heavy_plus_sign: Модификаторы:',
+        value: `**${mods.join(' ')}**`
+      },
+      {
+        name: ':gem: Итоговое значение:',
+        value: `**${fresult}**`
+      });
+    }
+    message.channel.send(rollEmbed);
   }
 });
 
