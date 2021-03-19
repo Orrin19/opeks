@@ -1,6 +1,6 @@
 // Bot settings
-const Discord = require('discord.js');
-const bot = new Discord.Client();
+import { Client } from 'discord.js';
+const bot = new Client();
 
 const prefix = '!';
 const lineColor = '0xad1914';
@@ -8,14 +8,13 @@ const footerText = 'Opeks powered by Оррин';
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
-const superagent = require('superagent');
-const pack = require('./package.json');
-require('events').EventEmitter.defaultMaxListeners = Infinity;
+import { get } from 'superagent';
+import { engines, dependencies } from './package.json';
+import { EventEmitter } from 'events';
+EventEmitter.defaultMaxListeners = Infinity;
 
 // Database connection
-const data = require('./database.json');
-const joke = data.joke;
-const maps = data.maps;
+import { joke, maps } from './database.json';
 
 // Bot connection
 bot.login(process.env.TOKEN);
@@ -24,43 +23,43 @@ bot.on('ready', () => {
     status: 'dmd',
     activity: {
       name: 'Sabaton',
-      type: 2
-    }
+      type: 2,
+    },
   });
 });
 
 // Ordinary functions
-const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
-const getRandArrIndex = arr => Math.floor(Math.random() * arr.length);
-const logToChannel = msg => bot.channels.cache.get(logChannel).send(msg);
-const formatDate = date => {
+const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
+const getRandArrIndex = (arr) => Math.floor(Math.random() * arr.length);
+const logToChannel = (msg) => bot.channels.cache.get(logChannel).send(msg);
+const formatDate = (date) => {
   let options = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
-    second: 'numeric'
+    second: 'numeric',
   };
   return date.toLocaleDateString('ru-RU', options);
-}
+};
 
 // !say
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'say') &&
     message.author.id === ownerID
   ) {
-    await message.delete().catch(o_O => {
-      console.log(o_O)
+    await message.delete().catch((o_O) => {
+      console.log(o_O);
     });
     message.channel.send(message.content.slice(5));
   }
 });
 
 // !invite
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'invite')) {
     message.channel.send(
@@ -70,57 +69,57 @@ bot.on('message', async message => {
 });
 
 // !help
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'help')) {
     message.reply('привет, я Opeks! Чем могу быть полезен?');
     message.channel.send({
       embed: {
         author: {
-          name: 'Opeks'
+          name: 'Opeks',
         },
         color: lineColor,
         thumbnail: {
           url: bot.user.displayAvatarURL({
             dynamic: true,
-            size: 1024
-          })
+            size: 1024,
+          }),
         },
         fields: [
           {
             name: 'Вызов команд',
-            value: '!command args'
+            value: '!command args',
           },
           {
             name: 'Список команд',
-            value: 'В разработке :)' // 'http://opeks-discord.glitch.me/'
+            value: 'В разработке :)', // 'http://opeks-discord.glitch.me/'
           },
           {
             name: 'Бот создан',
-            value: '29 января 2020 в 11:39:58 (UTC)'
+            value: '29 января 2020 в 11:39:58 (UTC)',
           },
           {
             name: 'Написан на',
-            value: `Node.js: v${pack.engines.node}\nDiscord.js: v${
-              Object.values(pack.dependencies)[0]
-            }`
+            value: `Node.js: v${engines.node}\nDiscord.js: v${
+              Object.values(dependencies)[0]
+            }`,
           },
           {
             name: 'Хостинг',
-            value: process.env.HOSTING
-          }
+            value: process.env.HOSTING,
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !roll
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'roll')) {
     let args = message.content.split(' ').slice(1);
@@ -142,37 +141,39 @@ bot.on('message', async message => {
     let rollEmbed = {
       embed: {
         author: {
-          name: `🔢 Случайное число от 1 до ${value}`
+          name: `🔢 Случайное число от 1 до ${value}`,
         },
         color: lineColor,
         fields: [
           {
             name: ':game_die: Выпало значение:',
-            value: `**${result}**`
-          }
+            value: `**${result}**`,
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     };
     if (fresult != result) {
-      rollEmbed.embed.fields.push({
-        name: ':heavy_plus_sign: Модификаторы:',
-        value: `**${mods.join(' ')}**`
-      },
-      {
-        name: ':gem: Итоговое значение:',
-        value: `**${fresult}**`
-      });
+      rollEmbed.embed.fields.push(
+        {
+          name: ':heavy_plus_sign: Модификаторы:',
+          value: `**${mods.join(' ')}**`,
+        },
+        {
+          name: ':gem: Итоговое значение:',
+          value: `**${fresult}**`,
+        }
+      );
     }
     message.channel.send(rollEmbed);
   }
 });
 
 // !кубик
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'кубик')) {
     let number = message.content.split(' ').slice(1)[0];
@@ -202,7 +203,11 @@ bot.on('message', async message => {
           results[i] = ':six:';
         }
       }
-      message.channel.send(`Брошено кубиков: ${number}\nРезультаты: ${results.join(' ')}\nСумма: ${sum}`);
+      message.channel.send(
+        `Брошено кубиков: ${number}\nРезультаты: ${results.join(
+          ' '
+        )}\nСумма: ${sum}`
+      );
     }
     if (number === 1 || !number) {
       let result = getRandomInt(6) + 1;
@@ -230,7 +235,7 @@ bot.on('message', async message => {
 });
 
 // question
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.mentions.users.first() === bot.user) {
     let messg = message.content.split('');
@@ -245,7 +250,7 @@ bot.on('message', async message => {
           'да, ясно дело!',
           'однозначно.',
           'конечно!',
-          'да. А как может быть иначе?'
+          'да. А как может быть иначе?',
         ];
       } else {
         answer = [
@@ -255,7 +260,7 @@ bot.on('message', async message => {
           'ни в коем случае.',
           'я так не думаю.',
           'ответ отрицателен.',
-          'с чего? Нет, конечно.'
+          'с чего? Нет, конечно.',
         ];
       }
       message.reply(answer[getRandArrIndex(answer)]);
@@ -264,7 +269,7 @@ bot.on('message', async message => {
 });
 
 // !chance
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'chance')) {
     let args = message.content.split(' ').slice(1);
@@ -287,7 +292,7 @@ bot.on('message', async message => {
         'Однозначно.',
         'Почему бы и нет?',
         'Конечно!',
-        'Да. А как может быть иначе?'
+        'Да. А как может быть иначе?',
       ];
     } else {
       answer = [
@@ -297,66 +302,66 @@ bot.on('message', async message => {
         'Ни в коем случае.',
         'Я так не думаю.',
         'Ответ отрицателен.',
-        'С чего? Нет, конечно.'
+        'С чего? Нет, конечно.',
       ];
     }
     message.channel.send({
       embed: {
         author: {
-          name: '🎲 Вероятность события'
+          name: '🎲 Вероятность события',
         },
         color: lineColor,
         fields: [
           {
             name: ':grey_question: Событие:',
-            value: action
+            value: action,
           },
           {
             name: ':scales: Вероятность удачи:',
-            value: `${chance} %`
+            value: `${chance} %`,
           },
           {
             name: ':ballot_box_with_check: Результат:',
-            value: answer[getRandArrIndex(answer)]
-          }
+            value: answer[getRandArrIndex(answer)],
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !joke (jokes from the S.T.A.L.K.E.R. game)
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'joke')) {
     let value = getRandArrIndex(joke);
     message.channel.send({
       embed: {
         author: {
-          name: 'Внимание, анекдот!'
+          name: 'Внимание, анекдот!',
         },
         color: lineColor,
         fields: [
           {
             name: `№${value}`,
-            value: joke[value]
-          }
+            value: joke[value],
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !clean
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'clean') ||
@@ -381,235 +386,259 @@ bot.on('message', async message => {
       return message.reply('вам недоступна эта функция.');
     }
     message.channel.bulkDelete(amount, true);
-    message.channel
-      .send(`Удалено ${messCount} сообщений!`)
-      .then(msg => msg.delete({
+    message.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
+      msg.delete({
         timeout: 5000,
-        reason: 'Чтобы было'
-      }));
-    logToChannel(`${message.author.username} удалил ${amount - 1} сообщений в канале ${message.channel} (${message.guild}).`);
+        reason: 'Чтобы было',
+      })
+    );
+    logToChannel(
+      `${message.author.username} удалил ${amount - 1} сообщений в канале ${
+        message.channel
+      } (${message.guild}).`
+    );
   }
 });
 
 // !mute
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'mute')) {
     let args = message.content.split(' ').slice(1);
     let mutedMember = message.guild.member(
       message.mentions.users.first() ||
         message.guild.members.cache.find(
-          m => m.user.username === args[0] || m.id === args[0]
+          (m) => m.user.username === args[0] || m.id === args[0]
         )
     );
-    if (!mutedMember) return message.channel.send('Не могу найти этого пользователя...');
+    if (!mutedMember)
+      return message.channel.send('Не могу найти этого пользователя...');
     if (
       !message.member.permissions.has('MANAGE_ROLES') &&
       message.author.id !== ownerID &&
       message.author.id != mutedMember.id
-    ) return message.channel.send('У тебя недостаточно прав для этого');
+    )
+      return message.channel.send('У тебя недостаточно прав для этого');
     if (
       mutedMember.permissions.has('MANAGE_MESSAGES') &&
       message.author.id !== ownerID &&
       message.author.id != mutedMember.id
-    ) return message.channel.send('Этот пользователь не может быть заглушен');
+    )
+      return message.channel.send('Этот пользователь не может быть заглушен');
     let reason = args.slice(1).join(' ');
-    let muterole = message.guild.roles.cache.find(r => r.name === 'Заглушен');
+    let muterole = message.guild.roles.cache.find((r) => r.name === 'Заглушен');
     if (!muterole) {
       muterole = await message.guild.roles.create({
         data: {
           name: 'Заглушен',
-          color: 0x607d8d
-        }
+          color: 0x607d8d,
+        },
       });
     }
     mutedMember.send(
       `${message.author.username} заглушил вас на сервере «${message.guild}» по причине: ${reason}`
     );
-    logToChannel(`${message.author.username} заглушил ${mutedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`);
+    logToChannel(
+      `${message.author.username} заглушил ${mutedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
+    );
     await mutedMember.roles.add(muterole.id);
     message.channel.send({
       embed: {
         author: {
-          name: 'Мут пользователя'
+          name: 'Мут пользователя',
         },
         color: lineColor,
         fields: [
           {
             name: 'Заглушенный пользователь:',
-            value: mutedMember
+            value: mutedMember,
           },
           {
             name: 'Был заглушен:',
-            value: message.author
+            value: message.author,
           },
           {
             name: 'Дата:',
-            value: message.createdAt
+            value: message.createdAt,
           },
           {
             name: 'Причина:',
-            value: reason
-          }
+            value: reason,
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !kick
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'kick')) {
-    let args = message.content.split(' ').slice(1)
+    let args = message.content.split(' ').slice(1);
     let kickedMember = message.guild.member(
       message.mentions.users.first() ||
         message.guild.members.cache.find(
-          m => m.user.username === args[0] || m.id === args[0]
+          (m) => m.user.username === args[0] || m.id === args[0]
         )
     );
-    if (!kickedMember) return message.channel.send('Не могу найти этого пользователя...');
-    if (!kickedMember.kickable) return message.channel.send('Не могу выгнать пользователя: не хватает прав.');
+    if (!kickedMember)
+      return message.channel.send('Не могу найти этого пользователя...');
+    if (!kickedMember.kickable)
+      return message.channel.send(
+        'Не могу выгнать пользователя: не хватает прав.'
+      );
     if (
       !message.member.permissions.has('KICK_MEMBERS') &&
       message.author.id !== ownerID &&
       message.author.id != kickedMember.id
-    ) return message.channel.send('У тебя недостаточно прав для этого');
+    )
+      return message.channel.send('У тебя недостаточно прав для этого');
     if (
       kickedMember.permissions.has('MANAGE_MESSAGES') &&
       message.author.id !== ownerID &&
       message.author.id != kickedMember.id
-    ) return message.channel.send('Этот пользователь не может быть кикнут');
+    )
+      return message.channel.send('Этот пользователь не может быть кикнут');
     let reason = args.slice(1).join(' ');
     kickedMember.send(
       `${message.author.username} кикнул вас с сервера «${message.guild}» по причине: ${reason}`
     );
-    logToChannel(`${message.author.username} кикнул ${kickedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`);
+    logToChannel(
+      `${message.author.username} кикнул ${kickedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
+    );
     await kickedMember.kick(reason);
     message.channel.send({
       embed: {
         author: {
-          name: 'Кик пользователя'
+          name: 'Кик пользователя',
         },
         color: lineColor,
         fields: [
           {
             name: 'Удалённый пользователь:',
-            value: kickedMember
+            value: kickedMember,
           },
           {
             name: 'Был удалён:',
-            value: message.author
+            value: message.author,
           },
           {
             name: 'Дата:',
-            value: message.createdAt
+            value: message.createdAt,
           },
           {
             name: 'Причина:',
-            value: reason
-          }
+            value: reason,
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !ban
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'ban')) {
     let args = message.content.split(' ').slice(1);
     let bannedMember = message.guild.member(
       message.mentions.users.first() ||
         message.guild.members.cache.find(
-          m => m.user.username === args[0] || m.id === args[0]
+          (m) => m.user.username === args[0] || m.id === args[0]
         )
     );
     if (!bannedMember) return message.channel.send('Пользователь не найден');
-    if (!bannedMember.bannable) return message.channel.send('Не могу заблокировать пользователя: не хватает прав.');
+    if (!bannedMember.bannable)
+      return message.channel.send(
+        'Не могу заблокировать пользователя: не хватает прав.'
+      );
     if (
       !message.member.permissions.has('BAN_MEMBERS') &&
       message.author.id !== ownerID &&
       message.author.id != bannedMember.id
-    ) return message.channel.send('У тебя недостаточно прав для этого');
+    )
+      return message.channel.send('У тебя недостаточно прав для этого');
     if (
       bannedMember.permissions.has('MANAGE_MESSAGES') &&
       message.author.id !== ownerID &&
       message.author.id != bannedMember.id
-    ) return message.channel.send(
+    )
+      return message.channel.send(
         'Этот пользователь не может быть заблокирован'
       );
     let reason = args.slice(1).join(' ');
     bannedMember.send(
       `${message.author.username} заблокировал вас на сервере «${message.guild}» по причине: ${reason}`
     );
-    logToChannel(`${message.author.username} заблокировал ${bannedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`);
+    logToChannel(
+      `${message.author.username} заблокировал ${bannedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
+    );
     await bannedMember.ban(reason);
     message.channel.send({
       embed: {
         author: {
-          name: 'Бан пользователя'
+          name: 'Бан пользователя',
         },
         color: lineColor,
         fields: [
           {
             name: 'Заблокированный пользователь:',
-            value: bannedMember
+            value: bannedMember,
           },
           {
             name: 'Был заблокирован:',
-            value: message.author
+            value: message.author,
           },
           {
             name: 'Дата:',
-            value: message.createdAt
+            value: message.createdAt,
           },
           {
             name: 'Причина:',
-            value: reason
-          }
+            value: reason,
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !userinfo
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'userinfo')) {
     let args = message.content.split(' ').slice(1);
     let member = message.guild.member(
       message.mentions.users.first() ||
         message.guild.members.cache.find(
-          m => m.user.username == args[0] || m.id == args[0]
+          (m) => m.user.username == args[0] || m.id == args[0]
         )
     );
     let user = member.user;
     message.channel.send({
       embed: {
         author: {
-          name: 'Информация о пользователе'
+          name: 'Информация о пользователе',
         },
         color: lineColor,
         thumbnail: {
           url: user.displayAvatarURL({
             dynamic: true,
-            size: 1024
-          })
+            size: 1024,
+          }),
         },
         fields: [
           {
@@ -618,27 +647,27 @@ bot.on('message', async message => {
               **Имя:** *${user.username}#${user.discriminator}*
               **ID:** *${user.id}*
               **Создан:** *${formatDate(user.createdAt)}*
-            `
+            `,
           },
           {
             name: ':map: На этом сервере:',
             value: `
               **Никнейм:** *${member.nickname}*
               **Присоединился:** *${formatDate(member.joinedAt)}*
-            `
-          }
+            `,
+          },
         ],
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !gr
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'gr') &&
@@ -649,18 +678,18 @@ bot.on('message', async message => {
     let member = message.guild.member(
       message.mentions.users.first() ||
         message.guild.members.cache.find(
-          m => m.user.username === args[0] || m.id === args[0]
+          (m) => m.user.username === args[0] || m.id === args[0]
         )
     );
     let role = message.guild.roles.cache.find(
-      r => r.name === args.slice(1).join(' ')
+      (r) => r.name === args.slice(1).join(' ')
     );
     member.roles.add(role.id);
   }
 });
 
 // !rr
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'rr') &&
@@ -671,18 +700,18 @@ bot.on('message', async message => {
     let member = message.guild.member(
       message.mentions.users.first() ||
         message.guild.members.cache.find(
-          m => m.user.username === args[0] || m.id === args[0]
+          (m) => m.user.username === args[0] || m.id === args[0]
         )
     );
     let role = message.guild.roles.cache.find(
-      r => r.name === args.slice(1).join(' ')
+      (r) => r.name === args.slice(1).join(' ')
     );
     member.roles.remove(role.id);
   }
 });
 
 // !voting
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'voting')) {
     let args = message.content.split(' ').slice(1);
@@ -706,29 +735,29 @@ bot.on('message', async message => {
       .send({
         embed: {
           author: {
-            name: 'Голосование'
+            name: 'Голосование',
           },
           color: lineColor,
           fields: [
             {
               name: 'Описание',
-              value: variables[0]
+              value: variables[0],
             },
             {
               name: 'Варианты',
-              value: variables.slice(1).join('\n')
-            }
+              value: variables.slice(1).join('\n'),
+            },
           ],
           footer: {
-            text: footerText
+            text: footerText,
           },
-          timestamp: new Date()
-        }
+          timestamp: new Date(),
+        },
       })
-      .then(msg => {
+      .then((msg) => {
         let i = 1;
         function reactionLoop() {
-          setTimeout(function() {
+          setTimeout(function () {
             if (i === 1) msg.react('1️⃣');
             if (i === 2) msg.react('2️⃣');
             if (i === 3) msg.react('3️⃣');
@@ -743,7 +772,7 @@ bot.on('message', async message => {
             if (i < variables.length) {
               reactionLoop();
             }
-          }, 500)
+          }, 500);
         }
         reactionLoop();
       });
@@ -751,7 +780,7 @@ bot.on('message', async message => {
 });
 
 // !choise
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'choise')) {
     let args = message.content.split(' ').slice(1);
@@ -760,39 +789,35 @@ bot.on('message', async message => {
 });
 
 // !nekos-life
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'nekos-life')) {
-    if (!message.channel.nsfw) return message.reply(
+    if (!message.channel.nsfw)
+      return message.reply(
         'команда может использоваться только в канале NSFW.'
       );
     let category = message.content.split(' ').slice(1);
-    let resp = await superagent.get(
-      `https://nekos.life/api/v2/img/${category}`
-    );
-    let { body } = await superagent.get(
-      `https://nekos.life/api/v2/img/${category}`
-    );
-    if (body.msg === '404' || resp.statusCode !== 200) return message.reply(
-        'не могу найти картинку по этому запросу...'
-      );
+    let resp = await get(`https://nekos.life/api/v2/img/${category}`);
+    let { body } = await get(`https://nekos.life/api/v2/img/${category}`);
+    if (body.msg === '404' || resp.statusCode !== 200)
+      return message.reply('не могу найти картинку по этому запросу...');
     message.channel.send({
       embed: {
         color: lineColor,
         image: {
-          url: body.url
+          url: body.url,
         },
         footer: {
-          text: footerText
+          text: footerText,
         },
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     });
   }
 });
 
 // !wttr
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'wttr')) {
     let args = message.content.split(' ').slice(1);
@@ -800,19 +825,19 @@ bot.on('message', async message => {
     let city = args.slice(1).join(' ');
     if (type === 'text') {
       let url = encodeURI(`http://wttr.in/${city}?m&M&format=2&lang=ru`);
-      let resp = await superagent.get(url);
+      let resp = await get(url);
       return message.channel.send({
         embed: {
           color: lineColor,
           fields: {
             name: `Погода: ${city}`,
-            value: resp.text
+            value: resp.text,
           },
           footer: {
-            text: footerText
+            text: footerText,
           },
-          timestamp: new Date()
-        }
+          timestamp: new Date(),
+        },
       });
     }
     if (type === 'img') {
@@ -821,43 +846,51 @@ bot.on('message', async message => {
         embed: {
           color: lineColor,
           author: {
-            name: `Погода: ${city}`
+            name: `Погода: ${city}`,
           },
           image: {
-            url: url
+            url: url,
           },
           footer: {
-            text: footerText
+            text: footerText,
           },
-          timestamp: new Date()
-        }
+          timestamp: new Date(),
+        },
       });
     }
   }
 });
 
 // Чтение DM
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.channel.type === 'dm') {
-    logToChannel(`${message.author.username} отправил в личные сообщения: «${message.content}».`);
+    logToChannel(
+      `${message.author.username} отправил в личные сообщения: «${message.content}».`
+    );
   }
 });
 
 // Выдача ролей на Ламоране
-bot.on('guildMemberAdd', async member => {
-  let role = member.guild.roles.cache.find(r => r.name === 'Начинающий');
+bot.on('guildMemberAdd', async (member) => {
+  let role = member.guild.roles.cache.find((r) => r.name === 'Начинающий');
   await member.roles.add(role.id);
-})
+});
 
 // Ссылки на вики на Ламоране
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
-  if (message.content.includes('[[') && message.content.includes(']]') && message.guild.id === '664491015914258452') {
+  if (
+    message.content.includes('[[') &&
+    message.content.includes(']]') &&
+    message.guild.id === '664491015914258452'
+  ) {
     let help = 0;
     let link = [];
     for (let symbol of message.content.split('')) {
       if (help === 5) {
-        message.channel.send(`<https://lamoraun.fandom.com/ru/wiki/${link.join('')}>`);
+        message.channel.send(
+          `<https://lamoraun.fandom.com/ru/wiki/${link.join('')}>`
+        );
         help = 0;
         link = [];
       }
@@ -882,9 +915,11 @@ bot.on('message', async message => {
 // //////////////////////////////////////////////////////
 const kmaps = Object.keys(maps);
 const vmaps = Object.values(maps);
-let cell, chan, game = 0;
+let cell,
+  chan,
+  game = 0;
 
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (
     message.channel.id === chan &&
@@ -893,7 +928,7 @@ bot.on('message', async message => {
     if (game === 'map') {
       for (let i of vmaps[cell]) {
         if (message.content.includes(i)) {
-          cell, chan, game = 0;
+          cell, chan, (game = 0);
           return message.reply('правильно!');
         }
       }
@@ -902,7 +937,7 @@ bot.on('message', async message => {
   }
 });
 
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'game')) {
     chan = message.channel.id;
@@ -914,20 +949,20 @@ bot.on('message', async message => {
         embed: {
           color: lineColor,
           author: {
-            name: 'Игра «Карта — Страна»'
+            name: 'Игра «Карта — Страна»',
           },
           image: {
-            url: kmaps[cell]
+            url: kmaps[cell],
           },
           fields: {
             name: 'Что написать в ответе:',
-            value: 'Название страны, изображённой на карте.'
+            value: 'Название страны, изображённой на карте.',
           },
           footer: {
-            text: footerText
+            text: footerText,
           },
-          timestamp: new Date()
-        }
+          timestamp: new Date(),
+        },
       });
     }
   }
