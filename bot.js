@@ -1,6 +1,6 @@
 // Bot settings
-import { Client } from 'discord.js';
-const bot = new Client();
+const Discord = require('discord.js');
+const bot = new Discord.Client();
 
 const prefix = '!';
 const lineColor = '0xad1914';
@@ -8,13 +8,14 @@ const footerText = 'Opeks powered by Оррин';
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
-import { get } from 'superagent';
-import { engines, dependencies } from './package.json';
-import { EventEmitter } from 'events';
-EventEmitter.defaultMaxListeners = Infinity;
+const superagent = require('superagent');
+const pack = require('./package.json');
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 
 // Database connection
-import { joke, maps } from './database.json';
+const data = require('./database.json');
+const joke = data.joke;
+const maps = data.maps;
 
 // Bot connection
 bot.login(process.env.TOKEN);
@@ -100,8 +101,8 @@ bot.on('message', async (message) => {
           },
           {
             name: 'Написан на',
-            value: `Node.js: v${engines.node}\nDiscord.js: v${
-              Object.values(dependencies)[0]
+            value: `Node.js: v${pack.engines.node}\nDiscord.js: v${
+              Object.values(pack.dependencies)[0]
             }`,
           },
           {
@@ -797,8 +798,12 @@ bot.on('message', async (message) => {
         'команда может использоваться только в канале NSFW.'
       );
     let category = message.content.split(' ').slice(1);
-    let resp = await get(`https://nekos.life/api/v2/img/${category}`);
-    let { body } = await get(`https://nekos.life/api/v2/img/${category}`);
+    let resp = await superagent.get(
+      `https://nekos.life/api/v2/img/${category}`
+    );
+    let { body } = await superagent.get(
+      `https://nekos.life/api/v2/img/${category}`
+    );
     if (body.msg === '404' || resp.statusCode !== 200)
       return message.reply('не могу найти картинку по этому запросу...');
     message.channel.send({
@@ -825,7 +830,7 @@ bot.on('message', async (message) => {
     let city = args.slice(1).join(' ');
     if (type === 'text') {
       let url = encodeURI(`http://wttr.in/${city}?m&M&format=2&lang=ru`);
-      let resp = await get(url);
+      let resp = await superagent.get(url);
       return message.channel.send({
         embed: {
           color: lineColor,
