@@ -730,7 +730,7 @@ bot.on('message', async (message) => {
               **Количество участников:** *${guild.memberCount}*
               **Количество ролей:** *${guild.roles.cache.size}*
               **Уровень проверки:** *${guild.mfaLevel}*
-              **Вы присоединились:** *${formatDate(message.member.joinedAt)}
+              **Вы присоединились:** *${formatDate(message.member.joinedAt)}*
             `,
           },
         ],
