@@ -640,7 +640,7 @@ bot.on('message', async (message) => {
     );
     let user = member.user;
     let nickname = member.nickname;
-    if (nickname == 'null') {
+    if (nickname == null) {
       nickname = member.user.username;
     }
     message.channel.send({
