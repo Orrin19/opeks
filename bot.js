@@ -889,9 +889,7 @@ bot.on('message', async (message) => {
 bot.on('guildMemberAdd', async (member) => {
   let role = member.guild.roles.cache.find((r) => r.name === 'Начинающий');
   await member.roles.add(role.id);
-  //member.send(
-  //  'Здарова, уёбки\nДобро пожаловать в Ад нахуй\nЗдесь блядь рп\nРП БЛЯТЬ\nЕСЛИ НЕ УМЕЕШЬ РПШИТЬ\nИди на хуй отсюда, пожалуйста\nИ хватит //задавать свои тупые вопросы\nИди в канал общение\nВыдержи горц мата\nХентая\nПорнухи\nИ спроси'
-  //);
+  //member.send('');
 });
 
 // Ссылки на вики на Ламоране
