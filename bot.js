@@ -725,7 +725,7 @@ bot.on('message', async (message) => {
             `,
           },
           {
-            name: ':mens: Участники',
+            name: ':mens: Участники:',
             value: `
               **Количество участников:** *${guild.memberCount}*
               **Количество ролей:** *${guild.roles.cache.size}*
