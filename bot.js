@@ -639,6 +639,10 @@ bot.on('message', async (message) => {
         )
     );
     let user = member.user;
+    let nickname = member.nickname;
+    if (nickname == 'null') {
+      nickname = member.user.username;
+    }
     message.channel.send({
       embed: {
         author: {
@@ -663,8 +667,70 @@ bot.on('message', async (message) => {
           {
             name: ':map: На этом сервере:',
             value: `
-              **Никнейм:** *${member.nickname}*
+              **Никнейм:** *${nickname}*
               **Присоединился:** *${formatDate(member.joinedAt)}*
+            `,
+          },
+        ],
+        footer: {
+          text: footerText,
+        },
+        timestamp: new Date(),
+      },
+    });
+  }
+});
+
+// !serverinfo
+bot.on('message', async (message) => {
+  if (message.author.bot) return;
+  if (message.content.startsWith(prefix + 'serverinfo')) {
+    let guild = message.guild;
+    let regions = {
+      russia: ':flag_ru: Россия',
+      india: 'flag_in: Индия',
+      japan: ':flag_ja: Япония',
+      brasil: ':flag_br: Бразилия',
+      'us-west': ':flag_us: Запад США',
+      hongkong: ':flag_hk: Гонконг',
+      southafrica: ':flag_za: Южная Африка',
+      sydney: ':flag_au: Сидней',
+      europe: ':flag_eu: Европа',
+      singapore: ':flag_sg: Сингапур',
+      'us-central': ':flag_us: Центр США',
+      'us-south': ':flag_us: Юг США',
+      'us-east': ':flag_us: Восток США',
+    };
+    message.channel.send({
+      embed: {
+        author: {
+          name: 'Информация о сервере',
+        },
+        color: lineColor,
+        thumbnail: {
+          url: guild.iconURL({
+            dynamic: true,
+            size: 1024,
+          }),
+        },
+        fields: [
+          {
+            name: ':globe_with_meridians: Основные данные:',
+            value: `
+              **Название:** *${guild.name}*
+              **ID:** *${guild.id}*
+              **Создан:** *${formatDate(guild.createdAt)}*
+              **Владелец:** *${guild.owner.user.username}*
+              **Регион:** *${regions[guild.region]}*
+            `,
+          },
+          {
+            name: ':mens: Участники',
+            value: `
+              **Количество участников:** *${guild.memberCount}*
+              **Количество ролей:** *${guild.roles.cache.size}*
+              **Уровень проверки:** *${guild.mfaLevel}*
+              **Вы присоединились:** *${formatDate(message.member.joinedAt)}
             `,
           },
         ],

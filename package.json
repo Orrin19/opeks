@@ -1,6 +1,6 @@
 {
   "name": "opeks",
-  "version": "1.6.5.7",
+  "version": "1.6.6.0",
   "description": "Discord bot powered by Оррин#9744",
   "main": "bot.js",
   "engines": {
