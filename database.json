@@ -29,13 +29,14 @@
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Union_of_Soviet_Socialist_Republics_%28orthographic_projection%29.svg/1024px-Union_of_Soviet_Socialist_Republics_%28orthographic_projection%29.svg.png": [
       "СССР",
       "Союз",
-      "Совет"
+      "Советский"
     ],
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Europe-Ukraine_%28disputed_territory%29.svg/1024px-Europe-Ukraine_%28disputed_territory%29.svg.png": [
       "Украина"
     ],
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Europe-Belarus.svg/1024px-Europe-Belarus.svg.png": [
-      "Беларусь"
+      "Беларусь",
+      "Белоруссия"
     ],
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/EU-Spain.svg/1024px-EU-Spain.svg.png": [
       "Испания"
@@ -336,6 +337,110 @@
     ],
     "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mexico_%28orthographic_projection%29.svg/1024px-Mexico_%28orthographic_projection%29.svg.png": [
       "Мексика"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/BLZ_orthographic.svg/1024px-BLZ_orthographic.svg.png": [
+      "Белиз"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Guatemala_%28orthographic_projection%29.svg/1024px-Guatemala_%28orthographic_projection%29.svg.png": [
+      "Гватемала"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Honduras_%28orthographic_projection%29.svg/1024px-Honduras_%28orthographic_projection%29.svg.png": [
+      "Гондурас"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Nicaragua_%28orthographic_projection%29.svg/1024px-Nicaragua_%28orthographic_projection%29.svg.png": [
+      "Никарагуа"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Costa_Rica_%28orthographic_projection%29.svg/1024px-Costa_Rica_%28orthographic_projection%29.svg.png": [
+      "Коста-Рика"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Panama_%28orthographic_projection%29.svg/1024px-Panama_%28orthographic_projection%29.svg.png": [
+      "Панама"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/COL_orthographic_%28San_Andr%C3%A9s_and_Providencia_special%29.svg/1024px-COL_orthographic_%28San_Andr%C3%A9s_and_Providencia_special%29.svg.png": [
+      "Колумбия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ECU_orthographic.svg/1024px-ECU_orthographic.svg.png": [
+      "Эквадор"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Peru_%28orthographic_projection%29.svg/1024px-Peru_%28orthographic_projection%29.svg.png": [
+      "Перу"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/CHL_orthographic.svg/1024px-CHL_orthographic.svg.png": [
+      "Чили"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Argentina_orthogonal.svg/1024px-Argentina_orthogonal.svg.png": [
+      "Аргентина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Uruguay_%28orthographic_projection%29.svg/1024px-Uruguay_%28orthographic_projection%29.svg.png": [
+      "Уругвай"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Paraguay_%28orthographic_projection%29.svg/1024px-Paraguay_%28orthographic_projection%29.svg.png": [
+      "Парагвай"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bolivia_%28orthographic_projection%29.svg/1024px-Bolivia_%28orthographic_projection%29.svg.png": [
+      "Боливия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/BRA_orthographic.svg/1024px-BRA_orthographic.svg.png": [
+      "Бразилия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Venezuela_Orthographic_Map.svg/1024px-Venezuela_Orthographic_Map.svg.png": [
+      "Венесуэла"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Guyana_%28orthographic_projection%29.svg/1024px-Guyana_%28orthographic_projection%29.svg.png": [
+      "Гайана"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Suriname_%28orthographic_projection%29.svg/1024px-Suriname_%28orthographic_projection%29.svg.png": [
+      "Суринам"
+    ],
+    "https://dic.academic.ru/pictures/enc_colier/frguiana.jpg": [
+      "Французская",
+      "Гвиана"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/CUB_orthographic.svg/1024px-CUB_orthographic.svg.png": [
+      "Куба"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/ATG_orthographic.svg/1024px-ATG_orthographic.svg.png": [
+      "Антигуа",
+      "Барбуда"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/The_Bahamas_on_the_globe_%28Americas_centered%29.svg/1024px-The_Bahamas_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Багам"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/BRB_orthographic.svg/1024px-BRB_orthographic.svg.png": [
+      "Барбадос"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Haiti_%28orthographic_projection%29.svg/1024px-Haiti_%28orthographic_projection%29.svg.png": [
+      "Гаити"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Grenada_on_the_globe_%28Americas_centered%29.svg/1024px-Grenada_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Гренада"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Dominica_on_the_globe_%28Americas_centered%29.svg/1024px-Dominica_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Доминик"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Dominican_Republic_%28orthographic_projection%29.svg/1024px-Dominican_Republic_%28orthographic_projection%29.svg.png": [
+      "Доминикан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Saint_Vincent_and_the_Grenadines_on_the_globe_%28Americas_centered%29.svg/1024px-Saint_Vincent_and_the_Grenadines_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Сент",
+      "Винсент",
+      "Гренадин"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/KNA_orthographic.svg/1024px-KNA_orthographic.svg.png": [
+      "Сент",
+      "Китс",
+      "Невис"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Saint_Lucia_on_the_globe_%28Americas_centered%29.svg/1024px-Saint_Lucia_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Сент",
+      "Люсия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Trinidad_and_Tobago_%28orthographic_projection%29.svg/1024px-Trinidad_and_Tobago_%28orthographic_projection%29.svg.png": [
+      "Тринидад",
+      "Тобаго"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Jamaica_%28orthographic_projection%29.svg/1024px-Jamaica_%28orthographic_projection%29.svg.png": [
+      "Ямайка"
     ]
   }
 }

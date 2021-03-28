@@ -390,10 +390,7 @@ bot.on('message', async (message) => {
     if (amount <= 1 || amount > 100) {
       return message.reply('необходимо ввести число от 1 до 99.');
     }
-    if (
-      !message.member.permissions.has('MANAGE_MESSAGES') &&
-      message.author.id !== ownerID
-    ) {
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       return message.reply('вам недоступна эта функция.');
     }
     message.channel.bulkDelete(amount, true);
@@ -426,13 +423,11 @@ bot.on('message', async (message) => {
       return message.channel.send('Не могу найти этого пользователя...');
     if (
       !message.member.permissions.has('MANAGE_ROLES') &&
-      message.author.id !== ownerID &&
       message.author.id != mutedMember.id
     )
       return message.channel.send('У тебя недостаточно прав для этого');
     if (
       mutedMember.permissions.has('MANAGE_MESSAGES') &&
-      message.author.id !== ownerID &&
       message.author.id != mutedMember.id
     )
       return message.channel.send('Этот пользователь не может быть заглушен');
@@ -505,13 +500,11 @@ bot.on('message', async (message) => {
       );
     if (
       !message.member.permissions.has('KICK_MEMBERS') &&
-      message.author.id !== ownerID &&
       message.author.id != kickedMember.id
     )
       return message.channel.send('У тебя недостаточно прав для этого');
     if (
       kickedMember.permissions.has('MANAGE_MESSAGES') &&
-      message.author.id !== ownerID &&
       message.author.id != kickedMember.id
     )
       return message.channel.send('Этот пользователь не может быть кикнут');
@@ -574,13 +567,11 @@ bot.on('message', async (message) => {
       );
     if (
       !message.member.permissions.has('BAN_MEMBERS') &&
-      message.author.id !== ownerID &&
       message.author.id != bannedMember.id
     )
       return message.channel.send('У тебя недостаточно прав для этого');
     if (
       bannedMember.permissions.has('MANAGE_MESSAGES') &&
-      message.author.id !== ownerID &&
       message.author.id != bannedMember.id
     )
       return message.channel.send(
@@ -748,7 +739,7 @@ bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'gr') &&
-    message.author.id === ownerID
+    message.member.permissions.has('MANAGE_ROLES')
   ) {
     await message.delete();
     let args = message.content.split(' ').slice(1);
@@ -770,7 +761,7 @@ bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'rr') &&
-    message.author.id === ownerID
+    message.member.permissions.has('MANAGE_ROLES')
   ) {
     await message.delete();
     let args = message.content.split(' ').slice(1);
