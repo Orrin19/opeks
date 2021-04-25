@@ -158,8 +158,10 @@ bot.on('message', async (message) => {
       },
     };
     if (result === value) {
-      rollEmbed.embed.image.url =
-        'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif';
+      rollEmbed.embed.image = {
+        url:
+          'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif',
+      };
     }
     if (fresult !== result) {
       rollEmbed.embed.fields.push(
