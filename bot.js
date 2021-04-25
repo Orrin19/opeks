@@ -157,7 +157,11 @@ bot.on('message', async (message) => {
         timestamp: new Date(),
       },
     };
-    if (fresult != result) {
+    if (result === value) {
+      rollEmbed.embed.image.url =
+        'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif';
+    }
+    if (fresult !== result) {
       rollEmbed.embed.fields.push(
         {
           name: ':heavy_plus_sign: Модификаторы:',
@@ -239,8 +243,7 @@ bot.on('message', async (message) => {
 bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.mentions.users.first() === bot.user) {
-    let messg = message.content.split('');
-    if (messg.slice(-1) === '?') {
+    if (message.content[message.content.length - 1] === '?') {
       let w = getRandomInt(100) + 1;
       let answer;
       if (w <= 50) {
@@ -423,12 +426,12 @@ bot.on('message', async (message) => {
       return message.channel.send('Не могу найти этого пользователя...');
     if (
       !message.member.permissions.has('MANAGE_ROLES') &&
-      message.author.id != mutedMember.id
+      message.author.id !== mutedMember.id
     )
       return message.channel.send('У тебя недостаточно прав для этого');
     if (
       mutedMember.permissions.has('MANAGE_MESSAGES') &&
-      message.author.id != mutedMember.id
+      message.author.id !== mutedMember.id
     )
       return message.channel.send('Этот пользователь не может быть заглушен');
     let reason = args.slice(1).join(' ');
@@ -500,12 +503,12 @@ bot.on('message', async (message) => {
       );
     if (
       !message.member.permissions.has('KICK_MEMBERS') &&
-      message.author.id != kickedMember.id
+      message.author.id !== kickedMember.id
     )
       return message.channel.send('У тебя недостаточно прав для этого');
     if (
       kickedMember.permissions.has('MANAGE_MESSAGES') &&
-      message.author.id != kickedMember.id
+      message.author.id !== kickedMember.id
     )
       return message.channel.send('Этот пользователь не может быть кикнут');
     let reason = args.slice(1).join(' ');
@@ -567,12 +570,12 @@ bot.on('message', async (message) => {
       );
     if (
       !message.member.permissions.has('BAN_MEMBERS') &&
-      message.author.id != bannedMember.id
+      message.author.id !== bannedMember.id
     )
       return message.channel.send('У тебя недостаточно прав для этого');
     if (
       bannedMember.permissions.has('MANAGE_MESSAGES') &&
-      message.author.id != bannedMember.id
+      message.author.id !== bannedMember.id
     )
       return message.channel.send(
         'Этот пользователь не может быть заблокирован'
