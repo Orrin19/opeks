@@ -245,7 +245,7 @@ bot.on('message', async (message) => {
 bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.mentions.users.first() === bot.user) {
-    if (message.content[-1] === '?') {
+    if (message.content[message.content.length - 1] === '?') {
       let w = getRandomInt(100) + 1;
       let answer;
       if (w <= 50) {
