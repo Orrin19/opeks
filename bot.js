@@ -32,6 +32,7 @@ bot.on('ready', () => {
 // Ordinary functions
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 const getRandArrIndex = (arr) => Math.floor(Math.random() * arr.length);
+const getRandArrElement = (arr) => arr[getRandArrIndex(arr)];
 const logToChannel = (msg) => bot.channels.cache.get(logChannel).send(msg);
 const formatDate = (date) => {
   let options = {
@@ -159,8 +160,7 @@ bot.on('message', async (message) => {
     };
     if (result === value) {
       rollEmbed.embed.image = {
-        url:
-          'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif',
+        url: 'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif',
       };
     }
     if (fresult !== result) {
@@ -245,7 +245,7 @@ bot.on('message', async (message) => {
 bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.mentions.users.first() === bot.user) {
-    if (message.content[message.content.length - 1] === '?') {
+    if (message.content[-1] === '?') {
       let w = getRandomInt(100) + 1;
       let answer;
       if (w <= 50) {
@@ -269,7 +269,7 @@ bot.on('message', async (message) => {
           'с чего? Нет, конечно.',
         ];
       }
-      message.reply(answer[getRandArrIndex(answer)]);
+      message.reply(getRandArrElement(answer));
     }
   }
 });
@@ -328,7 +328,7 @@ bot.on('message', async (message) => {
           },
           {
             name: ':ballot_box_with_check: Результат:',
-            value: answer[getRandArrIndex(answer)],
+            value: getRandArrElement(answer),
           },
         ],
         footer: {
@@ -857,7 +857,7 @@ bot.on('message', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'choise')) {
     let args = message.content.split(' ').slice(1);
-    message.channel.send(args[getRandArrIndex(args)]);
+    message.channel.send(getRandArrElement(args));
   }
 });
 
