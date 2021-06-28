@@ -976,6 +976,9 @@ bot.on('message', async (message) => {
         help = 5;
       }
       if (help === 2 && symbol !== ']') {
+        if (symbol === ' ') {
+          symbol = '_';
+        }
         link.push(symbol);
       }
       if (symbol === '[' && help === 1) {
