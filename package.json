@@ -1,6 +1,6 @@
 {
   "name": "opeks",
-  "version": "1.6.8.8",
+  "version": "1.6.8.9",
   "description": "Discord bot powered by Оррин#9744",
   "main": "bot.js",
   "engines": {
@@ -14,7 +14,7 @@
   "dependencies": {
     "discord.js": "12.5.1",
     "events": "3.2.0",
-    "ffmpeg-static": "^4.4.0",
+    "ffmpeg-static": "4.4.0",
     "superagent": "6.1.0",
     "ytdl-core": "4.8.3"
   }
