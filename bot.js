@@ -1089,7 +1089,7 @@ bot.on('message', async message => {
 async function execute(message, serverQueue) {
 	const args = message.content.split(' ');
 
-	const voiceChannel = message.member.voiceChannel;
+	const voiceChannel = message.member.voice.channel;
 	if (!voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы заказать музыку!');
 	const permissions = voiceChannel.permissionsFor(message.bot.user);
 	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
