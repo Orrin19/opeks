@@ -8,7 +8,7 @@ const footerText = 'Opeks powered by Оррин';
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
-const { getInfo } = require('ytdl-core');
+const ytdl = require('ytdl-core');
 const superagent = require('superagent');
 const pack = require('./package.json');
 require('events').EventEmitter.defaultMaxListeners = Infinity;
@@ -1099,7 +1099,7 @@ async function execute(message, serverQueue) {
 		return message.channel.send('Мне нужны права на использование голосового чата!');
 	}
 
-	const songInfo = await getInfo(args[1]);
+	const songInfo = await ytdl.getInfo(args[1]);
 	const song = {
 		title: songInfo.videoDetails.title,
 		url: songInfo.videoDetails.video_url,
@@ -1157,7 +1157,7 @@ function play(guild, song) {
 		return;
 	}
 
-	const dispatcher = serverQueue.connection.play(song.url)
+	const dispatcher = serverQueue.connection.play(ytdl(song.url))
 		.on('end', () => {
 			console.log('Music ended!');
 			serverQueue.songs.shift();
