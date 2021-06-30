@@ -1091,7 +1091,10 @@ async function execute(message, serverQueue) {
 
 	const voiceChannel = message.member.voice.channel;
 	if (!voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы заказать музыку!');
-	const permissions = voiceChannel.permissionsFor(message.bot.user);
+  let botMember = message.guild.members.cache.find(
+    (m) => m.user.username === bot.user.username
+  )
+	const permissions = voiceChannel.permissionsFor(botMember);
 	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
 		return message.channel.send('Мне нужны права на использование голосового чата!');
 	}
