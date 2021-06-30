@@ -8,7 +8,7 @@ const footerText = 'Opeks powered by Оррин';
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
-const ytdl = require('ytdl-core');
+const { getInfo } = require('ytdl-core');
 const superagent = require('superagent');
 const pack = require('./package.json');
 require('events').EventEmitter.defaultMaxListeners = Infinity;
@@ -1099,11 +1099,11 @@ async function execute(message, serverQueue) {
 		return message.channel.send('Мне нужны права на использование голосового чата!');
 	}
 
-	//const songInfo = await ytdl.getInfo(args[1]);
-	//const song = {
-	//	title: songInfo.videoDetails.title,
-	//	url: songInfo.videoDetails.video_url,
-	//};
+	const songInfo = await getInfo(args[1]);
+	const song = {
+		title: songInfo.videoDetails.title,
+		url: songInfo.videoDetails.video_url,
+	};
 
 	if (!serverQueue) {
 		const queueContruct = {
@@ -1117,7 +1117,7 @@ async function execute(message, serverQueue) {
 
 		queue.set(message.guild.id, queueContruct);
 
-		queueContruct.songs.push(args[1]/*song*/);
+		queueContruct.songs.push(song);
 
 		try {
 			var connection = await voiceChannel.join();
@@ -1129,9 +1129,9 @@ async function execute(message, serverQueue) {
 			return message.channel.send(err);
 		}
 	} else {
-		serverQueue.songs.push(args[1]/*song*/);
+		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
-		return message.channel.send('ы'/*`«${song.title}» была добавлена в очередь!`*/);
+		return message.channel.send(`«${song.title}» была добавлена в очередь!`);
 	}
 
 }
@@ -1157,7 +1157,7 @@ function play(guild, song) {
 		return;
 	}
 
-	const dispatcher = serverQueue.connection.play(ytdl(song/*.url*/))
+	const dispatcher = serverQueue.connection.play(ytdl(song.url))
 		.on('end', () => {
 			console.log('Music ended!');
 			serverQueue.songs.shift();
