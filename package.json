@@ -1,6 +1,6 @@
 {
   "name": "opeks",
-  "version": "1.6.8.9",
+  "version": "1.6.8.10",
   "description": "Discord bot powered by Оррин#9744",
   "main": "bot.js",
   "engines": {
@@ -12,9 +12,11 @@
   "author": "Оррин#9744",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "0.5.3",
     "discord.js": "12.5.1",
     "events": "3.2.0",
     "ffmpeg-static": "4.4.0",
+    "opusscript": "0.0.8",
     "superagent": "6.1.0",
     "ytdl-core": "4.8.3"
   }
