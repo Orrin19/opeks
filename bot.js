@@ -8,6 +8,7 @@ const footerText = 'Opeks powered by Оррин';
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
+const ytdl = require('ytdl-core');
 const superagent = require('superagent');
 const pack = require('./package.json');
 require('events').EventEmitter.defaultMaxListeners = Infinity;
@@ -1048,3 +1049,119 @@ bot.on('message', async (message) => {
     }
   }
 });
+
+
+// //////////////////////////////////////////////////////
+// //////////////Music///////////////////////////////////
+// //////////////////////////////////////////////////////
+const queue = new Map();
+
+bot.once('ready', () => {
+	console.log('Ready!');
+});
+
+bot.once('reconnecting', () => {
+	console.log('Reconnecting!');
+});
+
+bot.once('disconnect', () => {
+	console.log('Disconnect!');
+});
+
+bot.on('message', async message => {
+	if (message.author.bot) return;
+	if (!message.content.startsWith(prefix)) return;
+
+	const serverQueue = queue.get(message.guild.id);
+
+	if (message.content.startsWith(`${prefix}play`)) {
+		execute(message, serverQueue);
+		return;
+	} else if (message.content.startsWith(`${prefix}skip`)) {
+		skip(message, serverQueue);
+		return;
+	} else if (message.content.startsWith(`${prefix}stop`)) {
+		stop(message, serverQueue);
+		return;
+	}
+});
+
+async function execute(message, serverQueue) {
+	const args = message.content.split(' ');
+
+	const voiceChannel = message.member.voiceChannel;
+	if (!voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы заказать музыку!');
+	const permissions = voiceChannel.permissionsFor(message.bot.user);
+	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+		return message.channel.send('Мне нужны права на использование голосового чата!');
+	}
+
+	const songInfo = await ytdl.getInfo(args[1]);
+	const song = {
+		title: songInfo.videoDetails.title,
+		url: songInfo.videoDetails.video_url,
+	};
+
+	if (!serverQueue) {
+		const queueContruct = {
+			textChannel: message.channel,
+			voiceChannel: voiceChannel,
+			connection: null,
+			songs: [],
+			volume: 5,
+			playing: true,
+		};
+
+		queue.set(message.guild.id, queueContruct);
+
+		queueContruct.songs.push(song);
+
+		try {
+			var connection = await voiceChannel.join();
+			queueContruct.connection = connection;
+			play(message.guild, queueContruct.songs[0]);
+		} catch (err) {
+			console.log(err);
+			queue.delete(message.guild.id);
+			return message.channel.send(err);
+		}
+	} else {
+		serverQueue.songs.push(song);
+		console.log(serverQueue.songs);
+		return message.channel.send(`«${song.title}» была добавлена в очередь!`);
+	}
+
+}
+
+function skip(message, serverQueue) {
+	if (!message.member.voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы пропустить песню!');
+	if (!serverQueue) return message.channel.send('Сейчас не играет никакая песня, останавливать нечего!');
+	serverQueue.connection.dispatcher.end();
+}
+
+function stop(message, serverQueue) {
+	if (!message.member.voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы остановить музыку!');
+	serverQueue.songs = [];
+	serverQueue.connection.dispatcher.end();
+}
+
+function play(guild, song) {
+	const serverQueue = queue.get(guild.id);
+
+	if (!song) {
+		serverQueue.voiceChannel.leave();
+		queue.delete(guild.id);
+		return;
+	}
+
+	const dispatcher = serverQueue.connection.play(ytdl(song.url))
+		.on('end', () => {
+			console.log('Music ended!');
+			serverQueue.songs.shift();
+			play(guild, serverQueue.songs[0]);
+		})
+		.on('error', error => {
+			console.error(error);
+		});
+	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+}
