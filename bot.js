@@ -1099,11 +1099,11 @@ async function execute(message, serverQueue) {
 		return message.channel.send('Мне нужны права на использование голосового чата!');
 	}
 
-	const songInfo = await ytdl.getInfo(args[1]);
-	const song = {
-		title: songInfo.videoDetails.title,
-		url: songInfo.videoDetails.video_url,
-	};
+	//const songInfo = await ytdl.getInfo(args[1]);
+	//const song = {
+	//	title: songInfo.videoDetails.title,
+	//	url: songInfo.videoDetails.video_url,
+	//};
 
 	if (!serverQueue) {
 		const queueContruct = {
@@ -1117,7 +1117,7 @@ async function execute(message, serverQueue) {
 
 		queue.set(message.guild.id, queueContruct);
 
-		queueContruct.songs.push(song);
+		queueContruct.songs.push(args[1]/*song*/);
 
 		try {
 			var connection = await voiceChannel.join();
@@ -1129,21 +1129,21 @@ async function execute(message, serverQueue) {
 			return message.channel.send(err);
 		}
 	} else {
-		serverQueue.songs.push(song);
+		serverQueue.songs.push(args[1]/*song*/);
 		console.log(serverQueue.songs);
-		return message.channel.send(`«${song.title}» была добавлена в очередь!`);
+		return message.channel.send('ы'/*`«${song.title}» была добавлена в очередь!`*/);
 	}
 
 }
 
 function skip(message, serverQueue) {
-	if (!message.member.voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы пропустить песню!');
+	if (!message.member.voice.channel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы пропустить песню!');
 	if (!serverQueue) return message.channel.send('Сейчас не играет никакая песня, останавливать нечего!');
 	serverQueue.connection.dispatcher.end();
 }
 
 function stop(message, serverQueue) {
-	if (!message.member.voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы остановить музыку!');
+	if (!message.member.voice.channel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы остановить музыку!');
 	serverQueue.songs = [];
 	serverQueue.connection.dispatcher.end();
 }
@@ -1152,12 +1152,12 @@ function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
 
 	if (!song) {
-		serverQueue.voiceChannel.leave();
+		serverQueue.voice.channel.leave();
 		queue.delete(guild.id);
 		return;
 	}
 
-	const dispatcher = serverQueue.connection.play(ytdl(song.url))
+	const dispatcher = serverQueue.connection.play(ytdl(song/*.url*/))
 		.on('end', () => {
 			console.log('Music ended!');
 			serverQueue.songs.shift();
