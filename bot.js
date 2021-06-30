@@ -9,6 +9,7 @@ const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
 const ytdl = require('ytdl-core');
+const opus = require("@discordjs/opus");
 const superagent = require('superagent');
 const pack = require('./package.json');
 require('events').EventEmitter.defaultMaxListeners = Infinity;
