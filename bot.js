@@ -77,12 +77,11 @@ bot.on('messageCreate', async (message) => {
     const helpEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Opeks')
-      .setThumbnail({
-        url: bot.user.displayAvatarURL({
+      .setThumbnail(bot.user.displayAvatarURL({
           dynamic: true,
           size: 1024,
         }),
-      })
+      )
       .setTimestamp()
       .setFooter(footerText)
       .addFields(
@@ -595,12 +594,11 @@ bot.on('messageCreate', async (message) => {
     const userEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Информация о пользователе')
-      .setThumbnail({
-        url: user.displayAvatarURL({
+      .setThumbnail(user.displayAvatarURL({
           dynamic: true,
           size: 1024,
         }),
-      })
+      )
       .setTimestamp()
       .setFooter(footerText)
       .addFields(
@@ -650,12 +648,11 @@ bot.on('messageCreate', async (message) => {
     const serverEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Информация о сервере')
-      .setThumbnail({
-        url: guild.iconURL({
+      .setThumbnail(guild.iconURL({
           dynamic: true,
           size: 1024,
         }),
-      })
+      )
       .setTimestamp()
       .setFooter(footerText)
       .addFields(
