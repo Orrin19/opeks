@@ -72,6 +72,7 @@ bot.on('messageCreate', async (message) => {
           .setURL('https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot')
       );
     message.channel.send({
+      content: 'https://tenor.com/view/bots-hobots-buzz-lightyear-toy-story-woody-gif-17120878',
       components: [inviteButton] 
     });
   }
