@@ -971,7 +971,7 @@ bot.on('messageCreate', async message => {
 			description: 'Sends picture with a cat.',
 		};
 
-		const command = await client.application?.commands.create(data);
+		const command = await bot.application?.commands.create(data);
 		console.log(command);
 	}
 });
