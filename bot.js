@@ -956,3 +956,41 @@ bot.on('messageCreate', async (message) => {
     }
   }
 });
+
+
+
+///////////////////////////////////
+//////////////// Slashes //////////
+///////////////////////////////////
+bot.on('messageCreate', async message => {
+	if (!bot.application?.owner) await bot.application?.fetch();
+
+	if (message.content.toLowerCase() === '!deploy' && message.author.id === bot.application?.owner.id) {
+		const data = {
+			name: 'meow',
+			description: 'Sends picture with a cat.',
+		};
+
+		const command = await client.application?.commands.create(data);
+		console.log(command);
+	}
+});
+
+// /meow
+bot.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	if (interaction.commandName === 'meow') {
+    let { body } = await superagent.get(
+      `https://nekos.life/api/v2/img/meow`
+    );
+    const meowEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setImage(body.url)
+      .setTimestamp()
+      .setFooter(footerText);
+		await interaction.reply({
+      embeds: [meowEmbed]
+    });
+	}
+});
