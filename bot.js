@@ -966,12 +966,24 @@ bot.on('messageCreate', async message => {
 	if (!bot.application?.owner) await bot.application?.fetch();
 
 	if (message.content.toLowerCase() === '!deploy' && message.author.id === bot.application?.owner.id) {
-		const data = {
-			name: 'meow',
-			description: 'Sends picture with a cat.',
-		};
+		const data = [
+      {
+			  name: 'meow',
+			  description: 'Sends a picture with a cat.',
+		  },
+      {
+			  name: 'roll',
+			  description: 'Gives a random number between 1 and option.',
+        options: [{
+          name: 'option',
+          type: 'INTEGER',
+          description: 'The max value of roll.',
+          required: true,
+        }],
+		  }
+    ];
 
-		const command = await bot.application?.commands.create(data);
+		const command = await bot.application?.commands.set(data);
 		console.log(command);
 	}
 });
@@ -991,6 +1003,28 @@ bot.on('interactionCreate', async interaction => {
       .setFooter(footerText);
 		await interaction.reply({
       embeds: [meowEmbed]
+    });
+	}
+});
+
+// /roll
+bot.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	if (interaction.commandName === 'roll') {
+    const value = interaction.options.getInteger('option');
+    let result = getRandomInt(value) + 1;
+    const rollEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle(`:game_die: Случайное число от 1 до ${value}`)
+      .setDescription(`**${result}**`)
+      .setTimestamp()
+      .setFooter(footerText);
+    if (result === value) {
+      rollEmbed.setImage('https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif');
+    }
+		await interaction.reply({
+      embeds: [rollEmbed]
     });
 	}
 });
