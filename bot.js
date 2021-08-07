@@ -74,44 +74,40 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'help')) {
+    const helpEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Opeks')
+      .setThumbnail({
+        url: bot.user.displayAvatarURL({
+          dynamic: true,
+          size: 1024,
+        }),
+      })
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+          {
+          name: 'Вызов команд',
+          value: '!command args',
+        },
+        {
+          name: 'Бот создан',
+          value: '29 января 2020 в 11:39:58 (UTC)',
+        },
+        {
+          name: 'Написан на',
+          value: `Node.js: v${pack.engines.node}\nDiscord.js: v${
+            Object.values(pack.dependencies)[0]
+          }`,
+        },
+        {
+          name: 'Хостинг',
+          value: process.env.HOSTING,
+        }
+      );
     message.channel.send({
       content: 'Привет, я Opeks! Чем могу быть полезен?',
-      embeds: {
-        author: {
-          name: 'Opeks',
-        },
-        color: lineColor,
-        thumbnail: {
-          url: bot.user.displayAvatarURL({
-            dynamic: true,
-            size: 1024,
-          }),
-        },
-        fields: [
-          {
-            name: 'Вызов команд',
-            value: '!command args',
-          },
-          {
-            name: 'Бот создан',
-            value: '29 января 2020 в 11:39:58 (UTC)',
-          },
-          {
-            name: 'Написан на',
-            value: `Node.js: v${pack.engines.node}\nDiscord.js: v${
-              Object.values(pack.dependencies)[0]
-            }`,
-          },
-          {
-            name: 'Хостинг',
-            value: process.env.HOSTING,
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [helpEmbed]
     });
   }
 });
@@ -295,31 +291,27 @@ bot.on('messageCreate', async (message) => {
         'С чего? Нет, конечно.',
       ];
     }
+    const chanceEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('🎲 Вероятность события')
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: ':grey_question: Событие:',
+          value: action,
+        },
+        {
+          name: ':scales: Вероятность удачи:',
+          value: `${chance} %`,
+        },
+        {
+          name: ':ballot_box_with_check: Результат:',
+          value: getRandArrElement(answer),
+        }
+      )
     message.channel.send({
-      embeds: {
-        author: {
-          name: '🎲 Вероятность события',
-        },
-        color: lineColor,
-        fields: [
-          {
-            name: ':grey_question: Событие:',
-            value: action,
-          },
-          {
-            name: ':scales: Вероятность удачи:',
-            value: `${chance} %`,
-          },
-          {
-            name: ':ballot_box_with_check: Результат:',
-            value: getRandArrElement(answer),
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [chanceEmbed]
     });
   }
 });
@@ -328,24 +320,15 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'joke')) {
-    let value = getRandArrIndex(joke);
+    const value = getRandArrIndex(joke);
+    const jokeEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Внимание, анекдот!')
+      .setDescription(joke[value])
+      .setTimestamp()
+      .setFooter(footerText);
     message.channel.send({
-      embeds: {
-        author: {
-          name: 'Внимание, анекдот!',
-        },
-        color: lineColor,
-        fields: [
-          {
-            name: `№${value}`,
-            value: joke[value],
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [jokeEmbed]
     });
   }
 });
@@ -382,13 +365,9 @@ bot.on('messageCreate', async (message) => {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       return message.reply('вам недоступна эта функция.');
     }
-    message.channel.bulkDelete(amount, false);
+    message.channel.bulkDelete(amount, true);
     message.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
-      msg.delete({
-        timeout: 5000,
-        reason: 'Чтобы было',
-      })
-    );
+      setTimeout(() => msg.delete(), 5000));
     logToChannel(
       `${message.author.username} удалил ${amount - 1} сообщений в канале ${
         message.channel
@@ -437,35 +416,31 @@ bot.on('messageCreate', async (message) => {
       `${message.author.username} заглушил ${mutedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
     );
     await mutedMember.roles.add(muterole.id);
+    const muteEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Мут пользователя')
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: 'Заглушенный пользователь:',
+          value: mutedMember.user.tag,
+        },
+        {
+          name: 'Был заглушен:',
+          value: message.author.tag,
+        },
+        {
+          name: 'Дата:',
+          value: message.createdAt,
+        },
+        {
+          name: 'Причина:',
+          value: reason,
+        }
+      )
     message.channel.send({
-      embeds: {
-        author: {
-          name: 'Мут пользователя',
-        },
-        color: lineColor,
-        fields: [
-          {
-            name: 'Заглушенный пользователь:',
-            value: mutedMember,
-          },
-          {
-            name: 'Был заглушен:',
-            value: message.author,
-          },
-          {
-            name: 'Дата:',
-            value: message.createdAt,
-          },
-          {
-            name: 'Причина:',
-            value: reason,
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [muteEmbed]
     });
   }
 });
@@ -505,35 +480,31 @@ bot.on('messageCreate', async (message) => {
       `${message.author.username} кикнул ${kickedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
     );
     await kickedMember.kick(reason);
+    const kickEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Кик пользователя')
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: 'Кикнутый пользователь:',
+          value: kickedMember.user.tag,
+        },
+        {
+          name: 'Был кикнут:',
+          value: message.author.tag,
+        },
+        {
+          name: 'Дата:',
+          value: message.createdAt,
+        },
+        {
+          name: 'Причина:',
+          value: reason,
+        }
+      )
     message.channel.send({
-      embeds: {
-        author: {
-          name: 'Кик пользователя',
-        },
-        color: lineColor,
-        fields: [
-          {
-            name: 'Удалённый пользователь:',
-            value: kickedMember,
-          },
-          {
-            name: 'Был удалён:',
-            value: message.author,
-          },
-          {
-            name: 'Дата:',
-            value: message.createdAt,
-          },
-          {
-            name: 'Причина:',
-            value: reason,
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [kickEmbed]
     });
   }
 });
@@ -576,35 +547,31 @@ bot.on('messageCreate', async (message) => {
     await bannedMember.ban({
       reason: reason
     });
+    const banEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Бан пользователя')
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: 'Заблокированный пользователь:',
+          value: bannedMember.user.tag,
+        },
+        {
+          name: 'Был заблокирован:',
+          value: message.author.tag,
+        },
+        {
+          name: 'Дата:',
+          value: message.createdAt,
+        },
+        {
+          name: 'Причина:',
+          value: reason,
+        }
+      )
     message.channel.send({
-      embeds: {
-        author: {
-          name: 'Бан пользователя',
-        },
-        color: lineColor,
-        fields: [
-          {
-            name: 'Заблокированный пользователь:',
-            value: bannedMember,
-          },
-          {
-            name: 'Был заблокирован:',
-            value: message.author,
-          },
-          {
-            name: 'Дата:',
-            value: message.createdAt,
-          },
-          {
-            name: 'Причина:',
-            value: reason,
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [banEmbed]
     });
   }
 });
@@ -625,40 +592,36 @@ bot.on('messageCreate', async (message) => {
     if (nickname == null) {
       nickname = member.user.username;
     }
+    const userEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Информация о пользователе')
+      .setThumbnail({
+        url: user.displayAvatarURL({
+          dynamic: true,
+          size: 1024,
+        }),
+      })
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: ':globe_with_meridians: Основные данные:',
+          value: `
+            **Имя:** *${user.username}#${user.discriminator}*
+            **ID:** *${user.id}*
+            **Создан:** *${formatDate(user.createdAt)}*
+          `,
+        },
+        {
+          name: ':map: На этом сервере:',
+          value: `
+            **Никнейм:** *${nickname}*
+            **Присоединился:** *${formatDate(member.joinedAt)}*
+          `,
+        }
+      )
     message.channel.send({
-      embeds: {
-        author: {
-          name: 'Информация о пользователе',
-        },
-        color: lineColor,
-        thumbnail: {
-          url: user.displayAvatarURL({
-            dynamic: true,
-            size: 1024,
-          }),
-        },
-        fields: [
-          {
-            name: ':globe_with_meridians: Основные данные:',
-            value: `
-              **Имя:** *${user.username}#${user.discriminator}*
-              **ID:** *${user.id}*
-              **Создан:** *${formatDate(user.createdAt)}*
-            `,
-          },
-          {
-            name: ':map: На этом сервере:',
-            value: `
-              **Никнейм:** *${nickname}*
-              **Присоединился:** *${formatDate(member.joinedAt)}*
-            `,
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [userEmbed]
     });
   }
 });
@@ -684,44 +647,40 @@ bot.on('messageCreate', async (message) => {
       'us-east': ':flag_us: Восток США',
     };
     let guildOwner = guild.members.cache.get(guild.ownerId);
+    const serverEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Информация о сервере')
+      .setThumbnail({
+        url: guild.iconURL({
+          dynamic: true,
+          size: 1024,
+        }),
+      })
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: ':globe_with_meridians: Основные данные:',
+          value: `
+            **Название:** *${guild.name}*
+            **ID:** *${guild.id}*
+            **Создан:** *${formatDate(guild.createdAt)}*
+            **Владелец:** *${guildOwner.user.username}*
+            **Регион:** *${regions[guild.region]}*
+          `,
+        },
+        {
+          name: ':mens: Участники:',
+          value: `
+            **Количество участников:** *${guild.memberCount}*
+            **Количество ролей:** *${guild.roles.cache.size}*
+            **Уровень проверки:** *${guild.mfaLevel}*
+            **Вы присоединились:** *${formatDate(message.member.joinedAt)}*
+          `,
+        }
+      )
     message.channel.send({
-      embeds: {
-        author: {
-          name: 'Информация о сервере',
-        },
-        color: lineColor,
-        thumbnail: {
-          url: guild.iconURL({
-            dynamic: true,
-            size: 1024,
-          }),
-        },
-        fields: [
-          {
-            name: ':globe_with_meridians: Основные данные:',
-            value: `
-              **Название:** *${guild.name}*
-              **ID:** *${guild.id}*
-              **Создан:** *${formatDate(guild.createdAt)}*
-              **Владелец:** *${guildOwner.user.username}*
-              **Регион:** *${regions[guild.region]}*
-            `,
-          },
-          {
-            name: ':mens: Участники:',
-            value: `
-              **Количество участников:** *${guild.memberCount}*
-              **Количество ролей:** *${guild.roles.cache.size}*
-              **Уровень проверки:** *${guild.mfaLevel}*
-              **Вы присоединились:** *${formatDate(message.member.joinedAt)}*
-            `,
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [serverEmbed]
     });
   }
 });
@@ -777,42 +736,23 @@ bot.on('messageCreate', async (message) => {
     let args = message.content.split(' ').slice(1);
     let variables = args.join(' ');
     variables = variables.split('|');
-    /* let vararr = '';
-    for (let i = 1; i++; i < variables.lenght) {
-      if (i === 1) vararr += '1️⃣' + variables[1] + '\n';
-      if (i === 2) vararr += '2️⃣' + variables[2] + '\n';
-      if (i === 3) vararr += '3️⃣' + variables[3] + '\n';
-      if (i === 4) vararr += '4️⃣' + variables[4] + '\n';
-      if (i === 5) vararr += '5️⃣' + variables[5] + '\n';
-      if (i === 6) vararr += '6️⃣' + variables[6] + '\n';
-      if (i === 7) vararr += '7️⃣' + variables[7] + '\n';
-      if (i === 8) vararr += '8️⃣' + variables[8] + '\n';
-      if (i === 9) vararr += '9️⃣' + variables[9] + '\n';
-      if (i === 10) vararr += '0️⃣' + variables[10];
-      message.channel.send(vararr);
-    } */
-    message.channel
-      .send({
-        embeds: {
-          author: {
-            name: 'Голосование',
-          },
-          color: lineColor,
-          fields: [
-            {
-              name: 'Описание',
-              value: variables[0],
-            },
-            {
-              name: 'Варианты',
-              value: variables.slice(1).join('\n'),
-            },
-          ],
-          footer: {
-            text: footerText,
-          },
-          timestamp: new Date(),
+    const voteEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('Голосование')
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: 'Описание',
+          value: variables[0],
         },
+        {
+          name: 'Варианты',
+          value: variables.slice(1).join('\n'),
+        }
+      );
+    message.channel.send({
+        embeds: [voteEmbed]
       })
       .then((msg) => {
         let i = 1;
@@ -865,17 +805,15 @@ bot.on('messageCreate', async (message) => {
     );
     if (body.msg === '404' || resp.statusCode !== 200)
       return message.reply('не могу найти картинку по этому запросу...');
+    const nekoEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setImage({
+        url: body.url,
+      })
+      .setTimestamp()
+      .setFooter(footerText);
     message.channel.send({
-      embeds: {
-        color: lineColor,
-        image: {
-          url: body.url,
-        },
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
+      embeds: [nekoEmbed]
     });
   }
 });
@@ -890,36 +828,26 @@ bot.on('messageCreate', async (message) => {
     if (type === 'text') {
       let url = encodeURI(`http://wttr.in/${city}?m&M&format=2&lang=ru`);
       let resp = await superagent.get(url);
+      const wttrEmbed = new Discord.MessageEmbed()
+        .setColor(lineColor)
+        .setTitle(`Погода: ${city}`)
+        .setDescription(resp.text)
+        .setTimestamp()
+        .setFooter(footerText);
       return message.channel.send({
-        embeds: {
-          color: lineColor,
-          fields: {
-            name: `Погода: ${city}`,
-            value: resp.text,
-          },
-          footer: {
-            text: footerText,
-          },
-          timestamp: new Date(),
-        },
+        embeds: [wttrEmbed]
       });
     }
     if (type === 'img') {
       let url = encodeURI(`http://wttr.in/${city}.png?m&M&p&0&Q&lang=ru`);
+      const wttrEmbed = new Discord.MessageEmbed()
+        .setColor(lineColor)
+        .setTitle(`Погода: ${city}`)
+        .setImage(url)
+        .setTimestamp()
+        .setFooter(footerText);
       return message.channel.send({
-        embeds: {
-          color: lineColor,
-          author: {
-            name: `Погода: ${city}`,
-          },
-          image: {
-            url: url,
-          },
-          footer: {
-            text: footerText,
-          },
-          timestamp: new Date(),
-        },
+        embeds: [wttrEmbed]
       });
     }
   }
@@ -1013,24 +941,14 @@ bot.on('messageCreate', async (message) => {
     if (args[0] === 'map-state') {
       game = 'map';
       cell = getRandArrIndex(kmaps);
+      const gameEmbed = new Discord.MessageEmbed()
+        .setColor(lineColor)
+        .setTitle('Игра «Карта — Страна»')
+        .setImage(kmaps[cell])
+        .setTimestamp()
+        .setFooter(footerText);
       message.channel.send({
-        embeds: {
-          color: lineColor,
-          author: {
-            name: 'Игра «Карта — Страна»',
-          },
-          image: {
-            url: kmaps[cell],
-          },
-          fields: {
-            name: 'Что написать в ответе:',
-            value: 'Название страны, изображённой на карте.',
-          },
-          footer: {
-            text: footerText,
-          },
-          timestamp: new Date(),
-        },
+        embeds: [gameEmbed]
       });
     }
   }
