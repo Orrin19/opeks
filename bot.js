@@ -136,31 +136,17 @@ bot.on('messageCreate', async (message) => {
         mods.push(i);
       } else break;
     }
-    let rollEmbed = {
-      embed: {
-        author: {
-          name: `🔢 Случайное число от 1 до ${value}`,
-        },
-        color: lineColor,
-        fields: [
-          {
-            name: ':game_die: Выпало значение:',
-            value: `**${result}**`,
-          },
-        ],
-        footer: {
-          text: footerText,
-        },
-        timestamp: new Date(),
-      },
-    };
+    const rollEmbed = new MessageEmbed()
+      .setColor(lineColor)
+      .setTitle(`:game_die: Случайное число от 1 до ${value}`)
+      .setDescription(`**${result}**`)
+      .setTimestamp()
+      .setFooter(footerText);
     if (result === value) {
-      rollEmbed.embed.image = {
-        url: 'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif',
-      };
+      rollEmbed.setImage('https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif');
     }
     if (fresult !== result) {
-      rollEmbed.embed.fields.push(
+      rollEmbed.addFields(
         {
           name: ':heavy_plus_sign: Модификаторы:',
           value: `**${mods.join(' ')}**`,
