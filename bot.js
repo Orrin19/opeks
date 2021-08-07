@@ -4,10 +4,10 @@ const bot = new Discord.Client({
   intents: ['GUILDS', 'GUILD_MESSAGES'],
   presence: {
     status: 'dmd',
-    activity: {
+    activity:  [{
       name: 'Sabaton',
       type: 2,
-    }
+    }]
   }
 });
 
@@ -172,7 +172,7 @@ bot.on('messageCreate', async (message) => {
       );
     }
     message.channel.send({
-      embeds: rollEmbed
+      embeds: [rollEmbed]
     });
   }
 });
