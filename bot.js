@@ -64,9 +64,9 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'invite')) {
-    const inviteButton = new MessageActionRow()
+    const inviteButton = new Discord.MessageActionRow()
       .addComponents(
-        new MessageButton()
+        new Discord.MessageButton()
           .setLabel('Invite')
           .setStyle('LINK')
           .setURL('https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot')
