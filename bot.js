@@ -1,6 +1,15 @@
 // Bot settings
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const bot = new Discord.Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+  presence: {
+    status: 'dmd',
+    activity: {
+      name: 'Sabaton',
+      type: 2,
+    }
+  }
+});
 
 const prefix = '!';
 const lineColor = '0xad1914';
@@ -8,7 +17,6 @@ const footerText = 'Opeks powered by Оррин';
 const ownerID = process.env.OWNER_ID;
 const logChannel = process.env.LOG_CHANNEL;
 
-const ytdl = require('ytdl-core');
 const superagent = require('superagent');
 const pack = require('./package.json');
 require('events').EventEmitter.defaultMaxListeners = Infinity;
@@ -20,15 +28,6 @@ const maps = data.maps;
 
 // Bot connection
 bot.login(process.env.TOKEN);
-bot.on('ready', () => {
-  bot.user.setPresence({
-    status: 'dmd',
-    activity: {
-      name: 'Sabaton',
-      type: 2,
-    },
-  });
-});
 
 // Ordinary functions
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
@@ -48,7 +47,7 @@ const formatDate = (date) => {
 };
 
 // !say
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'say') &&
@@ -62,7 +61,7 @@ bot.on('message', async (message) => {
 });
 
 // !invite
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'invite')) {
     message.channel.send(
@@ -72,12 +71,12 @@ bot.on('message', async (message) => {
 });
 
 // !help
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'help')) {
-    message.reply('привет, я Opeks! Чем могу быть полезен?');
     message.channel.send({
-      embed: {
+      content: 'Привет, я Opeks! Чем могу быть полезен?',
+      embeds: {
         author: {
           name: 'Opeks',
         },
@@ -92,10 +91,6 @@ bot.on('message', async (message) => {
           {
             name: 'Вызов команд',
             value: '!command args',
-          },
-          {
-            name: 'Список команд',
-            value: 'В разработке :)', // 'http://opeks-discord.glitch.me/'
           },
           {
             name: 'Бот создан',
@@ -122,7 +117,7 @@ bot.on('message', async (message) => {
 });
 
 // !roll
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'roll')) {
     let args = message.content.split(' ').slice(1);
@@ -176,12 +171,14 @@ bot.on('message', async (message) => {
         }
       );
     }
-    message.channel.send(rollEmbed);
+    message.channel.send({
+      embeds: rollEmbed
+    });
   }
 });
 
 // !кубик
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'кубик')) {
     let number = message.content.split(' ').slice(1)[0];
@@ -243,7 +240,7 @@ bot.on('message', async (message) => {
 });
 
 // question
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.mentions.users.first() === bot.user) {
     if (message.content[message.content.length - 1] === '?') {
@@ -276,7 +273,7 @@ bot.on('message', async (message) => {
 });
 
 // !chance
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'chance')) {
     let args = message.content.split(' ').slice(1);
@@ -313,7 +310,7 @@ bot.on('message', async (message) => {
       ];
     }
     message.channel.send({
-      embed: {
+      embeds: {
         author: {
           name: '🎲 Вероятность события',
         },
@@ -342,12 +339,12 @@ bot.on('message', async (message) => {
 });
 
 // !joke (jokes from the S.T.A.L.K.E.R. game)
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'joke')) {
     let value = getRandArrIndex(joke);
     message.channel.send({
-      embed: {
+      embeds: {
         author: {
           name: 'Внимание, анекдот!',
         },
@@ -368,7 +365,7 @@ bot.on('message', async (message) => {
 });
 
 // !rickroll meme
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'rickroll')) {
     message.channel.send(
@@ -378,7 +375,7 @@ bot.on('message', async (message) => {
 });
 
 // !clean
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'clean') ||
@@ -399,7 +396,7 @@ bot.on('message', async (message) => {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       return message.reply('вам недоступна эта функция.');
     }
-    message.channel.bulkDelete(amount, true);
+    message.channel.bulkDelete(amount, false);
     message.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
       msg.delete({
         timeout: 5000,
@@ -415,15 +412,15 @@ bot.on('message', async (message) => {
 });
 
 // !mute
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'mute')) {
     let args = message.content.split(' ').slice(1);
-    let mutedMember = message.guild.member(
-      message.mentions.users.first() ||
+    let mutedMember = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
         message.guild.members.cache.find(
           (m) => m.user.username === args[0] || m.id === args[0]
-        )
+        ).id
     );
     if (!mutedMember)
       return message.channel.send('Не могу найти этого пользователя...');
@@ -455,7 +452,7 @@ bot.on('message', async (message) => {
     );
     await mutedMember.roles.add(muterole.id);
     message.channel.send({
-      embed: {
+      embeds: {
         author: {
           name: 'Мут пользователя',
         },
@@ -488,15 +485,15 @@ bot.on('message', async (message) => {
 });
 
 // !kick
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'kick')) {
     let args = message.content.split(' ').slice(1);
-    let kickedMember = message.guild.member(
-      message.mentions.users.first() ||
+    let kickedMember = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
         message.guild.members.cache.find(
           (m) => m.user.username === args[0] || m.id === args[0]
-        )
+        ).id
     );
     if (!kickedMember)
       return message.channel.send('Не могу найти этого пользователя...');
@@ -523,7 +520,7 @@ bot.on('message', async (message) => {
     );
     await kickedMember.kick(reason);
     message.channel.send({
-      embed: {
+      embeds: {
         author: {
           name: 'Кик пользователя',
         },
@@ -556,15 +553,15 @@ bot.on('message', async (message) => {
 });
 
 // !ban
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'ban')) {
     let args = message.content.split(' ').slice(1);
-    let bannedMember = message.guild.member(
-      message.mentions.users.first() ||
+    let bannedMember = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
         message.guild.members.cache.find(
           (m) => m.user.username === args[0] || m.id === args[0]
-        )
+        ).id
     );
     if (!bannedMember) return message.channel.send('Пользователь не найден');
     if (!bannedMember.bannable)
@@ -590,9 +587,11 @@ bot.on('message', async (message) => {
     logToChannel(
       `${message.author.username} заблокировал ${bannedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
     );
-    await bannedMember.ban(reason);
+    await bannedMember.ban({
+      reason: reason
+    });
     message.channel.send({
-      embed: {
+      embeds: {
         author: {
           name: 'Бан пользователя',
         },
@@ -625,15 +624,15 @@ bot.on('message', async (message) => {
 });
 
 // !userinfo
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'userinfo')) {
     let args = message.content.split(' ').slice(1);
-    let member = message.guild.member(
-      message.mentions.users.first() ||
+    let member = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
         message.guild.members.cache.find(
           (m) => m.user.username == args[0] || m.id == args[0]
-        )
+        ).id
     );
     let user = member.user;
     let nickname = member.nickname;
@@ -641,7 +640,7 @@ bot.on('message', async (message) => {
       nickname = member.user.username;
     }
     message.channel.send({
-      embed: {
+      embeds: {
         author: {
           name: 'Информация о пользователе',
         },
@@ -679,7 +678,7 @@ bot.on('message', async (message) => {
 });
 
 // !serverinfo
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'serverinfo')) {
     let guild = message.guild;
@@ -698,8 +697,9 @@ bot.on('message', async (message) => {
       'us-south': ':flag_us: Юг США',
       'us-east': ':flag_us: Восток США',
     };
+    let guildOwner = guild.members.cache.get(guild.ownerId);
     message.channel.send({
-      embed: {
+      embeds: {
         author: {
           name: 'Информация о сервере',
         },
@@ -717,7 +717,7 @@ bot.on('message', async (message) => {
               **Название:** *${guild.name}*
               **ID:** *${guild.id}*
               **Создан:** *${formatDate(guild.createdAt)}*
-              **Владелец:** *${guild.owner.user.username}*
+              **Владелец:** *${guildOwner.user.username}*
               **Регион:** *${regions[guild.region]}*
             `,
           },
@@ -741,7 +741,7 @@ bot.on('message', async (message) => {
 });
 
 // !gr
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'gr') &&
@@ -749,11 +749,11 @@ bot.on('message', async (message) => {
   ) {
     await message.delete();
     let args = message.content.split(' ').slice(1);
-    let member = message.guild.member(
-      message.mentions.users.first() ||
+    let member = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
         message.guild.members.cache.find(
           (m) => m.user.username === args[0] || m.id === args[0]
-        )
+        ).id
     );
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
@@ -763,19 +763,19 @@ bot.on('message', async (message) => {
 });
 
 // !rr
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'rr') &&
-    message.member.permissions.has('MANAGE_ROLES')
+    message.members.permissions.has('MANAGE_ROLES')
   ) {
     await message.delete();
     let args = message.content.split(' ').slice(1);
-    let member = message.guild.member(
-      message.mentions.users.first() ||
+    let member = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
         message.guild.members.cache.find(
           (m) => m.user.username === args[0] || m.id === args[0]
-        )
+        ).id
     );
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
@@ -785,7 +785,7 @@ bot.on('message', async (message) => {
 });
 
 // !voting
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'voting')) {
     let args = message.content.split(' ').slice(1);
@@ -807,7 +807,7 @@ bot.on('message', async (message) => {
     } */
     message.channel
       .send({
-        embed: {
+        embeds: {
           author: {
             name: 'Голосование',
           },
@@ -854,7 +854,7 @@ bot.on('message', async (message) => {
 });
 
 // !choise
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'choise')) {
     let args = message.content.split(' ').slice(1);
@@ -863,7 +863,7 @@ bot.on('message', async (message) => {
 });
 
 // !nekos-life
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'nekos-life')) {
     if (!message.channel.nsfw)
@@ -880,7 +880,7 @@ bot.on('message', async (message) => {
     if (body.msg === '404' || resp.statusCode !== 200)
       return message.reply('не могу найти картинку по этому запросу...');
     message.channel.send({
-      embed: {
+      embeds: {
         color: lineColor,
         image: {
           url: body.url,
@@ -895,7 +895,7 @@ bot.on('message', async (message) => {
 });
 
 // !wttr
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'wttr')) {
     let args = message.content.split(' ').slice(1);
@@ -905,7 +905,7 @@ bot.on('message', async (message) => {
       let url = encodeURI(`http://wttr.in/${city}?m&M&format=2&lang=ru`);
       let resp = await superagent.get(url);
       return message.channel.send({
-        embed: {
+        embeds: {
           color: lineColor,
           fields: {
             name: `Погода: ${city}`,
@@ -921,7 +921,7 @@ bot.on('message', async (message) => {
     if (type === 'img') {
       let url = encodeURI(`http://wttr.in/${city}.png?m&M&p&0&Q&lang=ru`);
       return message.channel.send({
-        embed: {
+        embeds: {
           color: lineColor,
           author: {
             name: `Погода: ${city}`,
@@ -940,8 +940,8 @@ bot.on('message', async (message) => {
 });
 
 // Чтение DM
-bot.on('message', async (message) => {
-  if (message.channel.type === 'dm') {
+bot.on('messageCreate', async (message) => {
+  if (message.channel.type === 'DM') {
     logToChannel(
       `${message.author.username} отправил в личные сообщения: «${message.content}».`
     );
@@ -956,7 +956,7 @@ bot.on('guildMemberAdd', async (member) => {
 });
 
 // Ссылки на вики на Ламоране
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.includes('[[') &&
@@ -1001,7 +1001,7 @@ let cell,
   chan,
   game = 0;
 
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (
     message.channel.id === chan &&
@@ -1019,7 +1019,7 @@ bot.on('message', async (message) => {
   }
 });
 
-bot.on('message', async (message) => {
+bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'game')) {
     chan = message.channel.id;
@@ -1028,7 +1028,7 @@ bot.on('message', async (message) => {
       game = 'map';
       cell = getRandArrIndex(kmaps);
       message.channel.send({
-        embed: {
+        embeds: {
           color: lineColor,
           author: {
             name: 'Игра «Карта — Страна»',
@@ -1049,122 +1049,3 @@ bot.on('message', async (message) => {
     }
   }
 });
-
-
-// //////////////////////////////////////////////////////
-// //////////////Music///////////////////////////////////
-// //////////////////////////////////////////////////////
-const queue = new Map();
-
-bot.once('ready', () => {
-	console.log('Ready!');
-});
-
-bot.once('reconnecting', () => {
-	console.log('Reconnecting!');
-});
-
-bot.once('disconnect', () => {
-	console.log('Disconnect!');
-});
-
-bot.on('message', async message => {
-	if (message.author.bot) return;
-	if (!message.content.startsWith(prefix)) return;
-
-	const serverQueue = queue.get(message.guild.id);
-
-	if (message.content.startsWith(`${prefix}play`)) {
-		execute(message, serverQueue);
-		return;
-	} else if (message.content.startsWith(`${prefix}skip`)) {
-		skip(message, serverQueue);
-		return;
-	} else if (message.content.startsWith(`${prefix}stop`)) {
-		stop(message, serverQueue);
-		return;
-	}
-});
-
-async function execute(message, serverQueue) {
-	const args = message.content.split(' ');
-
-	const voiceChannel = message.member.voice.channel;
-	if (!voiceChannel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы заказать музыку!');
-  let botMember = message.guild.members.cache.find(
-    (m) => m.user.username === bot.user.username
-  )
-	const permissions = voiceChannel.permissionsFor(botMember);
-	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-		return message.channel.send('Мне нужны права на использование голосового чата!');
-	}
-
-	const songInfo = await ytdl.getInfo(args[1]);
-	const song = {
-		title: songInfo.videoDetails.title,
-		url: songInfo.videoDetails.video_url,
-	};
-
-	if (!serverQueue) {
-		const queueContruct = {
-			textChannel: message.channel,
-			voiceChannel: voiceChannel,
-			connection: null,
-			songs: [],
-			volume: 5,
-			playing: true,
-		};
-
-		queue.set(message.guild.id, queueContruct);
-
-		queueContruct.songs.push(song);
-
-		try {
-			var connection = await voiceChannel.join();
-			queueContruct.connection = connection;
-			play(message.guild, queueContruct.songs[0]);
-		} catch (err) {
-			console.log(err);
-			queue.delete(message.guild.id);
-			return message.channel.send(err);
-		}
-	} else {
-		serverQueue.songs.push(song);
-		console.log(serverQueue.songs);
-		return message.channel.send(`«${song.title}» была добавлена в очередь!`);
-	}
-
-}
-
-function skip(message, serverQueue) {
-	if (!message.member.voice.channel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы пропустить песню!');
-	if (!serverQueue) return message.channel.send('Сейчас не играет никакая песня, останавливать нечего!');
-	serverQueue.connection.dispatcher.end();
-}
-
-function stop(message, serverQueue) {
-	if (!message.member.voice.channel) return message.channel.send('Тебе нужно находиться в голосовом канале, чтобы остановить музыку!');
-	serverQueue.songs = [];
-	serverQueue.connection.dispatcher.end();
-}
-
-function play(guild, song) {
-	const serverQueue = queue.get(guild.id);
-
-	if (!song) {
-		serverQueue.voice.channel.leave();
-		queue.delete(guild.id);
-		return;
-	}
-
-	const dispatcher = serverQueue.connection.play(ytdl(song.url))
-		.on('end', () => {
-			console.log('Music ended!');
-			serverQueue.songs.shift();
-			play(guild, serverQueue.songs[0]);
-		})
-		.on('error', error => {
-			console.error(error);
-		});
-	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-}
