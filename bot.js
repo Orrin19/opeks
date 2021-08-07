@@ -962,7 +962,7 @@ bot.on('messageCreate', async (message) => {
 ///////////////////////////////////
 //////////////// Slashes //////////
 ///////////////////////////////////
-client.once('ready', () => {
+client.once('ready', async () => {
 	const data = [
     {
 			name: 'meow',
