@@ -804,9 +804,7 @@ bot.on('messageCreate', async (message) => {
       return message.reply('не могу найти картинку по этому запросу...');
     const nekoEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
-      .setImage({
-        url: body.url,
-      })
+      .setImage(body.url)
       .setTimestamp()
       .setFooter(footerText);
     message.channel.send({
