@@ -64,9 +64,16 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'invite')) {
-    message.channel.send(
-      `https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot`
-    );
+    const inviteButton = new MessageActionRow()
+      .addComponents(
+        new MessageButton()
+          .setLabel('Invite')
+          .setStyle('LINK')
+          .setURL('https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot')
+      );
+    message.channel.send({
+      components: [inviteButton] 
+    });
   }
 });
 
