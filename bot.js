@@ -4,9 +4,9 @@ const bot = new Discord.Client({
   intents: ['GUILDS', 'GUILD_MESSAGES'],
   presence: {
     status: 'dmd',
-    activity:  [{
+    activities: [{
       name: 'Sabaton',
-      type: 2,
+      type: 2
     }]
   }
 });
@@ -136,7 +136,7 @@ bot.on('messageCreate', async (message) => {
         mods.push(i);
       } else break;
     }
-    const rollEmbed = new MessageEmbed()
+    const rollEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle(`:game_die: Случайное число от 1 до ${value}`)
       .setDescription(`**${result}**`)
