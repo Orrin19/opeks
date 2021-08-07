@@ -962,30 +962,26 @@ bot.on('messageCreate', async (message) => {
 ///////////////////////////////////
 //////////////// Slashes //////////
 ///////////////////////////////////
-bot.on('messageCreate', async message => {
-	if (!bot.application?.owner) await bot.application?.fetch();
+client.once('ready', () => {
+	const data = [
+    {
+			name: 'meow',
+			description: 'Sends a picture with a cat.',
+		},
+    {
+			name: 'roll',
+			description: 'Gives a random number between 1 and option.',
+      options: [{
+        name: 'option',
+        type: 'INTEGER',
+        description: 'The max value of roll.',
+        required: true,
+      }],
+		}
+  ];
 
-	if (message.content.toLowerCase() === '!deploy' && message.author.id === bot.application?.owner.id) {
-		const data = [
-      {
-			  name: 'meow',
-			  description: 'Sends a picture with a cat.',
-		  },
-      {
-			  name: 'roll',
-			  description: 'Gives a random number between 1 and option.',
-        options: [{
-          name: 'option',
-          type: 'INTEGER',
-          description: 'The max value of roll.',
-          required: true,
-        }],
-		  }
-    ];
-
-		const command = await bot.application?.commands.set(data);
-		console.log(command);
-	}
+	const command = await bot.application?.commands.set(data);
+	console.log(command);
 });
 
 // /meow
