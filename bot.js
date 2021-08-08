@@ -1056,7 +1056,7 @@ bot.on('interactionCreate', async interaction => {
           .setStyle('LINK')
           .setURL('https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot')
       );
-    message.channel.send({
+    await interaction.reply({
       content: 'https://tenor.com/view/bots-hobots-buzz-lightyear-toy-story-woody-gif-17120878',
       components: [inviteButton] 
     });
@@ -1067,11 +1067,8 @@ bot.on('interactionCreate', async interaction => {
 bot.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 	if (interaction.commandName === 'roll') {
-    let value;
-    try {
-      value = interaction.options.getInteger('option');
-    }
-    catch {
+    let value = interaction.options.getInteger('option');
+    if (value = null) {
       value = 20;
     }
     let result = getRandomInt(value) + 1;
@@ -1094,10 +1091,7 @@ bot.on('interactionCreate', async interaction => {
 bot.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 	if (interaction.commandName === 'dice') {
-    try {
-      let number = interaction.options.getInteger('option');
-    }
-    catch {}
+    let number = interaction.options.getInteger('option');
     let results = [];
     let sum = 0;
     let result;
@@ -1162,18 +1156,18 @@ bot.on('interactionCreate', async interaction => {
     let messCount = interaction.options.getInteger('option');
     let amount = messCount + 1;
 		if (amount <= 1 || amount > 100) {
-      return message.reply('необходимо ввести число от 1 до 99.');
+      return interaction.reply('необходимо ввести число от 1 до 99.');
     }
-    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
-      return message.reply('вам недоступна эта функция.');
+    if (!interaction.member.permissions.has('MANAGE_MESSAGES')) {
+      return interaction.reply('вам недоступна эта функция.');
     }
-    message.channel.bulkDelete(amount, true);
-    message.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
+    interaction.channel.bulkDelete(amount, true);
+    interaction.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
       setTimeout(() => msg.delete(), 5000));
     logToChannel(
-      `${message.author.username} удалил ${amount - 1} сообщений в канале ${
-        message.channel
-      } (${message.guild}).`
+      `${interaction.member.user.username} удалил ${amount - 1} сообщений в канале ${
+        interaction.channel
+      } (${interaction.guild}).`
     );
 	}
 });
