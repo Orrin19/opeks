@@ -1068,7 +1068,7 @@ bot.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 	if (interaction.commandName === 'roll') {
     let value = interaction.options.getInteger('option');
-    if (value = null) {
+    if (value === null) {
       value = 20;
     }
     let result = getRandomInt(value) + 1;
