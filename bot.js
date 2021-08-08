@@ -93,10 +93,6 @@ bot.on('messageCreate', async (message) => {
       .setTimestamp()
       .setFooter(footerText)
       .addFields(
-          {
-          name: 'Вызов команд',
-          value: '!command args',
-        },
         {
           name: 'Бот создан',
           value: '29 января 2020 в 11:39:58 (UTC)',
@@ -965,8 +961,12 @@ bot.on('messageCreate', async (message) => {
 bot.once('ready', async () => {
 	const data = [
     {
-			name: 'meow',
-			description: 'Sends a picture with a cat.',
+			name: 'help',
+			description: 'Sends information about bot.',
+		},
+    {
+			name: 'invite',
+			description: 'Sends a link to invite bot.',
 		},
     {
 			name: 'roll',
@@ -975,8 +975,32 @@ bot.once('ready', async () => {
         name: 'option',
         type: 'INTEGER',
         description: 'The max value of roll.',
+        required: false,
+      }],
+		},
+    {
+			name: 'dice',
+			description: 'Rolls the dice.',
+      options: [{
+        name: 'option',
+        type: 'INTEGER',
+        description: 'The amount of dice.',
+        required: false,
+      }],
+		},
+    {
+			name: 'clean',
+			description: 'Removes the required amount of messages.',
+      options: [{
+        name: 'option',
+        type: 'INTEGER',
+        description: 'The amount of removable messages.',
         required: true,
       }],
+		},
+    {
+			name: 'meow',
+			description: 'Sends a picture with a cat.',
 		}
   ];
 
@@ -984,21 +1008,57 @@ bot.once('ready', async () => {
 	console.log(command);
 });
 
-// /meow
+// /help
 bot.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
-
-	if (interaction.commandName === 'meow') {
-    let { body } = await superagent.get(
-      `https://nekos.life/api/v2/img/meow`
-    );
-    const meowEmbed = new Discord.MessageEmbed()
+	if (interaction.commandName === 'help') {
+    const helpEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
-      .setImage(body.url)
+      .setTitle('Opeks')
+      .setThumbnail(bot.user.displayAvatarURL({
+          dynamic: true,
+          size: 1024,
+        }),
+      )
       .setTimestamp()
-      .setFooter(footerText);
-		await interaction.reply({
-      embeds: [meowEmbed]
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: 'Бот создан',
+          value: '29 января 2020 в 11:39:58 (UTC)',
+        },
+        {
+          name: 'Написан на',
+          value: `Node.js: v${pack.engines.node}\nDiscord.js: v${
+            Object.values(pack.dependencies)[0]
+          }`,
+        },
+        {
+          name: 'Хостинг',
+          value: process.env.HOSTING,
+        }
+      );
+    await interaction.reply({
+      content: 'Привет, я Opeks! Чем могу быть полезен?',
+      embeds: [helpEmbed]
+    });
+	}
+});
+
+// /invite
+bot.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+	if (interaction.commandName === 'invite') {
+    const inviteButton = new Discord.MessageActionRow()
+      .addComponents(
+        new Discord.MessageButton()
+          .setLabel('Invite')
+          .setStyle('LINK')
+          .setURL('https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot')
+      );
+    message.channel.send({
+      content: 'https://tenor.com/view/bots-hobots-buzz-lightyear-toy-story-woody-gif-17120878',
+      components: [inviteButton] 
     });
 	}
 });
@@ -1006,9 +1066,14 @@ bot.on('interactionCreate', async interaction => {
 // /roll
 bot.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
-
 	if (interaction.commandName === 'roll') {
-    const value = interaction.options.getInteger('option');
+    let value;
+    try {
+      value = interaction.options.getInteger('option');
+    }
+    catch {
+      value = 20;
+    }
     let result = getRandomInt(value) + 1;
     const rollEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
@@ -1021,6 +1086,112 @@ bot.on('interactionCreate', async interaction => {
     }
 		await interaction.reply({
       embeds: [rollEmbed]
+    });
+	}
+});
+
+// /dice
+bot.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+	if (interaction.commandName === 'dice') {
+    try {
+      let number = interaction.options.getInteger('option');
+    }
+    catch {}
+    let results = [];
+    let sum = 0;
+    let result;
+    if (number > 1 && number < 101) {
+      for (let i = 0; i < number; i++) {
+        result = getRandomInt(6) + 1;
+        sum += result;
+        if (result === 1) {
+          results[i] = ':one:';
+        }
+        if (result === 2) {
+          results[i] = ':two:';
+        }
+        if (result === 3) {
+          results[i] = ':three:';
+        }
+        if (result === 4) {
+          results[i] = ':four:';
+        }
+        if (result === 5) {
+          results[i] = ':five:';
+        }
+        if (result === 6) {
+          results[i] = ':six:';
+        }
+      }
+      await interaction.reply(
+        `Брошено кубиков: ${number}\nРезультаты: ${results.join(
+          ' '
+        )}\nСумма: ${sum}`
+      );
+    }
+    if (number === 1 || !number) {
+      let result = getRandomInt(6) + 1;
+      if (result === 1) {
+        result = ':one:';
+      }
+      if (result === 2) {
+        result = ':two:';
+      }
+      if (result === 3) {
+        result = ':three:';
+      }
+      if (result === 4) {
+        result = ':four:';
+      }
+      if (result === 5) {
+        result = ':five:';
+      }
+      if (result === 6) {
+        result = ':six:';
+      }
+      await interaction.reply(`Брошен кубик. Результат: ${result}`);
+    }
+	}
+});
+
+// /clean
+bot.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+	if (interaction.commandName === 'clean') {
+    let messCount = interaction.options.getInteger('option');
+    let amount = messCount + 1;
+		if (amount <= 1 || amount > 100) {
+      return message.reply('необходимо ввести число от 1 до 99.');
+    }
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
+      return message.reply('вам недоступна эта функция.');
+    }
+    message.channel.bulkDelete(amount, true);
+    message.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
+      setTimeout(() => msg.delete(), 5000));
+    logToChannel(
+      `${message.author.username} удалил ${amount - 1} сообщений в канале ${
+        message.channel
+      } (${message.guild}).`
+    );
+	}
+});
+
+// /meow
+bot.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+	if (interaction.commandName === 'meow') {
+    let { body } = await superagent.get(
+      `https://nekos.life/api/v2/img/meow`
+    );
+    const meowEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setImage(body.url)
+      .setTimestamp()
+      .setFooter(footerText);
+		await interaction.reply({
+      embeds: [meowEmbed]
     });
 	}
 });
