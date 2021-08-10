@@ -864,7 +864,7 @@ bot.on('messageCreate', async (message) => {
 // Выдача ролей и автоприветствие на Ламоране
 bot.on('guildMemberAdd', async (member) => {
   let role = member.guild.roles.cache.find((r) => r.name === 'Начинающий');
-  await member.roles.add(role.id);
+  await member.roles.add(role);
   //member.send('');
 });
 
