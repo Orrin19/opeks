@@ -856,15 +856,18 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.channel.type === 'DM') {
     logToChannel(
-      `${message.author.username} отправил в личные сообщения: «${message.content}».`
+      `${message.author.tag} отправил в личные сообщения: «${message.content}».`
     );
   }
 });
 
 // Выдача ролей и автоприветствие на Ламоране
 bot.on('guildMemberAdd', async (member) => {
+  console.log('1');
   let role = member.guild.roles.cache.find((r) => r.name === 'Начинающий');
+  console.log('2');
   await member.roles.add(role);
+  console.log('3');
   //member.send('');
 });
 
