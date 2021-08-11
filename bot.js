@@ -1,7 +1,7 @@
 // Bot settings
 const Discord = require('discord.js');
 const bot = new Discord.Client({
-  intents: ['GUILDS', 'GUILD_MESSAGES'],
+  intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'DIRECT_MESSAGES'],
   presence: {
     status: 'dmd',
     activities: [{
