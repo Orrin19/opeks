@@ -373,7 +373,7 @@ bot.on('messageCreate', async (message) => {
       setTimeout(() => msg.delete(), 5000));
     logToChannel(
       `${message.author.username} удалил ${amount - 1} сообщений в канале ${
-        message.channel
+        message.channel.name
       } (${message.guild}).`
     );
   }
