@@ -43,7 +43,7 @@ const formatDate = (date) => {
     minute: 'numeric',
     second: 'numeric',
   };
-  return date.toLocaleDateString('ru-RU', options);
+  return date.toLocaleDateString('ru', options);
 };
 
 // !say
