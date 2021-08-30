@@ -960,45 +960,45 @@ bot.once('ready', async () => {
 	const data = [
     {
 			name: 'help',
-			description: 'Sends information about bot.',
+			description: 'Показывает информацию о боте.',
 		},
     {
 			name: 'invite',
-			description: 'Sends a link to invite bot.',
+			description: 'Отправляет ссылку для приглашения бота.',
 		},
     {
 			name: 'roll',
-			description: 'Gives a random number between 1 and option.',
+			description: 'Выдаёт случайное число от 1 до заданного.',
       options: [{
-        name: 'option',
+        name: 'number',
         type: 'INTEGER',
-        description: 'The max value of roll.',
+        description: 'Максимальное значение.',
         required: false,
       }],
 		},
     {
 			name: 'dice',
-			description: 'Rolls the dice.',
+			description: 'Кидает кубик.',
       options: [{
-        name: 'option',
+        name: 'amount',
         type: 'INTEGER',
-        description: 'The amount of dice.',
+        description: 'Количество кубиков.',
         required: false,
       }],
 		},
     {
 			name: 'clean',
-			description: 'Removes the required amount of messages.',
+			description: 'Удаляет определённое количество сообщений.',
       options: [{
-        name: 'option',
+        name: 'amount',
         type: 'INTEGER',
-        description: 'The amount of removable messages.',
+        description: 'Количество удаляемых сообщений.',
         required: true,
       }],
 		},
     {
 			name: 'meow',
-			description: 'Sends a picture with a cat.',
+			description: 'Отправляет картинку с котиком.',
 		}
   ];
 
@@ -1160,12 +1160,9 @@ bot.on('interactionCreate', async interaction => {
       return interaction.reply('вам недоступна эта функция.');
     }
     interaction.channel.bulkDelete(amount, true);
-    interaction.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
-      setTimeout(() => msg.delete(), 5000));
+    interaction.channel.send(`Удалено ${messCount} сообщений!`).then((msg) => setTimeout(() => msg.delete(), 5000));
     logToChannel(
-      `${interaction.member.user.username} удалил ${amount - 1} сообщений в канале ${
-        interaction.channel
-      } (${interaction.guild}).`
+      `${interaction.member.user.username} удалил ${amount - 1} сообщений в ${interaction.channel.isThread() ? `треде «${interaction.channel.name}» канала #${interaction.channel.parent.name}` : `канале #${interaction.channel.name}`} (${interaction.guild}).`
     );
 	}
 });
