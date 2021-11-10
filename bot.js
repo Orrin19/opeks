@@ -143,13 +143,13 @@ bot.on('messageCreate', async (message) => {
     console.log(min, max, result);
 
     const mods = new Array();
-    const finalResult = args.slice(1).forEach((arg) => {
+    for (let arg of args.slice(1)) {
       const finalResult = result;
       if (!isNaN(arg)) {
         finalResult += Number(arg);
         mods.push(arg);
-      } else return finalResult;
-    });
+      } else break;
+    }
 
     const rollEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
