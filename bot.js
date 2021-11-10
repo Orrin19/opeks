@@ -125,7 +125,11 @@ bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'roll')) {
     const args = message.content.split(' ').slice(1);
-    const min = args[0].split('-')[0] == args[0] ? 1 : args[0].split('-')[0];
+    const min = isNaN(args[0])
+      ? 1
+      : args[0].split('-')[0] == args[0]
+      ? 1
+      : args[0].split('-')[0];
     const max = isNaN(args[0])
       ? 20
       : args[0].split('-')[0] == args[0]
@@ -1027,7 +1031,6 @@ bot.once('ready', async () => {
   ];
 
   const command = await bot.application?.commands.set(data);
-  console.log(command);
 });
 
 // /help
