@@ -129,17 +129,18 @@ bot.on('messageCreate', async (message) => {
       ? !args[0]
         ? 1
         : args[0].split('-')[0] != args[0]
-        ? args[0].split('-')[0]
+        ? Number(args[0].split('-')[0])
         : 1
       : 1;
     const max = isNaN(args[0])
       ? !args[0]
         ? 20
         : args[0].split('-')[0] != args[0]
-        ? args[0].split('-')[1]
+        ? Number(args[0].split('-')[1])
         : 20
-      : args[0];
+      : Number(args[0]);
     const result = getRandomInt(max) + min;
+    console.log(min, max, result);
 
     const mods = new Array();
     const finalResult = args.slice(1).forEach((arg) => {
