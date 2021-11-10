@@ -156,7 +156,7 @@ bot.on('messageCreate', async (message) => {
       ? rollEmbed.setTitle(`:game_die: Случайное число ${max} :)`)
       : rollEmbed.setTitle(`:game_die: Случайное число от ${min} до ${max}`);
 
-    if (result === value) {
+    if (result === max) {
       rollEmbed.setImage(
         'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif'
       );
