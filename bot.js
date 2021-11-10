@@ -148,10 +148,13 @@ bot.on('messageCreate', async (message) => {
 
     const rollEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
-      .setTitle(`:game_die: Случайное число от 1 до ${value}`)
       .setDescription(`**${result}**`)
       .setTimestamp()
       .setFooter(footerText);
+
+    max == min
+      ? rollEmbed.setTitle(`:game_die: Случайное число ${max} :)`)
+      : rollEmbed.setTitle(`:game_die: Случайное число от ${min} до ${max}`);
 
     if (result === value) {
       rollEmbed.setImage(
