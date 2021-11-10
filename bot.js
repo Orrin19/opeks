@@ -140,7 +140,6 @@ bot.on('messageCreate', async (message) => {
         : 20
       : Number(args[0]);
     const result = getRandomInt(max - min) + min;
-    console.log(min, max, result);
 
     const mods = new Array();
     for (let arg of args.slice(1)) {
