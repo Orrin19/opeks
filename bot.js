@@ -4,11 +4,13 @@ const bot = new Discord.Client({
   intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'DIRECT_MESSAGES'],
   presence: {
     status: 'dmd',
-    activities: [{
-      name: 'Sabaton',
-      type: 2
-    }]
-  }
+    activities: [
+      {
+        name: 'Sabaton',
+        type: 2,
+      },
+    ],
+  },
 });
 
 const prefix = '!';
@@ -64,16 +66,18 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'invite')) {
-    const inviteButton = new Discord.MessageActionRow()
-      .addComponents(
-        new Discord.MessageButton()
-          .setLabel('Invite')
-          .setStyle('LINK')
-          .setURL('https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot')
-      );
+    const inviteButton = new Discord.MessageActionRow().addComponents(
+      new Discord.MessageButton()
+        .setLabel('Invite')
+        .setStyle('LINK')
+        .setURL(
+          'https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot'
+        )
+    );
     message.channel.send({
-      content: 'https://tenor.com/view/bots-hobots-buzz-lightyear-toy-story-woody-gif-17120878',
-      components: [inviteButton] 
+      content:
+        'https://tenor.com/view/bots-hobots-buzz-lightyear-toy-story-woody-gif-17120878',
+      components: [inviteButton],
     });
   }
 });
@@ -85,10 +89,11 @@ bot.on('messageCreate', async (message) => {
     const helpEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Opeks')
-      .setThumbnail(bot.user.displayAvatarURL({
+      .setThumbnail(
+        bot.user.displayAvatarURL({
           dynamic: true,
           size: 1024,
-        }),
+        })
       )
       .setTimestamp()
       .setFooter(footerText)
@@ -110,7 +115,7 @@ bot.on('messageCreate', async (message) => {
       );
     message.channel.send({
       content: 'Привет, я Opeks! Чем могу быть полезен?',
-      embeds: [helpEmbed]
+      embeds: [helpEmbed],
     });
   }
 });
@@ -119,32 +124,38 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'roll')) {
-    let args = message.content.split(' ').slice(1);
-    let value = args;
-    if (isNaN(args[0])) {
-      value = 20;
-    } else {
-      value = args[0];
-    }
-    let result = getRandomInt(value) + 1;
-    let fresult = result;
-    let mods = [];
-    for (let i of args.slice(1)) {
+    const args = message.content.split(' ').slice(1);
+    const min = args[0].split('-')[0] == args[0] ? 1 : args[0].split('-')[0];
+    const max = isNaN(args[0])
+      ? 20
+      : args[0].split('-')[0] == args[0]
+      ? 1
+      : args[0].split('-')[1];
+    const result = getRandomInt(max) + min;
+
+    const mods = new Array();
+    const finalResult = args.slice(1).forEach((arg) => {
+      const finalResult = result;
       if (!isNaN(i)) {
-        fresult += Number(i);
+        finalResult += Number(i);
         mods.push(i);
-      } else break;
-    }
+      } else return finalResult;
+    });
+
     const rollEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle(`:game_die: Случайное число от 1 до ${value}`)
       .setDescription(`**${result}**`)
       .setTimestamp()
       .setFooter(footerText);
+
     if (result === value) {
-      rollEmbed.setImage('https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif');
+      rollEmbed.setImage(
+        'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif'
+      );
     }
-    if (fresult !== result) {
+
+    if (finalResult !== result) {
       rollEmbed.addFields(
         {
           name: ':heavy_plus_sign: Модификаторы:',
@@ -152,12 +163,13 @@ bot.on('messageCreate', async (message) => {
         },
         {
           name: ':gem: Итоговое значение:',
-          value: `**${fresult}**`,
+          value: `**${finalResult}**`,
         }
       );
     }
+
     message.channel.send({
-      embeds: [rollEmbed]
+      embeds: [rollEmbed],
     });
   }
 });
@@ -312,9 +324,9 @@ bot.on('messageCreate', async (message) => {
           name: ':ballot_box_with_check: Результат:',
           value: getRandArrElement(answer),
         }
-      )
+      );
     message.channel.send({
-      embeds: [chanceEmbed]
+      embeds: [chanceEmbed],
     });
   }
 });
@@ -331,7 +343,7 @@ bot.on('messageCreate', async (message) => {
       .setTimestamp()
       .setFooter(footerText);
     message.channel.send({
-      embeds: [jokeEmbed]
+      embeds: [jokeEmbed],
     });
   }
 });
@@ -369,10 +381,15 @@ bot.on('messageCreate', async (message) => {
       return message.reply('вам недоступна эта функция.');
     }
     message.channel.bulkDelete(amount, true);
-    message.channel.send(`Удалено ${messCount} сообщений!`).then((msg) =>
-      setTimeout(() => msg.delete(), 5000));
+    message.channel
+      .send(`Удалено ${messCount} сообщений!`)
+      .then((msg) => setTimeout(() => msg.delete(), 5000));
     logToChannel(
-      `${message.author.username} удалил ${amount - 1} сообщений в ${message.channel.isThread() ? `треде «${message.channel.name}» канала #${message.channel.parent.name}` : `канале #${message.channel.name}`} (${message.guild}).`
+      `${message.author.username} удалил ${amount - 1} сообщений в ${
+        message.channel.isThread()
+          ? `треде «${message.channel.name}» канала #${message.channel.parent.name}`
+          : `канале #${message.channel.name}`
+      } (${message.guild}).`
     );
   }
 });
@@ -439,9 +456,9 @@ bot.on('messageCreate', async (message) => {
           name: 'Причина:',
           value: reason,
         }
-      )
+      );
     message.channel.send({
-      embeds: [muteEmbed]
+      embeds: [muteEmbed],
     });
   }
 });
@@ -503,9 +520,9 @@ bot.on('messageCreate', async (message) => {
           name: 'Причина:',
           value: reason,
         }
-      )
+      );
     message.channel.send({
-      embeds: [kickEmbed]
+      embeds: [kickEmbed],
     });
   }
 });
@@ -546,7 +563,7 @@ bot.on('messageCreate', async (message) => {
       `${message.author.username} заблокировал ${bannedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
     );
     await bannedMember.ban({
-      reason: reason
+      reason: reason,
     });
     const banEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
@@ -570,9 +587,9 @@ bot.on('messageCreate', async (message) => {
           name: 'Причина:',
           value: reason,
         }
-      )
+      );
     message.channel.send({
-      embeds: [banEmbed]
+      embeds: [banEmbed],
     });
   }
 });
@@ -596,10 +613,11 @@ bot.on('messageCreate', async (message) => {
     const userEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Информация о пользователе')
-      .setThumbnail(user.displayAvatarURL({
+      .setThumbnail(
+        user.displayAvatarURL({
           dynamic: true,
           size: 1024,
-        }),
+        })
       )
       .setTimestamp()
       .setFooter(footerText)
@@ -619,9 +637,9 @@ bot.on('messageCreate', async (message) => {
             **Присоединился:** *${formatDate(member.joinedAt)}*
           `,
         }
-      )
+      );
     message.channel.send({
-      embeds: [userEmbed]
+      embeds: [userEmbed],
     });
   }
 });
@@ -650,10 +668,11 @@ bot.on('messageCreate', async (message) => {
     const serverEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Информация о сервере')
-      .setThumbnail(guild.iconURL({
+      .setThumbnail(
+        guild.iconURL({
           dynamic: true,
           size: 1024,
-        }),
+        })
       )
       .setTimestamp()
       .setFooter(footerText)
@@ -677,9 +696,9 @@ bot.on('messageCreate', async (message) => {
             **Вы присоединились:** *${formatDate(message.member.joinedAt)}*
           `,
         }
-      )
+      );
     message.channel.send({
-      embeds: [serverEmbed]
+      embeds: [serverEmbed],
     });
   }
 });
@@ -750,8 +769,9 @@ bot.on('messageCreate', async (message) => {
           value: variables.slice(1).join('\n'),
         }
       );
-    message.channel.send({
-        embeds: [voteEmbed]
+    message.channel
+      .send({
+        embeds: [voteEmbed],
       })
       .then((msg) => {
         let i = 1;
@@ -810,7 +830,7 @@ bot.on('messageCreate', async (message) => {
       .setTimestamp()
       .setFooter(footerText);
     message.channel.send({
-      embeds: [nekoEmbed]
+      embeds: [nekoEmbed],
     });
   }
 });
@@ -832,7 +852,7 @@ bot.on('messageCreate', async (message) => {
         .setTimestamp()
         .setFooter(footerText);
       return message.channel.send({
-        embeds: [wttrEmbed]
+        embeds: [wttrEmbed],
       });
     }
     if (type === 'img') {
@@ -844,7 +864,7 @@ bot.on('messageCreate', async (message) => {
         .setTimestamp()
         .setFooter(footerText);
       return message.channel.send({
-        embeds: [wttrEmbed]
+        embeds: [wttrEmbed],
       });
     }
   }
@@ -945,78 +965,83 @@ bot.on('messageCreate', async (message) => {
         .setTimestamp()
         .setFooter(footerText);
       message.channel.send({
-        embeds: [gameEmbed]
+        embeds: [gameEmbed],
       });
     }
   }
 });
 
-
-
 ///////////////////////////////////
 //////////////// Slashes //////////
 ///////////////////////////////////
 bot.once('ready', async () => {
-	const data = [
+  const data = [
     {
-			name: 'help',
-			description: 'Показывает информацию о боте.',
-		},
+      name: 'help',
+      description: 'Показывает информацию о боте.',
+    },
     {
-			name: 'invite',
-			description: 'Отправляет ссылку для приглашения бота.',
-		},
+      name: 'invite',
+      description: 'Отправляет ссылку для приглашения бота.',
+    },
     {
-			name: 'roll',
-			description: 'Выдаёт случайное число от 1 до заданного.',
-      options: [{
-        name: 'number',
-        type: 'INTEGER',
-        description: 'Максимальное значение.',
-        required: false,
-      }],
-		},
+      name: 'roll',
+      description: 'Выдаёт случайное число от 1 до заданного.',
+      options: [
+        {
+          name: 'number',
+          type: 'INTEGER',
+          description: 'Максимальное значение.',
+          required: false,
+        },
+      ],
+    },
     {
-			name: 'dice',
-			description: 'Кидает кубик.',
-      options: [{
-        name: 'amount',
-        type: 'INTEGER',
-        description: 'Количество кубиков.',
-        required: false,
-      }],
-		},
+      name: 'dice',
+      description: 'Кидает кубик.',
+      options: [
+        {
+          name: 'amount',
+          type: 'INTEGER',
+          description: 'Количество кубиков.',
+          required: false,
+        },
+      ],
+    },
     {
-			name: 'clean',
-			description: 'Удаляет определённое количество сообщений.',
-      options: [{
-        name: 'amount',
-        type: 'INTEGER',
-        description: 'Количество удаляемых сообщений.',
-        required: true,
-      }],
-		},
+      name: 'clean',
+      description: 'Удаляет определённое количество сообщений.',
+      options: [
+        {
+          name: 'amount',
+          type: 'INTEGER',
+          description: 'Количество удаляемых сообщений.',
+          required: true,
+        },
+      ],
+    },
     {
-			name: 'meow',
-			description: 'Отправляет картинку с котиком.',
-		}
+      name: 'meow',
+      description: 'Отправляет картинку с котиком.',
+    },
   ];
 
-	const command = await bot.application?.commands.set(data);
-	console.log(command);
+  const command = await bot.application?.commands.set(data);
+  console.log(command);
 });
 
 // /help
-bot.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'help') {
+bot.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  if (interaction.commandName === 'help') {
     const helpEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Opeks')
-      .setThumbnail(bot.user.displayAvatarURL({
+      .setThumbnail(
+        bot.user.displayAvatarURL({
           dynamic: true,
           size: 1024,
-        }),
+        })
       )
       .setTimestamp()
       .setFooter(footerText)
@@ -1038,33 +1063,35 @@ bot.on('interactionCreate', async interaction => {
       );
     await interaction.reply({
       content: 'Привет, я Opeks! Чем могу быть полезен?',
-      embeds: [helpEmbed]
+      embeds: [helpEmbed],
     });
-	}
+  }
 });
 
 // /invite
-bot.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'invite') {
-    const inviteButton = new Discord.MessageActionRow()
-      .addComponents(
-        new Discord.MessageButton()
-          .setLabel('Invite')
-          .setStyle('LINK')
-          .setURL('https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot')
-      );
+bot.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  if (interaction.commandName === 'invite') {
+    const inviteButton = new Discord.MessageActionRow().addComponents(
+      new Discord.MessageButton()
+        .setLabel('Invite')
+        .setStyle('LINK')
+        .setURL(
+          'https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot'
+        )
+    );
     await interaction.reply({
-      content: 'https://tenor.com/view/bots-hobots-buzz-lightyear-toy-story-woody-gif-17120878',
-      components: [inviteButton] 
+      content:
+        'https://tenor.com/view/bots-hobots-buzz-lightyear-toy-story-woody-gif-17120878',
+      components: [inviteButton],
     });
-	}
+  }
 });
 
 // /roll
-bot.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'roll') {
+bot.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  if (interaction.commandName === 'roll') {
     let value = interaction.options.getInteger('option');
     if (value === null) {
       value = 20;
@@ -1077,18 +1104,20 @@ bot.on('interactionCreate', async interaction => {
       .setTimestamp()
       .setFooter(footerText);
     if (result === value) {
-      rollEmbed.setImage('https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif');
+      rollEmbed.setImage(
+        'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif'
+      );
     }
-		await interaction.reply({
-      embeds: [rollEmbed]
+    await interaction.reply({
+      embeds: [rollEmbed],
     });
-	}
+  }
 });
 
 // /dice
-bot.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'dice') {
+bot.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  if (interaction.commandName === 'dice') {
     let number = interaction.options.getInteger('option');
     let results = [];
     let sum = 0;
@@ -1144,43 +1173,47 @@ bot.on('interactionCreate', async interaction => {
       }
       await interaction.reply(`Брошен кубик. Результат: ${result}`);
     }
-	}
+  }
 });
 
 // /clean
-bot.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'clean') {
+bot.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  if (interaction.commandName === 'clean') {
     let messCount = interaction.options.getInteger('option');
     let amount = messCount + 1;
-		if (amount <= 1 || amount > 100) {
+    if (amount <= 1 || amount > 100) {
       return interaction.reply('необходимо ввести число от 1 до 99.');
     }
     if (!interaction.member.permissions.has('MANAGE_MESSAGES')) {
       return interaction.reply('вам недоступна эта функция.');
     }
     interaction.channel.bulkDelete(amount, true);
-    interaction.channel.send(`Удалено ${messCount} сообщений!`).then((msg) => setTimeout(() => msg.delete(), 5000));
+    interaction.channel
+      .send(`Удалено ${messCount} сообщений!`)
+      .then((msg) => setTimeout(() => msg.delete(), 5000));
     logToChannel(
-      `${interaction.member.user.username} удалил ${amount - 1} сообщений в ${interaction.channel.isThread() ? `треде «${interaction.channel.name}» канала #${interaction.channel.parent.name}` : `канале #${interaction.channel.name}`} (${interaction.guild}).`
+      `${interaction.member.user.username} удалил ${amount - 1} сообщений в ${
+        interaction.channel.isThread()
+          ? `треде «${interaction.channel.name}» канала #${interaction.channel.parent.name}`
+          : `канале #${interaction.channel.name}`
+      } (${interaction.guild}).`
     );
-	}
+  }
 });
 
 // /meow
-bot.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'meow') {
-    let { body } = await superagent.get(
-      `https://nekos.life/api/v2/img/meow`
-    );
+bot.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+  if (interaction.commandName === 'meow') {
+    let { body } = await superagent.get(`https://nekos.life/api/v2/img/meow`);
     const meowEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setImage(body.url)
       .setTimestamp()
       .setFooter(footerText);
-		await interaction.reply({
-      embeds: [meowEmbed]
+    await interaction.reply({
+      embeds: [meowEmbed],
     });
-	}
+  }
 });
