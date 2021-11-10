@@ -142,8 +142,8 @@ bot.on('messageCreate', async (message) => {
     const result = getRandomInt(max - min) + min;
 
     const mods = new Array();
+    var finalResult = result;
     for (let arg of args.slice(1)) {
-      const finalResult = result;
       if (!isNaN(arg)) {
         finalResult += Number(arg);
         mods.push(arg);
