@@ -126,23 +126,27 @@ bot.on('messageCreate', async (message) => {
   if (message.content.startsWith(prefix + 'roll')) {
     const args = message.content.split(' ').slice(1);
     const min = isNaN(args[0])
-      ? 1
-      : args[0].split('-')[0] == args[0]
-      ? 1
-      : args[0].split('-')[0];
+      ? !args[0]
+        ? 1
+        : args[0].split('-')[0] != args[0]
+        ? args[0].split('-')[0]
+        : 1
+      : 1;
     const max = isNaN(args[0])
-      ? 20
-      : args[0].split('-')[0] == args[0]
-      ? 1
-      : args[0].split('-')[1];
+      ? !args[0]
+        ? 20
+        : args[0].split('-')[0] != args[0]
+        ? args[0].split('-')[1]
+        : 20
+      : args[0];
     const result = getRandomInt(max) + min;
 
     const mods = new Array();
     const finalResult = args.slice(1).forEach((arg) => {
       const finalResult = result;
-      if (!isNaN(i)) {
-        finalResult += Number(i);
-        mods.push(i);
+      if (!isNaN(arg)) {
+        finalResult += Number(arg);
+        mods.push(arg);
       } else return finalResult;
     });
 
@@ -153,7 +157,7 @@ bot.on('messageCreate', async (message) => {
       .setFooter(footerText);
 
     max == min
-      ? rollEmbed.setTitle(`:game_die: Случайное число ${max} :)`)
+      ? rollEmbed.setTitle(`:game_die: Случайное число ${max} :smile:`)
       : rollEmbed.setTitle(`:game_die: Случайное число от ${min} до ${max}`);
 
     if (result === max) {
