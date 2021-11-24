@@ -411,10 +411,9 @@ bot.on('messageCreate', async (message) => {
   if (message.content.startsWith(prefix + 'mute')) {
     let args = message.content.split(' ').slice(1);
     let mutedMember = message.guild.members.cache.get(
-      message.mentions.users.first().id ||
-        message.guild.members.cache.find(
-          (m) => m.user.username === args[0] || m.id === args[0]
-        ).id
+      message.guild.members.cache.find(
+        (m) => m.user.username === args[0] || m.id === args[0]
+      ).id || message.mentions.users.first().id
     );
     if (!mutedMember)
       return message.channel.send('Не могу найти этого пользователя...');
@@ -480,10 +479,9 @@ bot.on('messageCreate', async (message) => {
   if (message.content.startsWith(prefix + 'kick')) {
     let args = message.content.split(' ').slice(1);
     let kickedMember = message.guild.members.cache.get(
-      message.mentions.users.first().id ||
-        message.guild.members.cache.find(
-          (m) => m.user.username === args[0] || m.id === args[0]
-        ).id
+      message.guild.members.cache.find(
+        (m) => m.user.username === args[0] || m.id === args[0]
+      ).id || message.mentions.users.first().id
     );
     if (!kickedMember)
       return message.channel.send('Не могу найти этого пользователя...');
@@ -544,10 +542,9 @@ bot.on('messageCreate', async (message) => {
   if (message.content.startsWith(prefix + 'ban')) {
     let args = message.content.split(' ').slice(1);
     let bannedMember = message.guild.members.cache.get(
-      message.mentions.users.first().id ||
-        message.guild.members.cache.find(
-          (m) => m.user.username === args[0] || m.id === args[0]
-        ).id
+      message.guild.members.cache.find(
+        (m) => m.user.username === args[0] || m.id === args[0]
+      ).id || message.mentions.users.first().id
     );
     if (!bannedMember) return message.channel.send('Пользователь не найден');
     if (!bannedMember.bannable)
@@ -659,8 +656,8 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(prefix + 'serverinfo')) {
-    let guild = message.guild;
-    let regions = {
+    const guild = message.guild;
+    const regions = {
       russia: ':flag_ru: Россия',
       india: 'flag_in: Индия',
       japan: ':flag_ja: Япония',
@@ -675,7 +672,7 @@ bot.on('messageCreate', async (message) => {
       'us-south': ':flag_us: Юг США',
       'us-east': ':flag_us: Восток США',
     };
-    let guildOwner = guild.members.cache.get(guild.ownerId);
+    const guildOwner = guild.members.cache.get(guild.ownerId);
     const serverEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Информация о сервере')
@@ -724,10 +721,9 @@ bot.on('messageCreate', async (message) => {
     await message.delete();
     let args = message.content.split(' ').slice(1);
     let member = message.guild.members.cache.get(
-      message.mentions.users.first().id ||
-        message.guild.members.cache.find(
-          (m) => m.user.username === args[0] || m.id === args[0]
-        ).id
+      message.guild.members.cache.find(
+        (m) => m.user.username === args[0] || m.id === args[0]
+      ).id || message.mentions.users.first().id
     );
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
@@ -746,10 +742,9 @@ bot.on('messageCreate', async (message) => {
     await message.delete();
     let args = message.content.split(' ').slice(1);
     let member = message.guild.members.cache.get(
-      message.mentions.users.first().id ||
-        message.guild.members.cache.find(
-          (m) => m.user.username === args[0] || m.id === args[0]
-        ).id
+      message.guild.members.cache.find(
+        (m) => m.user.username === args[0] || m.id === args[0]
+      ).id || message.mentions.users.first().id
     );
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
