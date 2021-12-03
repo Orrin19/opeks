@@ -737,7 +737,7 @@ bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   if (
     message.content.startsWith(prefix + 'rr') &&
-    message.members.permissions.has('MANAGE_ROLES')
+    message.member.permissions.has('MANAGE_ROLES')
   ) {
     await message.delete();
     let args = message.content.split(' ').slice(1);
