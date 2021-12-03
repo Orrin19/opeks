@@ -725,6 +725,7 @@ bot.on('messageCreate', async (message) => {
         (m) => m.user.username === args[0] || m.id === args[0]
       ) || message.mentions.users.first().id
     );
+    return console.log(JSON.stringify(member));
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
     );
