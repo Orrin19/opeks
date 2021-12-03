@@ -719,13 +719,25 @@ bot.on('messageCreate', async (message) => {
     message.member.permissions.has('MANAGE_ROLES')
   ) {
     await message.delete();
-    let args = message.content.split(' ').slice(1);
-    let member = message.guild.members.cache.get(
+    const args = message.content.split(' ').slice(1);
+    var member;
+    try {
+      member = message.guild.members.cache.get(
+        message.mentions.users.first().id
+      );
+    } catch (e) {
+      member = message.guild.members.cache.get(
+        message.guild.members.cache.find(
+          (m) => m.user.username === args[0] || m.id === args[0]
+        ).userId
+      );
+    }
+    /*let member = message.guild.members.cache.get(
       message.mentions.users.first().id ||
       message.guild.members.cache.find(
         (m) => m.user.username === args[0] || m.id === args[0]
       ).userId
-    );
+    );*/
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
     );
