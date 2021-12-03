@@ -720,11 +720,11 @@ bot.on('messageCreate', async (message) => {
   ) {
     await message.delete();
     let args = message.content.split(' ').slice(1);
-    return console.log(JSON.stringify(message.mentions.users.first().id));
     let member = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
       message.guild.members.cache.find(
         (m) => m.user.username === args[0] || m.id === args[0]
-      ).userId || message.mentions.users.first().id
+      ).userId
     );
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
