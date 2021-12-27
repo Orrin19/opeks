@@ -906,6 +906,7 @@ bot.on('guildMemberAdd', async (member) => {
   );
   await member.roles.add(noviceRole);
 
+  return; //удалитб
   const noviceButton = new Discord.MessageActionRow().addComponents(
     new Discord.MessageButton()
       .setLabel('Давай как с новичком. Ничего не знаю')
