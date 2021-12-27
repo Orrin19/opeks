@@ -900,9 +900,28 @@ bot.on('messageCreate', async (message) => {
 
 // Выдача ролей и автоприветствие на Ламоране
 bot.on('guildMemberAdd', async (member) => {
-  let role = member.guild.roles.cache.find((r) => r.name === 'Начинающий');
-  await member.roles.add(role);
-  //member.send('');
+  const noviceRole = member.guild.roles.cache.find(
+    (r) => r.name === 'Начинающий'
+  );
+  const noviceButton = new Discord.MessageActionRow().addComponents(
+    new Discord.MessageButton()
+      .setLabel('Давай как с новичком. Ничего не знаю')
+      .setStyle('LINK')
+      .setURL('https://lamoraun.fandom.com/ru/wiki/Ламоран_вики')
+  );
+  const experiencedButton = new Discord.MessageActionRow().addComponents(
+    new Discord.MessageButton()
+      .setLabel('Давай как с опытным')
+      .setStyle('LINK')
+      .setURL('https://forms.gle/DqnNAuS8qDRAm8Qt8')
+  );
+  await member.roles.add(noviceRole);
+  if (member.userId !== ownerID) return;
+  member.send({
+    content:
+      'Короче, новичок. Я тебе огромный и сложный лор покажу и в благородство играть не буду. Пройдёшь регистрацию — и мы в расчёте. Заодно проверим, как быстро башка после ВПИ 1936 прояснится. А по твоей теме — сейчас расскажу.\nЗначит, выбирай, как мы с тобой поступим: либо я тебе сейчас мозги буду парить, как обычно всем новичкам делаю, либо как с опытным ролевиком — получаешь ссылку на регистрацию, и вперёд.',
+    components: [noviceButton, experiencedButton],
+  });
 });
 
 // Ссылки на вики на Ламоране
