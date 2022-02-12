@@ -27,6 +27,7 @@ require('events').EventEmitter.defaultMaxListeners = Infinity;
 const data = require('./database.json');
 const joke = data.joke;
 const maps = data.maps;
+const flags = data.flags;
 
 // Bot connection
 bot.login(process.env.TOKEN);
@@ -968,8 +969,8 @@ bot.on('messageCreate', async (message) => {
 // //////////////////////////////////////////////////////
 const kmaps = Object.keys(maps);
 const vmaps = Object.values(maps);
-const kflags = Object.keys(maps);
-const vflags = Object.values(maps);
+const kflags = Object.keys(flags);
+const vflags = Object.values(flags);
 let cell,
   chan,
   game = 0;
