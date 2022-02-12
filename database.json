@@ -442,5 +442,167 @@
     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Jamaica_%28orthographic_projection%29.svg/1024px-Jamaica_%28orthographic_projection%29.svg.png": [
       "Ямайка"
     ]
+  },
+  "flags": {
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/1024px-Flag_of_Germany.svg.png": [
+      "Германи",
+      "ФРГ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/1024px-Flag_of_the_United_Kingdom_%283-5%29.svg.png": [
+      "Великобритания",
+      "Британия",
+      "ВБ",
+      "Соединённое"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_Soviet_Union.svg/1024px-Flag_of_the_Soviet_Union.svg.png": [
+      "СССР",
+      "Союз",
+      "Советский"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Ukraine.svg/1024px-Flag_of_Ukraine.svg.png": [
+      "Украина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Flag_of_Belarus.svg/1024px-Flag_of_Belarus.svg.png": [
+      "Беларусь",
+      "Белоруссия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1024px-Bandera_de_Espa%C3%B1a.svg.png": [
+      "Испания"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/1024px-Flag_of_Poland.svg.png": [
+      "Польша"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/1024px-Flag_of_the_Czech_Republic.svg.png": [
+      "Чехия",
+      "ЧСР",
+      "Кенчания"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1024px-Flag_of_Italy.svg.png": [
+      "Италия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/1024px-Flag_of_Russia.svg.png": [
+      "РФ",
+      "Росси"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Flag_of_Kazakhstan.svg/1024px-Flag_of_Kazakhstan.svg.png": [
+      "Казахстан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/1024px-Flag_of_Sweden.svg.png": [
+      "Швеция"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/1024px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png": [
+      "Франция"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/1024px-Flag_of_Croatia.svg.png": [
+      "Хорватия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Flag_of_Slovenia.svg/1024px-Flag_of_Slovenia.svg.png": [
+      "Словения"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Flag_of_Bosnia_and_Herzegovina.svg/1024px-Flag_of_Bosnia_and_Herzegovina.svg.png": [
+      "Босния и Герцеговина",
+      "БиГ",
+      "Босния-Герцеговина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Flag_of_Serbia.svg/1024px-Flag_of_Serbia.svg.png": [
+      "Сербия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flag_of_Kosovo.svg/1024px-Flag_of_Kosovo.svg.png": [
+      "Косово"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Flag_of_Montenegro.svg/1024px-Flag_of_Montenegro.svg.png": [
+      "Черногория",
+      "Монтенегро"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_North_Macedonia.svg/1024px-Flag_of_North_Macedonia.svg.png": [
+      "Македония"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/1024px-Flag_of_Greece.svg.png": [
+      "Греция",
+      "Греческ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Flag_of_Albania.svg/1024px-Flag_of_Albania.svg.png": [
+      "Албани",
+      "Кебабы"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/1024px-Flag_of_Turkey.svg.png": [
+      "Турция",
+      "Турецк"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/1024px-Flag_of_Bulgaria.svg.png": [
+      "Болгария"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/1024px-Flag_of_Romania.svg.png": [
+      "Румыния"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/1024px-Flag_of_Slovakia.svg.png": [
+      "Словакия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/1024px-Flag_of_Hungary.svg.png": [
+      "Венгрия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_Austria.svg/1024px-Flag_of_Austria.svg.png": [
+      "Австрия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Flag_of_Moldova.svg/1024px-Flag_of_Moldova.svg.png": [
+      "Молд"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Transnistria_%28state%29.svg/1024px-Flag_of_Transnistria_%28state%29.svg.png": [
+      "Приднестров",
+      "ПМР"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/1024px-Flag_of_Switzerland_%28Pantone%29.svg.png": [
+      "Швейцария"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1024px-Flag_of_Portugal.svg.png": [
+      "Португалия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flag_of_Germany_%281867%E2%80%931918%29.svg/1024px-Flag_of_Germany_%281867%E2%80%931918%29.svg.png": [
+      "Германск",
+      "ГИ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Civil_Ensign_of_Austria-Hungary_%281869%E2%80%931918%29.svg/1024px-Civil_Ensign_of_Austria-Hungary_%281869%E2%80%931918%29.svg.png": [
+      "АВ",
+      "Австро"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Flag_of_Belarus_%281918%2C_1991%E2%80%931995%29.svg/1024px-Flag_of_Belarus_%281918%2C_1991%E2%80%931995%29.svg.png": [
+      "БНР",
+      "Бел",
+      "Проклад"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Flag_of_the_Russian_Empire_%28black-yellow-white%29.svg/1024px-Flag_of_the_Russian_Empire_%28black-yellow-white%29.svg.png": [
+      "Росси",
+      "РИ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Flag_of_the_Confederate_States_of_America_%281865%29.svg/1024px-Flag_of_the_Confederate_States_of_America_%281865%29.svg.png": [
+      "КША",
+      "Конфедерат"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Island_of_Taiwan_%28orthographic_projection%29.svg/1024px-Island_of_Taiwan_%28orthographic_projection%29.svg.png": [
+      "КР",
+      "Тайвань"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Flag_of_China_%281889%E2%80%931912%29.svg/1024px-Flag_of_China_%281889%E2%80%931912%29.svg.png": [
+      "Цин",
+      "Китайск"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Flag_of_Cuba.svg/1024px-Flag_of_Cuba.svg.png": [
+      "Куба"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/1024px-Flag_of_Monaco.svg.png": [
+      "Монако"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Flag_of_Liechtenstein.svg/1024px-Flag_of_Liechtenstein.svg.png": [
+      "Лихтенштейн"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Flag_of_San_Marino.svg/1024px-Flag_of_San_Marino.svg.png": [
+      "Марино"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_the_Vatican_City.svg/1024px-Flag_of_the_Vatican_City.svg.png": [
+      "Ватикан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Andorra.svg/1024px-Flag_of_Andorra.svg.png": [
+      "Андорра"
+    ]
   }
 }

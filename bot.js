@@ -968,6 +968,8 @@ bot.on('messageCreate', async (message) => {
 // //////////////////////////////////////////////////////
 const kmaps = Object.keys(maps);
 const vmaps = Object.values(maps);
+const kflags = Object.keys(maps);
+const vflags = Object.values(maps);
 let cell,
   chan,
   game = 0;
@@ -980,6 +982,15 @@ bot.on('messageCreate', async (message) => {
   ) {
     if (game === 'map') {
       for (let i of vmaps[cell]) {
+        if (message.content.includes(i)) {
+          cell, chan, (game = 0);
+          return message.reply('правильно!');
+        }
+      }
+      return message.reply('неверно!');
+    }
+    if (game === 'flag') {
+      for (let i of vflags[cell]) {
         if (message.content.includes(i)) {
           cell, chan, (game = 0);
           return message.reply('правильно!');
@@ -1002,6 +1013,19 @@ bot.on('messageCreate', async (message) => {
         .setColor(lineColor)
         .setTitle('Игра «Карта — Страна»')
         .setImage(kmaps[cell])
+        .setTimestamp()
+        .setFooter(footerText);
+      message.channel.send({
+        embeds: [gameEmbed],
+      });
+    }
+    if (args[0] === 'flag-state') {
+      game = 'flag';
+      cell = getRandArrIndex(kflags);
+      const gameEmbed = new Discord.MessageEmbed()
+        .setColor(lineColor)
+        .setTitle('Игра «Флаг — Страна»')
+        .setImage(kflags[cell])
         .setTimestamp()
         .setFooter(footerText);
       message.channel.send({
