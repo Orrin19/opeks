@@ -603,6 +603,26 @@ bot.on('messageCreate', async (message) => {
   }
 });
 
+// !avatar
+bot.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
+  if (message.content.startsWith(prefix + 'avatar')) {
+    let args = message.content.split(' ').slice(1);
+    let member = message.guild.members.cache.get(
+      message.mentions.users.first().id ||
+        message.guild.members.cache.find(
+          (m) => m.user.username == args[0] || m.id == args[0]
+        ).id
+    );
+    message.channel.send(
+      member.user.displayAvatarURL({
+        dynamic: true,
+        size: 1024,
+      })
+    );
+  }
+});
+
 // !userinfo
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
