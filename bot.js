@@ -348,31 +348,31 @@ bot.on('messageCreate', async (message) => {
       .addFields(
         {
           name: ':muscle: Сила:',
-          value: getRandomInt(10) + 1,
+          value: `**${getRandomInt(10) + 1}**`,
         },
         {
           name: ':eyes: Восприятие:',
-          value: getRandomInt(10) + 1,
+          value: `**${getRandomInt(10) + 1}**`,
         },
         {
           name: ':man_running: Выносливость:',
-          value: getRandomInt(10) + 1,
+          value: `**${getRandomInt(10) + 1}**`,
         },
         {
           name: ':sunglasses: Харизма:',
-          value: getRandomInt(10) + 1,
+          value: `**${getRandomInt(10) + 1}**`,
         },
         {
           name: ':brain: Интеллект:',
-          value: getRandomInt(10) + 1,
+          value: `**${getRandomInt(10) + 1}**`,
         },
         {
           name: ':cartwheel: Ловкость:',
-          value: getRandomInt(10) + 1,
+          value: `**${getRandomInt(10) + 1}**`,
         },
         {
           name: ':unicorn: Удача:',
-          value: getRandomInt(10) + 1,
+          value: `**${getRandomInt(10) + 1}**`,
         }
       );
     message.channel.send({
