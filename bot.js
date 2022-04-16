@@ -48,7 +48,7 @@ const formatDate = (date) =>
   });
 const triggerCommand = (message, command) =>
   message.content.startsWith(prefix) &&
-  command.includes(message.content.split(' ')[0].slice(1)) &&
+  command === message.content.split(' ')[0].slice(1) &&
   !message.author.bot;
 
 // !say
@@ -408,7 +408,7 @@ bot.on('messageCreate', async (message) => {
 
 // !clean
 bot.on('messageCreate', async (message) => {
-  if (triggerCommand(message, ['clean', 'чистка'])) {
+  if (triggerCommand(message, 'чистка')) {
     let messageArray = message.content.split(' ');
     let args = messageArray.slice(1);
     let amount = parseInt(args[0]) + 1;
