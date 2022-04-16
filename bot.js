@@ -37,25 +37,23 @@ const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 const getRandArrIndex = (arr) => Math.floor(Math.random() * arr.length);
 const getRandArrElement = (arr) => arr[getRandArrIndex(arr)];
 const logToChannel = (msg) => bot.channels.cache.get(logChannel).send(msg);
-const formatDate = (date) => {
-  let options = {
+const formatDate = (date) =>
+  date.toLocaleDateString('ru', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
     second: 'numeric',
-  };
-  return date.toLocaleDateString('ru', options);
-};
+  });
+const triggerCommand = (message, command) =>
+  message.content.startsWith(prefix) &&
+  command.includes(message.content.split(' ')[0].slice(1)) &&
+  !message.author.bot;
 
 // !say
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (
-    message.content.startsWith(prefix + 'say') &&
-    message.author.id === ownerID
-  ) {
+  if (triggerCommand(message, 'say') && message.author.id === ownerID) {
     await message.delete().catch((o_O) => {
       console.log(o_O);
     });
@@ -65,8 +63,7 @@ bot.on('messageCreate', async (message) => {
 
 // !invite
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'invite')) {
+  if (triggerCommand(message, 'invite')) {
     const inviteButton = new Discord.MessageActionRow().addComponents(
       new Discord.MessageButton()
         .setLabel('Invite')
@@ -85,8 +82,7 @@ bot.on('messageCreate', async (message) => {
 
 // !help
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'help')) {
+  if (triggerCommand(message, 'help')) {
     const helpEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
       .setTitle('Opeks')
@@ -123,8 +119,7 @@ bot.on('messageCreate', async (message) => {
 
 // !roll
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'roll')) {
+  if (triggerCommand(message, 'roll')) {
     const args = message.content.split(' ').slice(1);
     const min = isNaN(args[0])
       ? !args[0]
@@ -188,8 +183,7 @@ bot.on('messageCreate', async (message) => {
 
 // !кубик
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'кубик')) {
+  if (triggerCommand(message, 'кубик')) {
     let number = message.content.split(' ').slice(1)[0];
     let results = [];
     let sum = 0;
@@ -283,8 +277,7 @@ bot.on('messageCreate', async (message) => {
 
 // !chance
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'chance')) {
+  if (triggerCommand(message, 'chance')) {
     let args = message.content.split(' ').slice(1);
     let chance;
     let action;
@@ -343,10 +336,54 @@ bot.on('messageCreate', async (message) => {
   }
 });
 
+// !special (Fallout)
+bot.on('messageCreate', async (message) => {
+  if (triggerCommand(message, 'special')) {
+    const specialEmbed = new Discord.MessageEmbed()
+      .setColor(lineColor)
+      .setTitle('S.P.E.C.I.A.L.')
+      .setDescription('Случайная характеристика для вашего персонажа')
+      .setTimestamp()
+      .setFooter(footerText)
+      .addFields(
+        {
+          name: ':muscle: Сила:',
+          value: getRandomInt(10) + 1,
+        },
+        {
+          name: ':eyes: Восприятие:',
+          value: getRandomInt(10) + 1,
+        },
+        {
+          name: ':man_running: Выносливость:',
+          value: getRandomInt(10) + 1,
+        },
+        {
+          name: ':sunglasses: Харизма:',
+          value: getRandomInt(10) + 1,
+        },
+        {
+          name: ':brain: Интеллект:',
+          value: getRandomInt(10) + 1,
+        },
+        {
+          name: ':cartwheel: Ловкость:',
+          value: getRandomInt(10) + 1,
+        },
+        {
+          name: ':unicorn: Удача:',
+          value: getRandomInt(10) + 1,
+        }
+      );
+    message.channel.send({
+      embeds: [specialEmbed],
+    });
+  }
+});
+
 // !joke (jokes from the S.T.A.L.K.E.R. game)
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'joke')) {
+  if (triggerCommand(message, 'joke')) {
     const value = getRandArrIndex(joke);
     const jokeEmbed = new Discord.MessageEmbed()
       .setColor(lineColor)
@@ -362,8 +399,7 @@ bot.on('messageCreate', async (message) => {
 
 // !rickroll meme
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'rickroll')) {
+  if (triggerCommand(message, 'rickroll')) {
     message.channel.send(
       'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif'
     );
@@ -372,11 +408,7 @@ bot.on('messageCreate', async (message) => {
 
 // !clean
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (
-    message.content.startsWith(prefix + 'clean') ||
-    message.content.startsWith(prefix + 'чистка')
-  ) {
+  if (triggerCommand(message, ['clean', 'чистка'])) {
     let messageArray = message.content.split(' ');
     let args = messageArray.slice(1);
     let amount = parseInt(args[0]) + 1;
@@ -408,8 +440,7 @@ bot.on('messageCreate', async (message) => {
 
 // !mute
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'mute')) {
+  if (triggerCommand(message, 'mute')) {
     let args = message.content.split(' ').slice(1);
     let mutedMember = message.guild.members.cache.get(
       message.guild.members.cache.find(
@@ -476,8 +507,7 @@ bot.on('messageCreate', async (message) => {
 
 // !kick
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'kick')) {
+  if (triggerCommand(message, 'kick')) {
     let args = message.content.split(' ').slice(1);
     let kickedMember = message.guild.members.cache.get(
       message.guild.members.cache.find(
@@ -539,8 +569,7 @@ bot.on('messageCreate', async (message) => {
 
 // !ban
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'ban')) {
+  if (triggerCommand(message, 'ban')) {
     let args = message.content.split(' ').slice(1);
     let bannedMember = message.guild.members.cache.get(
       message.guild.members.cache.find(
@@ -605,8 +634,7 @@ bot.on('messageCreate', async (message) => {
 
 // !avatar
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'avatar')) {
+  if (triggerCommand(message, 'avatar')) {
     let args = message.content.split(' ').slice(1);
     let member = message.guild.members.cache.get(
       message.mentions.users.first().id ||
@@ -625,8 +653,7 @@ bot.on('messageCreate', async (message) => {
 
 // !userinfo
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'userinfo')) {
+  if (triggerCommand(message, 'userinfo')) {
     let args = message.content.split(' ').slice(1);
     let member = message.guild.members.cache.get(
       message.mentions.users.first().id ||
@@ -675,8 +702,7 @@ bot.on('messageCreate', async (message) => {
 
 // !serverinfo
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'serverinfo')) {
+  if (triggerCommand(message, 'serverinfo')) {
     const guild = message.guild;
     const regions = {
       russia: ':flag_ru: Россия',
@@ -734,9 +760,8 @@ bot.on('messageCreate', async (message) => {
 
 // !gr
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
   if (
-    message.content.startsWith(prefix + 'gr') &&
+    triggerCommand(message, 'rickroll') &&
     message.member.permissions.has('MANAGE_ROLES')
   ) {
     await message.delete();
@@ -768,9 +793,8 @@ bot.on('messageCreate', async (message) => {
 
 // !rr
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
   if (
-    message.content.startsWith(prefix + 'rr') &&
+    triggerCommand(message, 'rickroll') &&
     message.member.permissions.has('MANAGE_ROLES')
   ) {
     await message.delete();
@@ -789,8 +813,7 @@ bot.on('messageCreate', async (message) => {
 
 // !voting
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'voting')) {
+  if (triggerCommand(message, 'voting')) {
     let args = message.content.split(' ').slice(1);
     let variables = args.join(' ');
     variables = variables.split('|');
@@ -840,8 +863,7 @@ bot.on('messageCreate', async (message) => {
 
 // !choise
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'choise')) {
+  if (triggerCommand(message, 'choise')) {
     let args = message.content.split(' ').slice(1);
     message.channel.send(getRandArrElement(args));
   }
@@ -849,8 +871,7 @@ bot.on('messageCreate', async (message) => {
 
 // !nekos-life
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'nekos-life')) {
+  if (triggerCommand(message, 'nekos-life')) {
     if (!message.channel.nsfw)
       return message.reply(
         'команда может использоваться только в канале NSFW.'
@@ -877,8 +898,7 @@ bot.on('messageCreate', async (message) => {
 
 // !wttr
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'wttr')) {
+  if (triggerCommand(message, 'wttr')) {
     let args = message.content.split(' ').slice(1);
     let type = args[0];
     let city = args.slice(1).join(' ');
@@ -1023,8 +1043,7 @@ bot.on('messageCreate', async (message) => {
 });
 
 bot.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(prefix + 'game')) {
+  if (triggerCommand(message, 'game')) {
     chan = message.channel.id;
     let args = message.content.split(' ').slice(1);
     if (args[0] === 'map-state') {
