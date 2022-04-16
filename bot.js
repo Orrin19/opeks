@@ -766,7 +766,7 @@ bot.on('messageCreate', async (message) => {
   ) {
     await message.delete();
     const args = message.content.split(' ').slice(1);
-    var member;
+    /*var member;
     try {
       member = message.guild.members.cache.get(
         message.mentions.users.first().id
@@ -778,12 +778,17 @@ bot.on('messageCreate', async (message) => {
         ).userId
       );
     }
-    /*let member = message.guild.members.cache.get(
+    let member = message.guild.members.cache.get(
       message.mentions.users.first().id ||
       message.guild.members.cache.find(
         (m) => m.user.username === args[0] || m.id === args[0]
       ).userId
     );*/
+    let member = message.guild.members.cache.get(
+      message.guild.members.cache.find(
+        (m) => m.user.username === args[0] || m.id === args[0]
+      ).id || message.mentions.users.first().id
+    );
     let role = message.guild.roles.cache.find(
       (r) => r.name === args.slice(1).join(' ')
     );
