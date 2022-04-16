@@ -759,7 +759,7 @@ bot.on('messageCreate', async (message) => {
 });
 
 // !gr
-bot.on('messageCreate', async (message) => {
+/*bot.on('messageCreate', async (message) => {
   if (
     triggerCommand(message, 'rickroll') &&
     message.member.permissions.has('MANAGE_ROLES')
@@ -783,7 +783,7 @@ bot.on('messageCreate', async (message) => {
       message.guild.members.cache.find(
         (m) => m.user.username === args[0] || m.id === args[0]
       ).userId
-    );*/
+    );
     let member = message.guild.members.cache.get(
       message.guild.members.cache.find(
         (m) => m.user.username === args[0] || m.id === args[0]
@@ -814,7 +814,7 @@ bot.on('messageCreate', async (message) => {
     );
     member.roles.remove(role.id);
   }
-});
+});*/
 
 // !voting
 bot.on('messageCreate', async (message) => {
