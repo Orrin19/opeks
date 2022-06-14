@@ -408,7 +408,7 @@ bot.on('messageCreate', async (message) => {
 
 // sends random local emoji
 bot.on('messageCreate', async (message) => {
-  if (getRandomInt(100) === 50 && !message.author.bot) {
+  if (getRandomInt(300) === 50 && !message.author.bot) {
     let emoji = message.guild.emojis.cache.random();
     message.channel.send('<:' + emoji.name + ':' + emoji.id + '>');
   }
