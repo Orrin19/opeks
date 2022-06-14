@@ -410,7 +410,7 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (triggerCommand(message, 'emoji')) {
     let emoji = message.guild.emojis.cache.random();
-    message.channel.send(':' + emoji.name + ':');
+    message.channel.send('<:' + emoji.name + ':' + emoji.id + '>');
   }
 });
 
