@@ -406,9 +406,9 @@ bot.on('messageCreate', async (message) => {
   }
 });
 
-// !emoji — sends random local emoji
+// sends random local emoji
 bot.on('messageCreate', async (message) => {
-  if (triggerCommand(message, 'emoji')) {
+  if (getRandomInt(100) === 50) {
     let emoji = message.guild.emojis.cache.random();
     message.channel.send('<:' + emoji.name + ':' + emoji.id + '>');
   }
