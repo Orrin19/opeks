@@ -406,6 +406,14 @@ bot.on('messageCreate', async (message) => {
   }
 });
 
+// !emoji — sends random local emoji
+bot.on('messageCreate', async (message) => {
+  if (triggerCommand(message, 'emoji')) {
+    let emojis = message.guild.emojis.map(emoji => emoji.name)
+    message.channel.send(':' + getRandArrElement(emojis) + ':')
+  }
+});
+
 // !clean
 bot.on('messageCreate', async (message) => {
   if (triggerCommand(message, 'чистка')) {
