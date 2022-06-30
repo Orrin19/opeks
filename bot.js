@@ -212,7 +212,7 @@ bot.on('messageCreate', async (message) => {
         }
       }
       message.channel.send(
-        `Брошено кубиков: ${number}\nРезультаты: ${results.join(
+        `Брошено кубиков: ${Math.ceil(number)}\nРезультаты: ${results.join(
           ' '
         )}\nСумма: ${sum}`
       );
