@@ -65,9 +65,9 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (triggerCommand(message, 'invite')) {
     const inviteButton = new Discord.MessageActionRow().addComponents(
-      new Discord.MessageButton()
+      new Discord.ButtonBuilder()
         .setLabel('Invite')
-        .setStyle('LINK')
+        .setStyle(Discord.ButtonStyle.Link)
         .setURL(
           'https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot'
         )
@@ -962,15 +962,15 @@ bot.on('guildMemberAdd', async (member) => {
 
   return; //удалитб
   const noviceButton = new Discord.MessageActionRow().addComponents(
-    new Discord.MessageButton()
+    new Discord.ButtonBuilder()
       .setLabel('Давай как с новичком. Ничего не знаю')
-      .setStyle('LINK')
+      .setStyle(Discord.ButtonStyle.Link)
       .setURL('https://lamoraun.fandom.com/ru/wiki/Ламоран_вики')
   );
   const experiencedButton = new Discord.MessageActionRow().addComponents(
-    new Discord.MessageButton()
+    new Discord.ButtonBuilder()
       .setLabel('Давай как с опытным')
-      .setStyle('LINK')
+      .setStyle(Discord.ButtonStyle.Link)
       .setURL('https://forms.gle/DqnNAuS8qDRAm8Qt8')
   );
   member.send({
@@ -1189,9 +1189,9 @@ bot.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return;
   if (interaction.commandName === 'invite') {
     const inviteButton = new Discord.MessageActionRow().addComponents(
-      new Discord.MessageButton()
+      new Discord.ButtonBuilder()
         .setLabel('Invite')
-        .setStyle('LINK')
+        .setStyle(Discord.ButtonStyle.Link)
         .setURL(
           'https://discord.com/api/oauth2/authorize?client_id=672043257219252224&permissions=8&scope=bot'
         )
