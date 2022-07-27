@@ -52,8 +52,7 @@ const formatDate = (date) =>
     second: 'numeric',
   });
 const triggerCommand = (message, command) =>
-  message.content.startsWith(prefix) &&
-  command === message.content.split(' ')[0].slice(1);
+  message.content.startsWith(prefix + command);
 
 // !say
 bot.on('messageCreate', async (message) => {
