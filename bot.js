@@ -56,9 +56,7 @@ const triggerCommand = (message, command) =>
 
 // !test
 bot.on('messageCreate', async (message) => {
-  if (message.content === 'бебра') {
-    message.reply('чупапи');
-  }
+  console.log(message.content);
 });
 
 // !say
