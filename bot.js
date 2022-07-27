@@ -1096,7 +1096,7 @@ bot.on('messageCreate', async (message) => {
 ///////////////////////////////////
 //////////////// Slashes //////////
 ///////////////////////////////////
-bot.once('ready', async () => {
+/*bot.once('ready', async () => {
   const data = [
     {
       name: 'help',
@@ -1338,3 +1338,4 @@ bot.on('interactionCreate', async (interaction) => {
     });
   }
 });
+*/
