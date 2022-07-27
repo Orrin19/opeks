@@ -87,7 +87,7 @@ bot.on('messageCreate', async (message) => {
 // !help
 bot.on('messageCreate', async (message) => {
   if (triggerCommand(message, 'help')) {
-    const helpEmbed = new Discord.MessageEmbed()
+    const helpEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Opeks')
       .setThumbnail(
@@ -150,7 +150,7 @@ bot.on('messageCreate', async (message) => {
       } else break;
     }
 
-    const rollEmbed = new Discord.MessageEmbed()
+    const rollEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setDescription(`**${result}**`)
       .setTimestamp()
@@ -315,7 +315,7 @@ bot.on('messageCreate', async (message) => {
         'С чего? Нет, конечно.',
       ];
     }
-    const chanceEmbed = new Discord.MessageEmbed()
+    const chanceEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('🎲 Вероятность события')
       .setTimestamp()
@@ -343,7 +343,7 @@ bot.on('messageCreate', async (message) => {
 // !special (Fallout)
 bot.on('messageCreate', async (message) => {
   if (triggerCommand(message, 'special')) {
-    const specialEmbed = new Discord.MessageEmbed()
+    const specialEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('S.P.E.C.I.A.L.')
       .setDescription('Случайная характеристика для вашего персонажа')
@@ -389,7 +389,7 @@ bot.on('messageCreate', async (message) => {
 bot.on('messageCreate', async (message) => {
   if (triggerCommand(message, 'joke')) {
     const value = getRandArrIndex(joke);
-    const jokeEmbed = new Discord.MessageEmbed()
+    const jokeEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Внимание, анекдот!')
       .setDescription(joke[value])
@@ -488,7 +488,7 @@ bot.on('messageCreate', async (message) => {
       `${message.author.username} заглушил ${mutedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
     );
     await mutedMember.roles.add(muterole.id);
-    const muteEmbed = new Discord.MessageEmbed()
+    const muteEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Мут пользователя')
       .setTimestamp()
@@ -550,7 +550,7 @@ bot.on('messageCreate', async (message) => {
       `${message.author.username} кикнул ${kickedMember.user.username} на сервере «${message.guild}» по причине: ${reason}`
     );
     await kickedMember.kick(reason);
-    const kickEmbed = new Discord.MessageEmbed()
+    const kickEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Кик пользователя')
       .setTimestamp()
@@ -615,7 +615,7 @@ bot.on('messageCreate', async (message) => {
     await bannedMember.ban({
       reason: reason,
     });
-    const banEmbed = new Discord.MessageEmbed()
+    const banEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Бан пользователя')
       .setTimestamp()
@@ -678,7 +678,7 @@ bot.on('messageCreate', async (message) => {
     if (nickname == null) {
       nickname = member.user.username;
     }
-    const userEmbed = new Discord.MessageEmbed()
+    const userEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Информация о пользователе')
       .setThumbnail(
@@ -732,7 +732,7 @@ bot.on('messageCreate', async (message) => {
       'us-east': ':flag_us: Восток США',
     };
     const guildOwner = guild.members.cache.get(guild.ownerId);
-    const serverEmbed = new Discord.MessageEmbed()
+    const serverEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Информация о сервере')
       .setThumbnail(
@@ -834,7 +834,7 @@ bot.on('messageCreate', async (message) => {
     let args = message.content.split(' ').slice(1);
     let variables = args.join(' ');
     variables = variables.split('|');
-    const voteEmbed = new Discord.MessageEmbed()
+    const voteEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Голосование')
       .setTimestamp()
@@ -902,7 +902,7 @@ bot.on('messageCreate', async (message) => {
     );
     if (body.msg === '404' || resp.statusCode !== 200)
       return message.reply('не могу найти картинку по этому запросу...');
-    const nekoEmbed = new Discord.MessageEmbed()
+    const nekoEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setImage(body.url)
       .setTimestamp()
@@ -922,7 +922,7 @@ bot.on('messageCreate', async (message) => {
     if (type === 'text') {
       let url = encodeURI(`http://wttr.in/${city}?m&M&format=2&lang=ru`);
       let resp = await superagent.get(url);
-      const wttrEmbed = new Discord.MessageEmbed()
+      const wttrEmbed = new Discord.EmbedBuilder()
         .setColor(lineColor)
         .setTitle(`Погода: ${city}`)
         .setDescription(resp.text)
@@ -934,7 +934,7 @@ bot.on('messageCreate', async (message) => {
     }
     if (type === 'img') {
       let url = encodeURI(`http://wttr.in/${city}.png?m&M&p&0&Q&lang=ru`);
-      const wttrEmbed = new Discord.MessageEmbed()
+      const wttrEmbed = new Discord.EmbedBuilder()
         .setColor(lineColor)
         .setTitle(`Погода: ${city}`)
         .setImage(url)
@@ -1066,7 +1066,7 @@ bot.on('messageCreate', async (message) => {
     if (args[0] === 'map-state') {
       game = 'map';
       cell = getRandArrIndex(kmaps);
-      const gameEmbed = new Discord.MessageEmbed()
+      const gameEmbed = new Discord.EmbedBuilder()
         .setColor(lineColor)
         .setTitle('Игра «Карта — Страна»')
         .setImage(kmaps[cell])
@@ -1079,7 +1079,7 @@ bot.on('messageCreate', async (message) => {
     if (args[0] === 'flag-state') {
       game = 'flag';
       cell = getRandArrIndex(kflags);
-      const gameEmbed = new Discord.MessageEmbed()
+      const gameEmbed = new Discord.EmbedBuilder()
         .setColor(lineColor)
         .setTitle('Игра «Флаг — Страна»')
         .setImage(kflags[cell])
@@ -1154,7 +1154,7 @@ bot.on('messageCreate', async (message) => {
 bot.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return;
   if (interaction.commandName === 'help') {
-    const helpEmbed = new Discord.MessageEmbed()
+    const helpEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle('Opeks')
       .setThumbnail(
@@ -1217,7 +1217,7 @@ bot.on('interactionCreate', async (interaction) => {
       value = 20;
     }
     let result = getRandomInt(value) + 1;
-    const rollEmbed = new Discord.MessageEmbed()
+    const rollEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setTitle(`:game_die: Случайное число от 1 до ${value}`)
       .setDescription(`**${result}**`)
@@ -1327,7 +1327,7 @@ bot.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return;
   if (interaction.commandName === 'meow') {
     let { body } = await superagent.get(`https://nekos.life/api/v2/img/meow`);
-    const meowEmbed = new Discord.MessageEmbed()
+    const meowEmbed = new Discord.EmbedBuilder()
       .setColor(lineColor)
       .setImage(body.url)
       .setTimestamp()
