@@ -54,6 +54,13 @@ const formatDate = (date) =>
 const triggerCommand = (message, command) =>
   message.content.startsWith(prefix + command);
 
+// !test
+bot.on('messageCreate', async (message) => {
+  if (message === 'бебра') {
+    message.reply('чупапи');
+  }
+});
+
 // !say
 bot.on('messageCreate', async (message) => {
   if (triggerCommand(message, 'say') && message.author.id === ownerID) {
