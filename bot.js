@@ -101,9 +101,7 @@ bot.on('messageCreate', async (message) => {
         },
         {
           name: 'Написан на',
-          value: `Node.js: v${pack.engines.node}\nDiscord.js: v${
-            Object.values(pack.dependencies)[0]
-          }`,
+          value: `Node.js: v${pack.engines.node}\nDiscord.js: v${pack.dependencies['discord.js']}`,
         },
         {
           name: 'Хостинг',
