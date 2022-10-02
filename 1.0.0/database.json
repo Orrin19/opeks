@@ -1,0 +1,608 @@
+{
+  "joke": [
+    "",
+    "Появился, значит, в Зоне Чёрный сталкер. В лагеря он ночью стал приходить, там сует руку в палатку и говорит: «Водички попить!», а если не дашь хлебнуть из бутылки или в наружу полезешь, пришибет. Раз мужик один решил пошутить. Вылез тихо из палатки, надел кожаную перчатку и полез к соседям в палатку попрошайничать. Залез и попрошайничает жалостно: «Водички, водички попить». А тут на встречу из палатки высовывается рука и за горло его цап! И такой сиплый голосок отзывается тихонько: «А тебе моя водичка зачем нужна?!»",
+    "Как-то поймали наёмники сталкера. Подошли к колодцу, окунули его головой вниз по пояс, через минуту достают и спрашивают: «Артефакты, бабло есть?» Он им: «Нету». Окунули его ещё раз, достали, спрашивают: «Артефакты, бабло есть?!» — «Да нету!». Опять окунули и опять спрашивают: «Артефакты, бабло есть?!» Ну тот и не выдержал: «Блин, вы или опускайте глубже, или держите дольше. Дно мутное, ни хрена не видно!»",
+    "Говорит новый русский знакомому сталкеру: «Это, слышь, «Золотую рыбку» мне подари, бабла скину — сколько скажешь. А то у пацанов, у всех в натуре есть, а я один, вроде, лох получаюсь». Ну, сталкер обалдел: «Так это, это ж ведь, — говорит, — артефакт такой радиоактивный». Новый русский: «Не, ну харэ гнать: артефакт — шмартефакт. Я же его не в трусы положу, я, как полагается, на цепуру желтявую, шоб всё как у людей!»",
+    "Ушёл на покой старый сталкер. Сидит себе у камина с ручной собачкой и читает: «В греческой и римской мифологии Цербер — чудовищный трёхглавый пёс со змеиным хвостом, охраняющий вход в подземное царство...» Тут пёс: «Гав!» Сталкер всполошился, за стволом сразу полез, а кругом всё тихо. Он к собаке: «Ты чего, Дружок?». А тот: «Гав-гав! Говно ваша мифология!»",
+    "Попал как-то сталкер на экскурсию в ад. Ему чёрт показывает муки, которые грешники терпят: кипящая смола, раскалённые угли, вопли кругом, серой воняет... Сталкер посмотрел на всё это и говорит: «Ну, что же... Тепло у вас тут, сухо, да и развлечений побольше, чем у нас на Болотах. Так что я, пожалуй, пока тут останусь».",
+    "Пересеклись двое: — Ты Васю помнишь? Ну, того, который каждому рассказывал, как он в лётное три раза поступал. — Помню, а чего? — Так он, того, на днях в «трамплин» вляпался! — Ого, вот так! Сбылась у человека мечта: полетел!",
+    "Сидят два сталкера на берегу озера. Один другому говорит: — Насчёт радиации я тебе чего скажу: гонят, как не знаю кто! Я тут уже лет 5 шарюсь безвылазно, изменений никаких не заметил! Сам как думаешь? — Да, фигня, однозначно. Хотя, с другой стороны, чешуя-то в последнее время чешется всё чаще.",
+    "Один сталкер другому говорит: «На днях, вот, к 'Долгу' заходил на огонёк.» — «И как?» «Ну как: должен остался. А потом к 'Свободе' заглянул.» — «Ну и что?» — «А мне там говорят: 'Мужик, свободен!'»",
+    "В общем, сталкер пришёл к доктору и говорит: «Доктор, я совсем не могу спать. Мне снится, будто я заперт в Саркофаге с кучей монстров и они медленно разрывают меня на кусочки.» — «Это вас, уважаемый, контролёр предупреждает. Рецепт мой такой: в следующий раз пойдёте в глубь Зоны, обязательно бутылку ему проставьте, а то не ровен час сон в явь превратится.» — «Ну спасибо вам большое, доктор!» — «Да не за что!» — говорит контролёр. — «Это тебе за доктора спасибо. Мелочь, а приятно!»",
+    "Старый и молодой долговцы идут по Зоне. Вдруг старый останавливается и шёпотом говорит молодому: «Тихонько иди к вон тому дереву». Головастик на цыпочках пополз, аж вспотел. Дошёл и руками показывает, мол, дальше-то что делать. А бывалый как завопит радостно: «Во! Я же говорил! Брешут! Брешут, что тут аномалии!»",
+    "Заходит сталкер в бар: «Бармен, дай чего-нибудь пожрать». Бармен, значит, начинает: «Ну, вот сегодня есть глаз плоти в томатном соусе. Жаренные лапки снорков в томатном соусе. Из рыбного: щупальца кровососа в томатном соусе». Сталкера аж перекосило: «Ты, — говорит, — чего это вздумал? Людей травить?» Бармена тоже перекосило: «Кто?» — кричит. — «Я?» А сталкер: «А что, я? С грибным соусом давай, какой, нафиг, томат!»",
+    "Идёт, значит, молодой сталкер по Зоне... тут, бац, рощица! И не маленькая, а на карте её нет. Ну, зелёный туда-сюда, как быть. И соваться стрёмно, и как лучше обходить неизвестно. Ну, глянь, мужик какой-то неподалёку маячит: и не на долговца, ни на наёмника не похож. Обрадовался, значит, молодой к нему, так, мол, и так: «А не подскажете, как бы мне рощу вот эту вот... обойти?» Тот и говорит: «Мне тоже в ту сторону. Пошли вместе!» Идут себе, хорошо, спокойно идут. Молодому скучно стало и он ему начинает подлизываться, вот значит: «Здорово как быть тёртым сталкером! Не шугаться от каждого шороха, оружия не таскать много». У мужика того и вправду ствола, видно, не было. Ну тот, стало быть, начинает ржать: «Да кого тут вообще бояться?» — «Как кого?» — удивляется молодой: «Ну это, монстров, контролёры одни чего стоят!» Мужик, так, помолчал и говорит обиженно: «Дурак ты! Если бы сказал зомби или кровосос, но нас-то, контролёров, за что монстрами обзывать?»",
+    "Как-то столкнулись в подземельях «Агропрома» кровосос и контролёр. Кровосос: «Ну ты и напугал — чудовище!» Контролёр: «Ты на себя посмотри. Тоже мне — прЫнц прекрасный!»"
+  ],
+  "maps": {
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/EU-Germany.svg/1024px-EU-Germany.svg.png": [
+      "Германи",
+      "ФРГ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Europe-UK.svg/1024px-Europe-UK.svg.png": [
+      "Великобритания",
+      "Британия",
+      "ВБ",
+      "Соединённое"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Union_of_Soviet_Socialist_Republics_%28orthographic_projection%29.svg/1024px-Union_of_Soviet_Socialist_Republics_%28orthographic_projection%29.svg.png": [
+      "СССР",
+      "Союз",
+      "Советский"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Europe-Ukraine_%28disputed_territory%29.svg/1024px-Europe-Ukraine_%28disputed_territory%29.svg.png": [
+      "Украина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Europe-Belarus.svg/1024px-Europe-Belarus.svg.png": [
+      "Беларусь",
+      "Белоруссия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/EU-Spain.svg/1024px-EU-Spain.svg.png": [
+      "Испания"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/EU-Poland.svg/1024px-EU-Poland.svg.png": [
+      "Польша",
+      "Польска"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/EU-Czech_Republic.svg/1024px-EU-Czech_Republic.svg.png": [
+      "Чехия",
+      "ЧСР",
+      "Кенчания"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/EU-Italy.svg/1024px-EU-Italy.svg.png": [
+      "Италия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Russian_Federation_%28orthographic_projection%29_-_only_Crimea_disputed.svg/1024px-Russian_Federation_%28orthographic_projection%29_-_only_Crimea_disputed.svg.png": [
+      "РФ",
+      "Росси"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kazakhstan_%28orthographic_projection%29.svg/1024px-Kazakhstan_%28orthographic_projection%29.svg.png": [
+      "Казахстан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/EU-Sweden.svg/1024px-EU-Sweden.svg.png": [
+      "Швеция"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/EU-France.svg/1024px-EU-France.svg.png": [
+      "Франция"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/EU-Croatia.svg/1024px-EU-Croatia.svg.png": [
+      "Хорватия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/EU-Slovenia.svg/1024px-EU-Slovenia.svg.png": [
+      "Словения"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Location_Bosnia-Herzegovina_Europe.png/1024px-Location_Bosnia-Herzegovina_Europe.png": [
+      "Босния и Герцеговина",
+      "БиГ",
+      "Босния-Герцеговина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Serbia_%28orthographic_projection%29.svg/1024px-Serbia_%28orthographic_projection%29.svg.png": [
+      "Сербия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Europe-Republic_of_Kosovo.svg/1024px-Europe-Republic_of_Kosovo.svg.png": [
+      "Косово"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Europe-Montenegro.svg/1024px-Europe-Montenegro.svg.png": [
+      "Черногория",
+      "Монтенегро"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Location_Macedonia_Europe.png/1024px-Location_Macedonia_Europe.png": [
+      "Македония"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/EU-Greece.svg/1024px-EU-Greece.svg.png": [
+      "Греция",
+      "Греческ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Location_Albania_Europe.png/1024px-Location_Albania_Europe.png": [
+      "Албани",
+      "Кебабы"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Turkey_%28orthographic_projection%29.svg/1024px-Turkey_%28orthographic_projection%29.svg.png": [
+      "Турция",
+      "Турецк"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/EU-Bulgaria.svg/1024px-EU-Bulgaria.svg.png": [
+      "Болгария"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/EU-Romania.svg/1024px-EU-Romania.svg.png": [
+      "Румыния"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/EU-Slovakia.svg/1024px-EU-Slovakia.svg.png": [
+      "Словакия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/EU-Hungary.svg/1024px-EU-Hungary.svg.png": [
+      "Венгрия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/EU-Austria.svg/1024px-EU-Austria.svg.png": [
+      "Австрия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Location_Moldova_Europe.png/1024px-Location_Moldova_Europe.png": [
+      "Молд"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Transnistria_in_Europe_%28zoomed%29.svg/1024px-Transnistria_in_Europe_%28zoomed%29.svg.png": [
+      "Приднестров",
+      "ПМР"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Europe-Switzerland.svg/1024px-Europe-Switzerland.svg.png": [
+      "Швейцария"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/EU-Portugal.svg/1024px-EU-Portugal.svg.png": [
+      "Португалия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/German_Empire_1914.svg/800px-German_Empire_1914.svg.png": [
+      "Германск",
+      "ГИ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Austro-Hungarian_Monarchy_%281914%29.svg/800px-Austro-Hungarian_Monarchy_%281914%29.svg.png": [
+      "АВ",
+      "Австро"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/BNR_1918.png/1024px-BNR_1918.png": [
+      "БНР",
+      "Бел"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Russian_Empire_%28orthographic_projection%29.svg/1024px-Russian_Empire_%28orthographic_projection%29.svg.png": [
+      "Росси",
+      "РИ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Confederate_States_of_America_%28orthographic_projection%29.svg/1024px-Confederate_States_of_America_%28orthographic_projection%29.svg.png": [
+      "КША",
+      "Конфедерат"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Island_of_Taiwan_%28orthographic_projection%29.svg/1024px-Island_of_Taiwan_%28orthographic_projection%29.svg.png": [
+      "КР",
+      "Тайвань"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Empire_of_the_Great_Qing_%28orthographic_projection%29.svg/1024px-Empire_of_the_Great_Qing_%28orthographic_projection%29.svg.png": [
+      "Цин",
+      "Китайск"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/6/60/Manchu_State.png": [
+      "Маньчжурия",
+      "Манчжурия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Cuba_%28orthographic_projection%29.svg/1024px-Cuba_%28orthographic_projection%29.svg.png": [
+      "Куба"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Location_Monaco_Europe.png/1024px-Location_Monaco_Europe.png": [
+      "Монако"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Location_Liechtenstein_Europe.png/1024px-Location_Liechtenstein_Europe.png": [
+      "Лихтенштейн"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Location_San_Marino_Europe.png/1024px-Location_San_Marino_Europe.png": [
+      "Марино"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Location_of_the_Vatican_City_in_Europe.svg/1280px-Location_of_the_Vatican_City_in_Europe.svg.png": [
+      "Ватикан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Location_Andorra_Europe.png/1024px-Location_Andorra_Europe.png": [
+      "Андорра"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Syria_%28orthographic_projection%29.svg/1024px-Syria_%28orthographic_projection%29.svg.png": [
+      "Сирия",
+      "Сирий"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Lebanon_%28orthographic_projection%29.svg/1024px-Lebanon_%28orthographic_projection%29.svg.png": [
+      "Ливан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Israel_%28orthographic_projection%29.svg/1024px-Israel_%28orthographic_projection%29.svg.png": [
+      "Израиль"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Jordan_%28orthographic_projection%29.svg/1024px-Jordan_%28orthographic_projection%29.svg.png": [
+      "Иордания"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Saudi_Arabia_%28orthographic_projection%29.svg/830px-Saudi_Arabia_%28orthographic_projection%29.svg.png": [
+      "СА",
+      "Аравия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/United_Arab_Emirates_%28orthographic_projection%29.svg/1024px-United_Arab_Emirates_%28orthographic_projection%29.svg.png": [
+      "ОАЭ",
+      "Эмираты"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Oman_%28better%29_%28orthographic_projection%29.svg/1024px-Oman_%28better%29_%28orthographic_projection%29.svg.png": [
+      "Оман"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bahrain_on_the_globe_%28Afro-Eurasia_centered%29.svg/1024px-Bahrain_on_the_globe_%28Afro-Eurasia_centered%29.svg.png": [
+      "Бахрейн"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Yemen_%28orthographic_projection%29.svg/1024px-Yemen_%28orthographic_projection%29.svg.png": [
+      "Йемен"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/QAT_orthographic.svg/1024px-QAT_orthographic.svg.png": [
+      "Катар"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Map_of_Kuwait.svg/1920px-Map_of_Kuwait.svg.png": [
+      "Кувейт"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Iraq_%28orthographic_projection%29.svg/1024px-Iraq_%28orthographic_projection%29.svg.png": [
+      "Ирак"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Iran_%28orthographic_projection%29.svg/1024px-Iran_%28orthographic_projection%29.svg.png": [
+      "Иран"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Armenia_%28orthographic_projection%29.svg/1024px-Armenia_%28orthographic_projection%29.svg.png": [
+      "Армения"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Georgia_%28orthographic_projection_with_inset%29.svg/1024px-Georgia_%28orthographic_projection_with_inset%29.svg.png": [
+      "Грузия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Location_of_the_region_of_Abkhazia_in_Eastern_Europe.svg/1024px-Location_of_the_region_of_Abkhazia_in_Eastern_Europe.svg.png": [
+      "Абхазия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Europe_Location_South_Ossetia.svg/1024px-Europe_Location_South_Ossetia.svg.png": [
+      "Осетия",
+      "ЮО"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Azerbaijan_with_Nagorno_Karabakh_region.svg/1024px-Azerbaijan_with_Nagorno_Karabakh_region.svg.png": [
+      "Азербайджан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/UZB_orthographic.svg/1024px-UZB_orthographic.svg.png": [
+      "Узбекистан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Turkmenistan_on_the_globe_%28Eurasia_centered%29.svg/1024px-Turkmenistan_on_the_globe_%28Eurasia_centered%29.svg.png": [
+      "Туркмен"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Tajikistan_%28orthographic_projection%29.svg/1024px-Tajikistan_%28orthographic_projection%29.svg.png": [
+      "Таджикистан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Kyrgyzstan_%28orthographic_projection%29.svg/1024px-Kyrgyzstan_%28orthographic_projection%29.svg.png": [
+      "Кыргыз",
+      "Киргиз"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Mongolia_%28orthographic_projection%29.svg/1024px-Mongolia_%28orthographic_projection%29.svg.png": [
+      "Монголия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Pakistan_orthographic_projection.svg/1024px-Pakistan_orthographic_projection.svg.png": [
+      "Пакистан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Afghanistan_on_the_globe_%28Afghanistan_centered%29.svg/1024px-Afghanistan_on_the_globe_%28Afghanistan_centered%29.svg.png": [
+      "Афганистан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/India_%28orthographic_projection%29.svg/1024px-India_%28orthographic_projection%29.svg.png": [
+      "Индия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Bangladesh_%28orthographic_projection%29.svg/1024px-Bangladesh_%28orthographic_projection%29.svg.png": [
+      "Бангладеш"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nepal_%28orthographic_projection%29.svg/1024px-Nepal_%28orthographic_projection%29.svg.png": [
+      "Непал"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Bhutan_%28orthographic_projection%29.svg/1024px-Bhutan_%28orthographic_projection%29.svg.png": [
+      "Бутан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sri_Lanka_%28orthographic_projection%29.svg/1024px-Sri_Lanka_%28orthographic_projection%29.svg.png": [
+      "Шри-Ланка",
+      "Цейлон"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Location_Burma_%28Myanmar%29_ASEAN.svg/1024px-Location_Burma_%28Myanmar%29_ASEAN.svg.png": [
+      "Мьянма",
+      "Бирма"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Thailand_%28orthographic_projection%29.svg/1024px-Thailand_%28orthographic_projection%29.svg.png": [
+      "Таиланд",
+      "Сиам"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Location_Laos_ASEAN.svg/1024px-Location_Laos_ASEAN.svg.png": [
+      "Лаос"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Location_Cambodia_ASEAN.svg/1024px-Location_Cambodia_ASEAN.svg.png": [
+      "Камбоджа"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Vietnam_on_the_globe_%28Asia_centered%29.svg/1024px-Vietnam_on_the_globe_%28Asia_centered%29.svg.png": [
+      "Вьетнам"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Location_Malaysia_ASEAN.svg/1024px-Location_Malaysia_ASEAN.svg.png": [
+      "Малайзия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Location_Singapore_ASEAN.svg/1024px-Location_Singapore_ASEAN.svg.png": [
+      "Сингапур"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Indonesia_%28orthographic_projection%29.svg/1024px-Indonesia_%28orthographic_projection%29.svg.png": [
+      "Индонезия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Philippines_%28orthographic_projection%29.svg/1024px-Philippines_%28orthographic_projection%29.svg.png": [
+      "Филиппины"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Location_Brunei_ASEAN.svg/1024px-Location_Brunei_ASEAN.svg.png": [
+      "Бруней"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Papua_New_Guinea_%28orthographic_projection%29.svg/1024px-Papua_New_Guinea_%28orthographic_projection%29.svg.png": [
+      "Папуа",
+      "Гвинея"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Australia_%28orthographic_projection%29.svg/1024px-Australia_%28orthographic_projection%29.svg.png": [
+      "Австрали"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/New_Zealand_%28orthographic_projection%29.svg/1024px-New_Zealand_%28orthographic_projection%29.svg.png": [
+      "Новая Зеландия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Democratic_People%27s_Republic_of_Korea_%28orthographic_projection%29.svg/1024px-Democratic_People%27s_Republic_of_Korea_%28orthographic_projection%29.svg.png": [
+      "КНДР",
+      "Коре"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Republic_of_Korea_%28orthographic_projection%29.svg/1024px-Republic_of_Korea_%28orthographic_projection%29.svg.png": [
+      "Коре"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Japan_%28orthographic_projection%29.svg/1024px-Japan_%28orthographic_projection%29.svg.png": [
+      "Япония"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/USA_orthographic.svg/1024px-USA_orthographic.svg.png": [
+      "США",
+      "Штаты"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Canada_%28orthographic_projection%29.svg/1024px-Canada_%28orthographic_projection%29.svg.png": [
+      "Канада"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mexico_%28orthographic_projection%29.svg/1024px-Mexico_%28orthographic_projection%29.svg.png": [
+      "Мексика"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/BLZ_orthographic.svg/1024px-BLZ_orthographic.svg.png": [
+      "Белиз"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Guatemala_%28orthographic_projection%29.svg/1024px-Guatemala_%28orthographic_projection%29.svg.png": [
+      "Гватемала"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Honduras_%28orthographic_projection%29.svg/1024px-Honduras_%28orthographic_projection%29.svg.png": [
+      "Гондурас"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Nicaragua_%28orthographic_projection%29.svg/1024px-Nicaragua_%28orthographic_projection%29.svg.png": [
+      "Никарагуа"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Costa_Rica_%28orthographic_projection%29.svg/1024px-Costa_Rica_%28orthographic_projection%29.svg.png": [
+      "Коста-Рика"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Panama_%28orthographic_projection%29.svg/1024px-Panama_%28orthographic_projection%29.svg.png": [
+      "Панама"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/COL_orthographic_%28San_Andr%C3%A9s_and_Providencia_special%29.svg/1024px-COL_orthographic_%28San_Andr%C3%A9s_and_Providencia_special%29.svg.png": [
+      "Колумбия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ECU_orthographic.svg/1024px-ECU_orthographic.svg.png": [
+      "Эквадор"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Peru_%28orthographic_projection%29.svg/1024px-Peru_%28orthographic_projection%29.svg.png": [
+      "Перу"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/CHL_orthographic.svg/1024px-CHL_orthographic.svg.png": [
+      "Чили"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Argentina_orthogonal.svg/1024px-Argentina_orthogonal.svg.png": [
+      "Аргентина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Uruguay_%28orthographic_projection%29.svg/1024px-Uruguay_%28orthographic_projection%29.svg.png": [
+      "Уругвай"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Paraguay_%28orthographic_projection%29.svg/1024px-Paraguay_%28orthographic_projection%29.svg.png": [
+      "Парагвай"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bolivia_%28orthographic_projection%29.svg/1024px-Bolivia_%28orthographic_projection%29.svg.png": [
+      "Боливия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/BRA_orthographic.svg/1024px-BRA_orthographic.svg.png": [
+      "Бразилия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Venezuela_Orthographic_Map.svg/1024px-Venezuela_Orthographic_Map.svg.png": [
+      "Венесуэла"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Guyana_%28orthographic_projection%29.svg/1024px-Guyana_%28orthographic_projection%29.svg.png": [
+      "Гайана"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Suriname_%28orthographic_projection%29.svg/1024px-Suriname_%28orthographic_projection%29.svg.png": [
+      "Суринам"
+    ],
+    "https://dic.academic.ru/pictures/enc_colier/frguiana.jpg": [
+      "Французская",
+      "Гвиана"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/CUB_orthographic.svg/1024px-CUB_orthographic.svg.png": [
+      "Куба"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/ATG_orthographic.svg/1024px-ATG_orthographic.svg.png": [
+      "Антигуа",
+      "Барбуда"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/The_Bahamas_on_the_globe_%28Americas_centered%29.svg/1024px-The_Bahamas_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Багам"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/BRB_orthographic.svg/1024px-BRB_orthographic.svg.png": [
+      "Барбадос"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Haiti_%28orthographic_projection%29.svg/1024px-Haiti_%28orthographic_projection%29.svg.png": [
+      "Гаити"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Grenada_on_the_globe_%28Americas_centered%29.svg/1024px-Grenada_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Гренада"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Dominica_on_the_globe_%28Americas_centered%29.svg/1024px-Dominica_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Доминик"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Dominican_Republic_%28orthographic_projection%29.svg/1024px-Dominican_Republic_%28orthographic_projection%29.svg.png": [
+      "Доминикан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Saint_Vincent_and_the_Grenadines_on_the_globe_%28Americas_centered%29.svg/1024px-Saint_Vincent_and_the_Grenadines_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Сент",
+      "Винсент",
+      "Гренадин"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/KNA_orthographic.svg/1024px-KNA_orthographic.svg.png": [
+      "Сент",
+      "Китс",
+      "Невис"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Saint_Lucia_on_the_globe_%28Americas_centered%29.svg/1024px-Saint_Lucia_on_the_globe_%28Americas_centered%29.svg.png": [
+      "Сент",
+      "Люсия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Trinidad_and_Tobago_%28orthographic_projection%29.svg/1024px-Trinidad_and_Tobago_%28orthographic_projection%29.svg.png": [
+      "Тринидад",
+      "Тобаго"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Jamaica_%28orthographic_projection%29.svg/1024px-Jamaica_%28orthographic_projection%29.svg.png": [
+      "Ямайка"
+    ]
+  },
+  "flags": {
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/1024px-Flag_of_Germany.svg.png": [
+      "Германи",
+      "ФРГ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/1024px-Flag_of_the_United_Kingdom_%283-5%29.svg.png": [
+      "Великобритания",
+      "Британия",
+      "ВБ",
+      "Соединённое"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_Soviet_Union.svg/1024px-Flag_of_the_Soviet_Union.svg.png": [
+      "СССР",
+      "Союз",
+      "Советский"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Ukraine.svg/1024px-Flag_of_Ukraine.svg.png": [
+      "Украина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Flag_of_Belarus.svg/1024px-Flag_of_Belarus.svg.png": [
+      "Беларусь",
+      "Белоруссия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1024px-Bandera_de_Espa%C3%B1a.svg.png": [
+      "Испания"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/1024px-Flag_of_Poland.svg.png": [
+      "Польша"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/1024px-Flag_of_the_Czech_Republic.svg.png": [
+      "Чехия",
+      "ЧСР",
+      "Кенчания"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1024px-Flag_of_Italy.svg.png": [
+      "Италия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/1024px-Flag_of_Russia.svg.png": [
+      "РФ",
+      "Росси"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Flag_of_Kazakhstan.svg/1024px-Flag_of_Kazakhstan.svg.png": [
+      "Казахстан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/1024px-Flag_of_Sweden.svg.png": [
+      "Швеция"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg/1024px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%2C_2020%E2%80%93present%29.svg.png": [
+      "Франция"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/1024px-Flag_of_Croatia.svg.png": [
+      "Хорватия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Flag_of_Slovenia.svg/1024px-Flag_of_Slovenia.svg.png": [
+      "Словения"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Flag_of_Bosnia_and_Herzegovina.svg/1024px-Flag_of_Bosnia_and_Herzegovina.svg.png": [
+      "Босния и Герцеговина",
+      "БиГ",
+      "Босния-Герцеговина"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Flag_of_Serbia.svg/1024px-Flag_of_Serbia.svg.png": [
+      "Сербия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flag_of_Kosovo.svg/1024px-Flag_of_Kosovo.svg.png": [
+      "Косово"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Flag_of_Montenegro.svg/1024px-Flag_of_Montenegro.svg.png": [
+      "Черногория",
+      "Монтенегро"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_North_Macedonia.svg/1024px-Flag_of_North_Macedonia.svg.png": [
+      "Македония"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/1024px-Flag_of_Greece.svg.png": [
+      "Греция",
+      "Греческ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Flag_of_Albania.svg/1024px-Flag_of_Albania.svg.png": [
+      "Албани",
+      "Кебабы"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/1024px-Flag_of_Turkey.svg.png": [
+      "Турция",
+      "Турецк"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/1024px-Flag_of_Bulgaria.svg.png": [
+      "Болгария"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/1024px-Flag_of_Romania.svg.png": [
+      "Румыния"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/1024px-Flag_of_Slovakia.svg.png": [
+      "Словакия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/1024px-Flag_of_Hungary.svg.png": [
+      "Венгрия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_Austria.svg/1024px-Flag_of_Austria.svg.png": [
+      "Австрия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Flag_of_Moldova.svg/1024px-Flag_of_Moldova.svg.png": [
+      "Молд"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Transnistria_%28state%29.svg/1024px-Flag_of_Transnistria_%28state%29.svg.png": [
+      "Приднестров",
+      "ПМР"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/1024px-Flag_of_Switzerland_%28Pantone%29.svg.png": [
+      "Швейцария"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1024px-Flag_of_Portugal.svg.png": [
+      "Португалия"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flag_of_Germany_%281867%E2%80%931918%29.svg/1024px-Flag_of_Germany_%281867%E2%80%931918%29.svg.png": [
+      "Германск",
+      "ГИ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Civil_Ensign_of_Austria-Hungary_%281869%E2%80%931918%29.svg/1024px-Civil_Ensign_of_Austria-Hungary_%281869%E2%80%931918%29.svg.png": [
+      "АВ",
+      "Австро"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Flag_of_Belarus_%281918%2C_1991%E2%80%931995%29.svg/1024px-Flag_of_Belarus_%281918%2C_1991%E2%80%931995%29.svg.png": [
+      "БНР",
+      "Бел",
+      "Проклад"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Flag_of_the_Russian_Empire_%28black-yellow-white%29.svg/1024px-Flag_of_the_Russian_Empire_%28black-yellow-white%29.svg.png": [
+      "Росси",
+      "РИ"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Flag_of_the_Confederate_States_of_America_%281865%29.svg/1024px-Flag_of_the_Confederate_States_of_America_%281865%29.svg.png": [
+      "КША",
+      "Конфедерат"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Island_of_Taiwan_%28orthographic_projection%29.svg/1024px-Island_of_Taiwan_%28orthographic_projection%29.svg.png": [
+      "КР",
+      "Тайвань"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Flag_of_China_%281889%E2%80%931912%29.svg/1024px-Flag_of_China_%281889%E2%80%931912%29.svg.png": [
+      "Цин",
+      "Китайск"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Flag_of_Cuba.svg/1024px-Flag_of_Cuba.svg.png": [
+      "Куба"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/1024px-Flag_of_Monaco.svg.png": [
+      "Монако"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Flag_of_Liechtenstein.svg/1024px-Flag_of_Liechtenstein.svg.png": [
+      "Лихтенштейн"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Flag_of_San_Marino.svg/1024px-Flag_of_San_Marino.svg.png": [
+      "Марино"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_the_Vatican_City.svg/1024px-Flag_of_the_Vatican_City.svg.png": [
+      "Ватикан"
+    ],
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Andorra.svg/1024px-Flag_of_Andorra.svg.png": [
+      "Андорра"
+    ]
+  }
+}
