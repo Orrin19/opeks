@@ -1,5 +1,5 @@
 import Discord from 'discord.js';
-import { get } from 'superagent';
+import NekoClient from 'nekos.life';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
 import config from '../config';
@@ -12,10 +12,10 @@ export const Meow: Command = {
     client: Discord.Client,
     interaction: Discord.CommandInteraction
   ) => {
-    const { body } = await get('https://nekos.life/api/v2/img/meow');
+    const nekos = new NekoClient();
     const meowEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
-      image: { url: body.url },
+      image: { url: (await nekos.meow()).url },
       footer: new Footer(interaction),
     };
 
