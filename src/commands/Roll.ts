@@ -20,6 +20,12 @@ export const Roll: Command = {
       description: 'Предельное значение числа.',
       required: false,
     },
+    {
+      name: 'модификаторы',
+      type: Discord.ApplicationCommandOptionType.String,
+      description: 'Применяемые к роллу модификаторы (со знаком через пробел).',
+      required: false,
+    },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
@@ -48,6 +54,32 @@ export const Roll: Command = {
         url: 'https://media.discordapp.net/attachments/664491015914258460/824896135902134283/Rickrolling.gif',
       };
     }
+
+    const modstring =
+      (interaction.options.get('модификаторы', false)?.value as string) || null;
+    if (modstring) {
+      let mods = new Array();
+      let finalResult = result;
+      for (let mod of modstring.split(' ')) {
+        if (!isNaN(Number(mod))) {
+          finalResult += Number(mod);
+          mods.push(mod);
+        } else break;
+      }
+      if (finalResult !== result) {
+        rollEmbed.fields = [
+          {
+            name: ':heavy_plus_sign: Модификаторы:',
+            value: `**${mods.join(' ')}**`,
+          },
+          {
+            name: ':gem: Итоговое значение:',
+            value: `**${finalResult}**`,
+          },
+        ];
+      }
+    }
+
     return interaction.followUp({
       embeds: [rollEmbed],
     });
