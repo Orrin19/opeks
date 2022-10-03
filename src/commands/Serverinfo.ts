@@ -12,9 +12,9 @@ export const Serverinfo: Command = {
     interaction: Discord.CommandInteraction
   ) => {
     const guild = interaction.guild as Discord.Guild;
-    const guildOwner = guild.members.cache.find(
-      (member) => member.user.id == guild.ownerId
-    ) as Discord.GuildMember;
+    const guildOwner = (await guild.members.fetch(
+      guild.ownerId
+    )) as Discord.GuildMember;
     if (!guildOwner)
       return console.log('guildOwner not found', guild.ownerId, guildOwner);
     const serverinfoEmbed: Discord.APIEmbed = {
