@@ -62,5 +62,15 @@ export default (client: Discord.Client): void => {
         }
       }
     }
+
+    if (
+      message.content.toLowerCase().includes('kiddy blade') &&
+      message.guildId == '677151054013399050'
+    ) {
+      const emoji = message.guild?.emojis.cache.find(
+        (e) => e.name == 'MuraAngry'
+      ) as Discord.GuildEmoji;
+      message.react(emoji).catch(console.error);
+    }
   });
 };

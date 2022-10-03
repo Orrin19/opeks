@@ -16,6 +16,7 @@ const client = new Client({
     'GuildMembers',
     'GuildMessageReactions',
     'DirectMessages',
+    'MessageContent',
   ],
   presence: {
     status: PresenceUpdateStatus.Online,
