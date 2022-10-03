@@ -1,12 +1,20 @@
+import Discord from 'discord.js';
+
 const formateDate = (date: Date) => {
-  return date.toLocaleDateString('ru', {
+  return (
+    Discord.time(Math.floor(+date / 1000), 'F') +
+    ' (' +
+    Discord.time(Math.floor(+date / 1000), 'R') +
+    ')'
+  );
+  /*return date.toLocaleDateString('ru', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
     second: 'numeric',
-  }) as string;
+  }) as string;*/
 };
 
 const getRandomInt = (max: number) =>
