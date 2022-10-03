@@ -15,6 +15,8 @@ export const Serverinfo: Command = {
     const guildOwner = guild.members.cache.get(
       guild.ownerId
     ) as Discord.GuildMember;
+    if (!guildOwner)
+      return console.log('guildOwner not found', guild.ownerId, guildOwner);
     const serverinfoEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
       title: 'Информация о сервере',
