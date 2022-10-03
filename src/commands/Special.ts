@@ -1,6 +1,11 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
+import {
+  getRandomInt,
+  getRandArrIndex,
+  getRandArrElement,
+} from '../custom/commonFunctions';
 import config from '../config';
 
 export const Special: Command = {
@@ -28,10 +33,10 @@ export const Special: Command = {
       [':cartwheel: Ловкость:', 5],
       [':unicorn: Удача:', 5],
     ];
-    let cash = Math.floor(Math.random() * 2) + 3;
+    let cash = getRandomInt(2) + 3;
     while (cash > 0) {
-      let index = Math.floor(Math.random() * 7);
-      let rand = [-1, -1, 1, 1, 1][Math.floor(Math.random() * 5)];
+      let index = getRandArrIndex(specials);
+      let rand = getRandArrElement([-1, -1, -1, -1, 1, 1, 1]);
       if ((specials[index][1] as number) == 10) {
         rand -= 1;
       }

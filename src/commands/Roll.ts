@@ -1,6 +1,7 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
+import { getRandomInt } from '../custom/commonFunctions';
 import config from '../config';
 
 export const Roll: Command = {
@@ -34,7 +35,7 @@ export const Roll: Command = {
         ephemeral: true,
         content: 'Введите корректные величины.',
       });
-    const result = Math.floor(Math.random() * Math.floor(max - min + 1)) + min;
+    const result = getRandomInt(max - min + 1) + min;
 
     const rollEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),

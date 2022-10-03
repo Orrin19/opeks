@@ -1,6 +1,7 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
+import { formateDate } from '../custom/commonFunctions';
 import config from '../config';
 
 export const Serverinfo: Command = {
@@ -12,11 +13,6 @@ export const Serverinfo: Command = {
     interaction: Discord.CommandInteraction
   ) => {
     const guild = interaction.guild as Discord.Guild;
-    const guildOwner = (await guild.members.fetch(
-      guild.ownerId
-    )) as Discord.GuildMember;
-    if (!guildOwner)
-      return console.log('guildOwner not found', guild.ownerId, guildOwner);
     const serverinfoEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
       title: 'Информация о сервере',
@@ -31,17 +27,8 @@ export const Serverinfo: Command = {
           value: `
           **Название:** *${guild.name}*
           **ID:** *${guild.id}*
-          **Создан:** *${
-            guild.createdAt.toLocaleDateString('ru', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-              second: 'numeric',
-            }) as string
-          }*
-          **Владелец:** *${guildOwner.user.username}*
+          **Создан:** *${formateDate(guild.createdAt)}*
+          **Владелец:** *${Discord.userMention(guild.ownerId)}*
         `,
         },
         {
@@ -49,18 +36,9 @@ export const Serverinfo: Command = {
           value: `
           **Количество участников:** *${guild.memberCount}*
           **Количество ролей:** *${guild.roles.cache.size}*
-          **Вы присоединились:** *${
-            (
-              interaction.member as Discord.GuildMember
-            ).joinedAt?.toLocaleDateString('ru', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-              second: 'numeric',
-            }) as string
-          }*
+          **Вы присоединились:** *${formateDate(
+            (interaction.member as Discord.GuildMember).joinedAt as Date
+          )}*
         `,
         },
       ],

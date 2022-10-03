@@ -1,5 +1,6 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
+import { getRandomInt } from '../custom/commonFunctions';
 
 export const Dice: Command = {
   name: 'dice',
@@ -36,14 +37,14 @@ export const Dice: Command = {
     let result;
 
     if (amount == 1) {
-      result = Math.floor(Math.random() * 6) + 1;
+      result = getRandomInt(6) + 1;
       return interaction.followUp(`Брошен кубик. Результат: ${dices[result]}`);
     }
 
     let sum = 0;
     let results = new Array(amount);
     for (let i = 0; i < results.length; i++) {
-      result = Math.floor(Math.random() * 6) + 1;
+      result = getRandomInt(6) + 1;
       sum += result;
       results[i] = dices[result];
     }

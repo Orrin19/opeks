@@ -1,6 +1,7 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
+import { formateDate } from '../custom/commonFunctions';
 import config from '../config';
 
 export const Userinfo: Command = {
@@ -37,32 +38,14 @@ export const Userinfo: Command = {
           value: `
             **Имя:** *${user.username}#${user.discriminator}*
             **ID:** *${user.id}*
-            **Создан:** *${
-              user.createdAt.toLocaleDateString('ru', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
-              }) as string
-            }*
+            **Создан:** *${formateDate(user.createdAt)}*
           `,
         },
         {
           name: ':map: На этом сервере:',
           value: `
             **Никнейм:** *${nickname}*
-            **Присоединился:** *${
-              member.joinedAt?.toLocaleDateString('ru', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
-              }) as string
-            }*
+            **Присоединился:** *${formateDate(member.joinedAt as Date)}*
           `,
         },
       ],

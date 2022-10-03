@@ -1,6 +1,7 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
+import { formateDate } from '../custom/commonFunctions';
 import config from '../config';
 const pack = require('./../../package.json');
 
@@ -23,14 +24,7 @@ export const About: Command = {
       fields: [
         {
           name: 'Бот создан',
-          value: client.user?.createdAt.toLocaleDateString('ru', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-          }) as string,
+          value: formateDate(client.user?.createdAt as Date),
         },
         {
           name: 'Написан на',
