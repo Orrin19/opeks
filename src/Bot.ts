@@ -1,4 +1,5 @@
 import { Client, PresenceUpdateStatus } from 'discord.js';
+import guildMemberAdd from './listeners/guildMemberAdd';
 import interactionCreate from './listeners/interactionCreate';
 import messageCreate from './listeners/messageCreate';
 import ready from './listeners/ready';
@@ -28,6 +29,7 @@ const client = new Client({
 });
 
 ready(client);
+guildMemberAdd(client);
 interactionCreate(client);
 messageCreate(client);
 
