@@ -23,7 +23,6 @@ export const Userinfo: Command = {
     const member = interaction.options.get('участник', true)
       .member as Discord.GuildMember;
     const user = member.user;
-    const nickname = member.nickname || user.username;
     const userinfoEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
       title: 'Информация о пользователе',
@@ -36,7 +35,7 @@ export const Userinfo: Command = {
         {
           name: ':globe_with_meridians: Основные данные:',
           value: `
-            **Имя:** *${user.username}#${user.discriminator}*
+            **Пользователь:** *${Discord.userMention(user.id)}*
             **ID:** *${user.id}*
             **Создан:** *${formateDate(user.createdAt)}*
           `,
@@ -44,8 +43,11 @@ export const Userinfo: Command = {
         {
           name: ':map: На этом сервере:',
           value: `
-            **Никнейм:** *${nickname}*
             **Присоединился:** *${formateDate(member.joinedAt as Date)}*
+            **Роли:** *${member.roles.cache
+              .map((r) => Discord.roleMention(r.id))
+              .slice(0, -1)
+              .join(' • ')}*
           `,
         },
       ],
