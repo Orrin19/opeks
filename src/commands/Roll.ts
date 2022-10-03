@@ -45,7 +45,10 @@ export const Roll: Command = {
 
     const rollEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
-      title: `:game_die: Случайное число от ${min} до ${max}`,
+      title:
+        min != max
+          ? `:game_die: Случайное число от ${min} до ${max}`
+          : `:game_die: Случайное число ${max} :smile:`,
       description: `**${result}**`,
       footer: new Footer(interaction),
     };
