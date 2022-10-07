@@ -40,7 +40,7 @@ export default (client: Discord.Client): void => {
         .split('[[')
         .slice(1)
         .forEach((str1: string) => {
-          links.push(str1.split(']]')[0]);
+          links.push(str1.split(']]')[0].replaceAll(' ', '_'));
         });
       message.channel.send(
         `<https://lamoraun.fandom.com/ru/wiki/${links.join(
