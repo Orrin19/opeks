@@ -27,15 +27,6 @@ export const Clean: Command = {
         ephemeral: true,
         content: 'Необходимо ввести число от 1 до 99.',
       });
-    if (
-      !interaction.memberPermissions?.has(
-        Discord.PermissionsBitField.Flags.ManageMessages
-      )
-    )
-      return interaction.followUp({
-        ephemeral: true,
-        content: 'Вам недоступна эта функция',
-      });
     const channel = interaction.guild?.channels.cache.find(
       (c) => c.id === interaction.channelId
     );
