@@ -13,6 +13,7 @@ export const Clean: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
+  defaultMemberPermissions: Discord.PermissionsBitField.Flags.ManageMessages,
   run: async (
     client: Discord.Client,
     interaction: Discord.CommandInteraction
