@@ -4,12 +4,24 @@ import { getRandomInt } from '../custom/commonFunctions';
 
 export const Dice: Command = {
   name: 'dice',
-  description: 'Бросает кубики.',
+  description: 'Rolls the specified number of dice',
+  descriptionLocalizations: {
+    ru: 'Бросает указанное количество кубиков',
+    uk: 'Кидає зазначену кількість кубиків',
+  },
   options: [
     {
-      name: 'количество',
+      name: 'amount',
+      nameLocalizations: {
+        ru: 'количество',
+        uk: 'кiлькiсть',
+      },
       type: Discord.ApplicationCommandOptionType.Integer,
-      description: 'Количество бросаемых кубиков.',
+      description: 'Amount of dice to be thrown',
+      descriptionLocalizations: {
+        ru: 'Количество бросаемых кубиков',
+        uk: 'Кількість кубиків, що кидаються',
+      },
       required: false,
     },
   ],
@@ -19,7 +31,7 @@ export const Dice: Command = {
     interaction: Discord.CommandInteraction
   ) => {
     const amount =
-      (interaction.options.get('количество', false)?.value as number) || 1;
+      (interaction.options.get('amount', false)?.value as number) || 1;
     if (amount > 100)
       return interaction.followUp({
         ephemeral: true,

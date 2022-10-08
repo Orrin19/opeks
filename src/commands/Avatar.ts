@@ -3,12 +3,24 @@ import { Command } from '../Command';
 
 export const Avatar: Command = {
   name: 'avatar',
-  description: 'Расчехляет аватар указанного пользователя.',
+  description: "Shows the specified user's avatar",
+  descriptionLocalizations: {
+    ru: 'Расчехляет аватар указанного пользователя',
+    uk: 'Розчехляє аватар вказаного користувача',
+  },
   options: [
     {
-      name: 'участник',
+      name: 'user',
+      nameLocalizations: {
+        ru: 'пользователь',
+        uk: 'користувач',
+      },
       type: Discord.ApplicationCommandOptionType.Mentionable,
-      description: 'Участник с интересным аватаром.',
+      description: 'User with an interesting avatar',
+      descriptionLocalizations: {
+        ru: 'Пользователь с интересным аватаром',
+        uk: 'Користувач із цікавим аватаром',
+      },
       required: true,
     },
   ],
@@ -17,7 +29,7 @@ export const Avatar: Command = {
     client: Discord.Client,
     interaction: Discord.CommandInteraction
   ) => {
-    const user = interaction.options.get('участник', true).user as Discord.User;
+    const user = interaction.options.get('user', true).user as Discord.User;
     return interaction.followUp(
       user.displayAvatarURL({
         size: 1024,

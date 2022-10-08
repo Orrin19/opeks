@@ -7,7 +7,11 @@ const pack = require('./../../package.json');
 
 export const About: Command = {
   name: 'about',
-  description: 'Вызывает справку.',
+  description: 'Information about bot',
+  descriptionLocalizations: {
+    ru: 'Информация о боте',
+    uk: 'Інформація про роботу',
+  },
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
     client: Discord.Client,

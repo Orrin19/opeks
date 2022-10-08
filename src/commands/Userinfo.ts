@@ -6,12 +6,24 @@ import config from '../config';
 
 export const Userinfo: Command = {
   name: 'userinfo',
-  description: 'Выводит информацию об участнике.',
+  description: 'Displays member information',
+  descriptionLocalizations: {
+    ru: 'Выводит информацию об участнике',
+    uk: 'Виводить інформацію про користувача',
+  },
   options: [
     {
-      name: 'участник',
+      name: 'member',
+      nameLocalizations: {
+        ru: 'участник',
+        uk: 'користувач',
+      },
       type: Discord.ApplicationCommandOptionType.Mentionable,
-      description: 'Исследуемый объект',
+      description: 'Investigated member',
+      descriptionLocalizations: {
+        ru: 'Исследуемый участник',
+        uk: 'Досліджуваний користувач',
+      },
       required: true,
     },
   ],
@@ -20,7 +32,7 @@ export const Userinfo: Command = {
     client: Discord.Client,
     interaction: Discord.CommandInteraction
   ) => {
-    const member = interaction.options.get('участник', true)
+    const member = interaction.options.get('member', true)
       .member as Discord.GuildMember;
     const user = member.user;
     const userinfoEmbed: Discord.APIEmbed = {

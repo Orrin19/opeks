@@ -10,7 +10,11 @@ import config from '../config';
 
 export const Special: Command = {
   name: 'special',
-  description: 'Генерирует характеристику персонажа а-ля Fallout.',
+  description: 'Generates a character characteristic a la Fallout',
+  descriptionLocalizations: {
+    ru: 'Генерирует характеристику персонажа а-ля Fallout',
+    uk: 'Генерує характеристику персонажа а-ля Fallout',
+  },
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
     client: Discord.Client,

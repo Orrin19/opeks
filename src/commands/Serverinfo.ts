@@ -6,7 +6,11 @@ import config from '../config';
 
 export const Serverinfo: Command = {
   name: 'serverinfo',
-  description: 'Выводит информацию о сервере.',
+  description: 'Displays information about the guild',
+  descriptionLocalizations: {
+    ru: 'Выводит информацию о сервере',
+    uk: 'Виводить інформацію про сервер',
+  },
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
     client: Discord.Client,

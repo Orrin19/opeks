@@ -6,7 +6,11 @@ import config from '../config';
 
 export const Meow: Command = {
   name: 'meow',
-  description: 'Шлёт картинку с котиком.',
+  description: 'Sends a picture with a cat',
+  descriptionLocalizations: {
+    ru: 'Отправляет картинку с котиком',
+    uk: 'Відправляє картинку з котиком',
+  },
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
     client: Discord.Client,

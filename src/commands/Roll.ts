@@ -6,24 +6,53 @@ import config from '../config';
 
 export const Roll: Command = {
   name: 'roll',
-  description: 'Выдаёт случайное число в указанном промежутке.',
+  description: 'Returns a random number within the specified range',
+  descriptionLocalizations: {
+    ru: 'Выдаёт случайное число в указанном промежутке',
+    uk: 'Видає випадкове число у зазначеному проміжку',
+  },
   options: [
     {
-      name: 'минимум',
+      name: 'minimum',
+      nameLocalizations: {
+        ru: 'минимум',
+        uk: 'мінімум',
+      },
       type: Discord.ApplicationCommandOptionType.Integer,
-      description: 'Минимальное значение числа.',
+      description: 'Minimum number value',
+      descriptionLocalizations: {
+        ru: 'Минимальное значение числа',
+        uk: 'Мінімальне значення числа',
+      },
       required: false,
     },
     {
-      name: 'максимум',
+      name: 'maximum',
+      nameLocalizations: {
+        ru: 'максимум',
+        uk: 'максимум',
+      },
       type: Discord.ApplicationCommandOptionType.Integer,
-      description: 'Предельное значение числа.',
+      description: 'Maximum number value',
+      descriptionLocalizations: {
+        ru: 'Предельное значение числа',
+        uk: 'Граничне значення числа',
+      },
       required: false,
     },
     {
-      name: 'модификаторы',
+      name: 'modifiers',
+      nameLocalizations: {
+        ru: 'модификаторы',
+        uk: 'модифікатори',
+      },
       type: Discord.ApplicationCommandOptionType.String,
-      description: 'Применяемые к роллу модификаторы (со знаком через пробел).',
+      description:
+        'Modifiers applied to the roll (signed, separated by a space)',
+      descriptionLocalizations: {
+        ru: 'Применяемые к роллу модификаторы (со знаком через пробел)',
+        uk: 'Модифікатори, що застосовуються до ролу (зі знаком через пробіл)',
+      },
       required: false,
     },
   ],

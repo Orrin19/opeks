@@ -3,12 +3,24 @@ import { Command } from '../Command';
 
 export const Clean: Command = {
   name: 'clean',
-  description: 'Удаляет указанное число сообщений.',
+  description: 'Deletes the specified amount of messages',
+  descriptionLocalizations: {
+    ru: 'Удаляет указанное число сообщений',
+    uk: 'Видаляє вказану кількість повідомлень',
+  },
   options: [
     {
-      name: 'количество',
+      name: 'amount',
+      nameLocalizations: {
+        ru: 'количество',
+        uk: 'кількість',
+      },
       type: Discord.ApplicationCommandOptionType.Integer,
-      description: 'Количество удаляемых сообщений.',
+      description: 'Amount of deletable messages',
+      descriptionLocalizations: {
+        ru: 'Количество удаляемых сообщений',
+        uk: 'Кількість повідомлень, що видаляються',
+      },
       required: true,
     },
   ],
@@ -18,8 +30,7 @@ export const Clean: Command = {
     client: Discord.Client,
     interaction: Discord.CommandInteraction
   ) => {
-    const messCount = interaction.options.get('количество', true)
-      .value as number;
+    const messCount = interaction.options.get('amount', true).value as number;
     if (interaction.channel?.type == Discord.ChannelType.DM) return;
     let amount = messCount + 1;
     if (amount <= 1 || amount > 100)
