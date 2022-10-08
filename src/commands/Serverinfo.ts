@@ -9,7 +9,7 @@ export const Serverinfo: Command = {
   description: 'Displays information about the guild',
   descriptionLocalizations: {
     ru: 'Выводит информацию о сервере',
-    uk: 'Виводить інформацію про сервер',
+    uk: 'Видає інформацію о сервер',
   },
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
