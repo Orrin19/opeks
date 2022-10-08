@@ -8,6 +8,7 @@ import { Roll } from './commands/Roll';
 import { Serverinfo } from './commands/Serverinfo';
 import { Special } from './commands/Special';
 import { Userinfo } from './commands/Userinfo';
+import { Voting } from './commands/Voting';
 
 export const Commands: Command[] = [
   About,
@@ -19,4 +20,5 @@ export const Commands: Command[] = [
   Serverinfo,
   Special,
   Userinfo,
+  Voting,
 ];
