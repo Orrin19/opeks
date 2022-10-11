@@ -2,7 +2,6 @@ import Discord from 'discord.js';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
 import config from '../config';
-import { maxHeaderSize } from 'http';
 
 export const Voting: Command = {
   name: 'voting',

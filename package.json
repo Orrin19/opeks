@@ -4,7 +4,7 @@
   "description": "TypeScript-based bot for Discord",
   "main": "src/Bot.ts",
   "engines": {
-    "node": "16.14.0"
+    "node": "18.10.0"
   },
   "scripts": {
     "start": "ts-node src/Bot.ts"
