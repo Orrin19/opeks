@@ -62,9 +62,9 @@ export const Roll: Command = {
     interaction: Discord.CommandInteraction
   ) => {
     const max =
-      (interaction.options.get('максимум', false)?.value as number) || 20;
+      (interaction.options.get('maximum', false)?.value as number) || 20;
     const min =
-      (interaction.options.get('минимум', false)?.value as number) || 1;
+      (interaction.options.get('minimum', false)?.value as number) || 1;
     if (min > max)
       return interaction.followUp({
         ephemeral: true,
@@ -88,7 +88,7 @@ export const Roll: Command = {
     }
 
     const modstring =
-      (interaction.options.get('модификаторы', false)?.value as string) || null;
+      (interaction.options.get('modifiers', false)?.value as string) || null;
     if (modstring) {
       let mods = new Array();
       let finalResult = result;
