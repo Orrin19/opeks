@@ -57,7 +57,7 @@ export default (client: Discord.Client): void => {
     const reactions = new Map()
       .set('kiddy blade', 'MuraAngry')
       .set('суидал', 'suicidal')
-      .set('верды', 'coolStoryBob');
+      .set('верд', 'coolStoryBob');
 
     reactions.forEach((emojiName, trigger) => {
       if (message.content.toLowerCase().includes(trigger)) {
