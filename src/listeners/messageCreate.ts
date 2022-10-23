@@ -2,9 +2,13 @@ import Discord from 'discord.js';
 
 export default (client: Discord.Client): void => {
   client.on('messageCreate', async (message: Discord.Message) => {
-    if (Math.floor(Math.random() * 300) == 50 && !message.author.bot) {
-      const emoji = message.guild?.emojis.cache.random();
-      message.channel.send('<:' + emoji?.name + ':' + emoji?.id + '>');
+    if (Math.floor(Math.random() * 200) == 50 && !message.author.bot) {
+      const emoji = message.guild?.emojis.cache.random() as Discord.GuildEmoji;
+      if (Math.round(Math.random()) == 1) {
+        message.channel.send('<:' + emoji?.name + ':' + emoji?.id + '>');
+      } else {
+        message.react(emoji).catch(console.error);
+      }
     }
 
     if (message.mentions.users.first() == client.user) {
@@ -49,14 +53,19 @@ export default (client: Discord.Client): void => {
       );
     }
 
-    if (
-      message.content.toLowerCase().includes('kiddy blade') &&
-      message.guildId == '677151054013399050'
-    ) {
-      const emoji = message.guild?.emojis.cache.find(
-        (e) => e.name == 'MuraAngry'
-      ) as Discord.GuildEmoji;
-      message.react(emoji).catch(console.error);
-    }
+    // react trigger
+    const reactions = new Map()
+      .set('kiddy blade', 'MuraAngry')
+      .set('суидал', 'suicidal')
+      .set('верды', 'coolStoryBob');
+
+    reactions.forEach((trigger, emojiName) => {
+      if (message.content.toLowerCase().includes(trigger)) {
+        const emoji = message.guild?.emojis.cache.find(
+          (e) => e.name == emojiName
+        ) as Discord.GuildEmoji;
+        message.react(emoji).catch(console.error);
+      }
+    });
   });
 };
