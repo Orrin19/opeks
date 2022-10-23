@@ -59,7 +59,8 @@ export default (client: Discord.Client): void => {
       .set('суидал', 'suicidal')
       .set('верды', 'coolStoryBob');
 
-    reactions.forEach((trigger, emojiName) => {
+    reactions.forEach((emojiName, trigger) => {
+      console.log(trigger, emojiName);
       if (message.content.toLowerCase().includes(trigger)) {
         const emoji = message.guild?.emojis.cache.find(
           (e) => e.name == emojiName
