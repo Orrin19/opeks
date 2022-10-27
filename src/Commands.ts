@@ -1,6 +1,7 @@
 import { Command } from './Command';
 import { About } from './commands/About';
 import { Avatar } from './commands/Avatar';
+import { Choice } from './commands/Choice';
 import { Clean } from './commands/Clean';
 import { Dice } from './commands/Dice';
 import { Meow } from './commands/Meow';
@@ -13,6 +14,7 @@ import { Voting } from './commands/Voting';
 export const Commands: Command[] = [
   About,
   Avatar,
+  Choice,
   Clean,
   Dice,
   Meow,
