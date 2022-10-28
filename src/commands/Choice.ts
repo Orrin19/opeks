@@ -164,7 +164,7 @@ export const Choice: Command = {
         interaction.options.get('option_' + i, false)?.value as string
       );
     }
-    interaction.followUp({
+    await interaction.followUp({
       content: getRandArrElement(variables),
     });
   },
