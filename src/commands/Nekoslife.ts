@@ -64,7 +64,7 @@ export const Nekoslife: Command = {
       .set('eightBall', nekos.eightBall)
       .set('fact', nekos.fact);
 
-    const request = interaction.options.get('запрос', true)?.value as string;
+    const request = interaction.options.get('request', true)?.value as string;
     if (request == 'help') {
       const commands = [...images.entries()].map((arr) => arr[0]);
       const helpEmbed: Discord.APIEmbed = {
