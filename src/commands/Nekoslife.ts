@@ -21,50 +21,67 @@ export const Nekoslife: Command = {
     interaction: Discord.CommandInteraction
   ) => {
     const nekos = new NekoClient();
-    const images = {
-      smug: nekos['smug'],
-      baka: nekos['baka'],
-      tickle: nekos['tickle'],
-      slap: nekos['slap'],
-      poke: nekos['poke'],
-      pat: nekos['pat'],
-      neko: nekos['neko'],
-      nekoGif: nekos['nekoGif'],
-      meow: nekos['meow'],
-      lizard: nekos['lizard'],
-      kiss: nekos['kiss'],
-      hug: nekos['hug'],
-      foxGirl: nekos['foxGirl'],
-      feed: nekos['feed'],
-      cuddle: nekos['cuddle'],
-      kemonomimi: nekos['kemonomimi'],
-      holo: nekos['holo'],
-      woof: nekos['woof'],
-      wallpaper: nekos['wallpaper'],
-      goose: nekos['goose'],
-      gecg: nekos['gecg'],
-      avatar: nekos['avatar'],
-      waifu: nekos['waifu'],
-    };
-    const texts = {
-      why: nekos.why,
-      catText: nekos.catText,
-      OwOify: nekos.OwOify,
-      eightBall: nekos.eightBall,
-      fact: nekos.fact,
-    };
-    const request = interaction.options.get('запрос', true)
-      ?.value as unknown as property;
-    nekos;
-    if (request in images) {
-      const nekoEmbed: Discord.APIEmbed = {
+    const images = new Map()
+      .set('smug', nekos.smug)
+      .set('baka', nekos.baka)
+      .set('tickle', nekos.tickle)
+      .set('slap', nekos.slap)
+      .set('poke', nekos.poke)
+      .set('pat', nekos.pat)
+      .set('neko', nekos.neko)
+      .set('nekoGif', nekos.nekoGif)
+      .set('meow', nekos.meow)
+      .set('lizard', nekos.lizard)
+      .set('kiss', nekos.kiss)
+      .set('hug', nekos.hug)
+      .set('foxGirl', nekos.foxGirl)
+      .set('feed', nekos.feed)
+      .set('cuddle', nekos.cuddle)
+      .set('kemonomimi', nekos.kemonomimi)
+      .set('holo', nekos.holo)
+      .set('woof', nekos.woof)
+      .set('wallpaper', nekos.wallpaper)
+      .set('goose', nekos.goose)
+      .set('gecg', nekos.gecg)
+      .set('avatar', nekos.avatar)
+      .set('waifu', nekos.waifu);
+    const texts = new Map()
+      .set('why', nekos.why)
+      .set('catText', nekos.catText)
+      .set('OwOify', nekos.OwOify)
+      .set('eightBall', nekos.eightBall)
+      .set('fact', nekos.fact);
+
+    const request = interaction.options.get('запрос', true)?.value as string;
+    if (request == 'help') {
+      const commands = [...images.entries()].map((arr) => arr[0]);
+      const helpEmbed: Discord.APIEmbed = {
         color: Number(config.LINE_COLOR),
-        image: { url: (await images[request]()).url },
+        title: 'Nekos-life!',
+        fields: [
+          {
+            name: 'Доступные команды:',
+            value: commands.join('\n'),
+          },
+        ],
         footer: new Footer(interaction),
       };
-      await interaction.followUp({
-        embeds: [nekoEmbed],
+      return await interaction.followUp({
+        embeds: [helpEmbed],
       });
     }
+
+    images.forEach(async (func, name) => {
+      if (request == name) {
+        const nekoEmbed: Discord.APIEmbed = {
+          color: Number(config.LINE_COLOR),
+          image: { url: (await func().catch(console.error)).url },
+          footer: new Footer(interaction),
+        };
+        await interaction.followUp({
+          embeds: [nekoEmbed],
+        });
+      }
+    });
   },
 };

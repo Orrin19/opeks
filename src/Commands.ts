@@ -5,6 +5,7 @@ import { Choice } from './commands/Choice';
 import { Clean } from './commands/Clean';
 import { Dice } from './commands/Dice';
 import { Meow } from './commands/Meow';
+import { Nekoslife } from './commands/Nekoslife';
 import { Roll } from './commands/Roll';
 import { Serverinfo } from './commands/Serverinfo';
 import { Special } from './commands/Special';
@@ -18,6 +19,7 @@ export const Commands: Command[] = [
   Clean,
   Dice,
   Meow,
+  Nekoslife,
   Roll,
   Serverinfo,
   Special,
