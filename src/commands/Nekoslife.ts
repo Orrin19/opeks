@@ -24,7 +24,6 @@ export const Nekoslife: Command = {
         ru: 'Запрос картинки. Для получения помощи напишите ``help``',
         uk: 'Запит картинки. Для отримання допомоги напишіть ``help``',
       },
-      autocomplete: true,
       required: true,
     },
   ],
@@ -84,23 +83,26 @@ export const Nekoslife: Command = {
       });
     }
 
-    images.forEach((func, name) => {
+    let flag = true;
+    images.forEach(async (func, name) => {
       if (request == name) {
+        flag = false;
         const nekoEmbed: Discord.APIEmbed = {
           color: Number(config.LINE_COLOR),
-          image: { url: func().catch(console.error).url },
+          image: { url: (await func().catch(console.error)).url },
           footer: new Footer(interaction),
         };
-        return interaction.followUp({
+        return await interaction.followUp({
           embeds: [nekoEmbed],
         });
       }
     });
 
-    return interaction.followUp({
-      ephemeral: true,
-      content:
-        'Такой категории нет! Используйте запрос ``help`` чтобы увидеть список.',
-    });
+    if (flag)
+      return interaction.followUp({
+        ephemeral: true,
+        content:
+          'Такой категории нет! Используйте запрос ``help`` чтобы увидеть список.',
+      });
   },
 };
