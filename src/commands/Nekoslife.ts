@@ -6,12 +6,24 @@ import config from '../config';
 
 export const Nekoslife: Command = {
   name: 'nekos-life',
-  description: 'Добывает красивую картинку.',
+  description: 'Gets cute image',
+  descriptionLocalizations: {
+    ru: 'Добывает красивую картинку',
+    uk: 'Добуває красиву картинку',
+  },
   options: [
     {
-      name: 'запрос',
+      name: 'request',
+      nameLocalizations: {
+        ru: 'запрос',
+        uk: 'запит',
+      },
       type: Discord.ApplicationCommandOptionType.String,
-      description: 'Запрос картинки. Для получения помощи напишите ``help``.',
+      description: 'Image request. For help write ``help``',
+      descriptionLocalizations: {
+        ru: 'Запрос картинки. Для получения помощи напишите ``help``',
+        uk: 'Запит картинки. Для отримання допомоги напишіть ``help``',
+      },
       required: true,
     },
   ],
@@ -78,10 +90,16 @@ export const Nekoslife: Command = {
           image: { url: (await func().catch(console.error)).url },
           footer: new Footer(interaction),
         };
-        await interaction.followUp({
+        return await interaction.followUp({
           embeds: [nekoEmbed],
         });
       }
+    });
+
+    return interaction.followUp({
+      ephemeral: true,
+      content:
+        'Такой категории нет! Используйте запрос ``help`` чтобы увидеть список.',
     });
   },
 };
