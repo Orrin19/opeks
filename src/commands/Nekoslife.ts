@@ -24,6 +24,31 @@ export const Nekoslife: Command = {
         ru: 'Запрос картинки. Для получения помощи напишите ``help``',
         uk: 'Запит картинки. Для отримання допомоги напишіть ``help``',
       },
+      choices: [
+        { name: 'smug', value: 'smug' },
+        { name: 'baka', value: 'baka' },
+        { name: 'tickle', value: 'tickle' },
+        { name: 'slap', value: 'slap' },
+        { name: 'poke', value: 'poke' },
+        { name: 'pat', value: 'pat' },
+        { name: 'neko', value: 'neko' },
+        { name: 'nekoGif', value: 'nekoGif' },
+        { name: 'meow', value: 'meow' },
+        { name: 'lizard', value: 'lizard' },
+        { name: 'kiss', value: 'kiss' },
+        { name: 'hug', value: 'hug' },
+        { name: 'foxGirl', value: 'foxGirl' },
+        { name: 'feed', value: 'feed' },
+        { name: 'cuddle', value: 'cuddle' },
+        { name: 'kemonomimi', value: 'kemonomimi' },
+        { name: 'holo', value: 'holo' },
+        { name: 'woof', value: 'woof' },
+        { name: 'wallpaper', value: 'wallpaper' },
+        { name: 'goose', value: 'goose' },
+        { name: 'gecg', value: 'gecg' },
+        { name: 'avatar', value: 'avatar' },
+        { name: 'waifu', value: 'waifu' },
+      ],
       required: true,
     },
   ],
@@ -65,28 +90,8 @@ export const Nekoslife: Command = {
       .set('fact', nekos.fact);
 
     const request = interaction.options.get('request', true)?.value as string;
-    if (request == 'help') {
-      const commands = [...images.entries()].map((arr) => arr[0]);
-      const helpEmbed: Discord.APIEmbed = {
-        color: Number(config.LINE_COLOR),
-        title: 'Nekos-life!',
-        fields: [
-          {
-            name: 'Доступные команды:',
-            value: commands.join('\n'),
-          },
-        ],
-        footer: new Footer(interaction),
-      };
-      return await interaction.followUp({
-        embeds: [helpEmbed],
-      });
-    }
-
-    let flag = true;
     images.forEach(async (func, name) => {
       if (request == name) {
-        flag = false;
         const nekoEmbed: Discord.APIEmbed = {
           color: Number(config.LINE_COLOR),
           image: { url: (await func().catch(console.error)).url },
@@ -97,12 +102,5 @@ export const Nekoslife: Command = {
         });
       }
     });
-
-    if (flag)
-      return interaction.followUp({
-        ephemeral: true,
-        content:
-          'Такой категории нет! Используйте запрос ``help`` чтобы увидеть список.',
-      });
   },
 };
