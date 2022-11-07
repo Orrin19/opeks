@@ -19,10 +19,10 @@ export const Nekoslife: Command = {
         uk: 'запит',
       },
       type: Discord.ApplicationCommandOptionType.String,
-      description: 'Image request. For help write ``help``',
+      description: 'Image request',
       descriptionLocalizations: {
-        ru: 'Запрос картинки. Для получения помощи напишите ``help``',
-        uk: 'Запит картинки. Для отримання допомоги напишіть ``help``',
+        ru: 'Запрос картинки',
+        uk: 'Запит картинки',
       },
       choices: [
         { name: 'smug', value: 'smug' },
