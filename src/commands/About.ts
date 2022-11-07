@@ -32,7 +32,10 @@ export const About: Command = {
         },
         {
           name: 'Написан на',
-          value: `Node.js: v${pack.engines.node}\nTypeScript: v${pack.dependencies['typescript']}\nDiscord.js: v${pack.dependencies['discord.js']}`,
+          value:
+            `Node.js: v${pack.engines.node}\n` +
+            `TypeScript: v${pack.dependencies['typescript']}\n` +
+            `Discord.js: v${pack.dependencies['discord.js']}`,
         },
         {
           name: 'Хостинг',

@@ -28,22 +28,20 @@ export const Serverinfo: Command = {
       fields: [
         {
           name: ':globe_with_meridians: Основные данные:',
-          value: `
-          **Название:** *${guild.name}*
-          **ID:** *${guild.id}*
-          **Создан:** *${formateDate(guild.createdAt)}*
-          **Владелец:** *${Discord.userMention(guild.ownerId)}*
-        `,
+          value:
+            `**Название:** *${guild.name}*\n` +
+            `**ID:** *${guild.id}*\n` +
+            `**Создан:** *${formateDate(guild.createdAt)}*\n` +
+            `**Владелец:** *${Discord.userMention(guild.ownerId)}*`,
         },
         {
           name: ':mens: Участники:',
-          value: `
-          **Количество участников:** *${guild.memberCount}*
-          **Количество ролей:** *${guild.roles.cache.size}*
-          **Вы присоединились:** *${formateDate(
-            (interaction.member as Discord.GuildMember).joinedAt as Date
-          )}*
-        `,
+          value:
+            `**Количество участников:** *${guild.memberCount}*\n` +
+            `**Количество ролей:** *${guild.roles.cache.size}*\n` +
+            `**Вы присоединились:** *${formateDate(
+              (interaction.member as Discord.GuildMember).joinedAt as Date
+            )}*`,
         },
       ],
       footer: new Footer(interaction),

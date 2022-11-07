@@ -46,21 +46,19 @@ export const Userinfo: Command = {
       fields: [
         {
           name: ':globe_with_meridians: Основные данные:',
-          value: `
-            **Пользователь:** *${Discord.userMention(user.id)}*
-            **ID:** *${user.id}*
-            **Создан:** *${formateDate(user.createdAt)}*
-          `,
+          value:
+            `**Пользователь:** *${Discord.userMention(user.id)}*\n` +
+            `**ID:** *${user.id}*\n` +
+            `**Создан:** *${formateDate(user.createdAt)}*`,
         },
         {
           name: ':map: На этом сервере:',
-          value: `
-            **Присоединился:** *${formateDate(member.joinedAt as Date)}*
-            **Роли:** *${member.roles.cache
+          value:
+            `**Присоединился:** *${formateDate(member.joinedAt as Date)}*\n` +
+            `**Роли:** *${member.roles.cache
               .map((r) => Discord.roleMention(r.id))
               .slice(0, -1)
-              .join(' • ')}*
-          `,
+              .join(' • ')}*`,
         },
       ],
       footer: new Footer(interaction),
