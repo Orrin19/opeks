@@ -35,6 +35,20 @@ export default (client: Discord.Client): void => {
     }
 
     if (
+      message.content.toLowerCase().includes('хочу марсель') ||
+      message.content.toLowerCase().includes('хочу в марсель')
+    ) {
+      const role = message.guild?.roles.cache.find(
+        (r) => r.name == 'Марсель'
+      ) as Discord.Role;
+      if (message.content.toLowerCase().includes('не')) {
+        message.member?.roles.remove(role).catch(console.error);
+      } else {
+        message.member?.roles.add(role).catch(console.error);
+      }
+    }
+
+    if (
       message.content.includes('[[') &&
       message.content.includes(']]') &&
       message.guild?.id === '664491015914258452'
