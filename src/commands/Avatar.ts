@@ -30,6 +30,12 @@ export const Avatar: Command = {
     interaction: Discord.CommandInteraction
   ) => {
     const user = interaction.options.get('user', true).user as Discord.User;
+    if (!user) {
+      return interaction.followUp({
+        content: 'Укажите корректного пользователя!',
+        ephemeral: true,
+      });
+    }
     return interaction.followUp(
       user.displayAvatarURL({
         size: 1024,
