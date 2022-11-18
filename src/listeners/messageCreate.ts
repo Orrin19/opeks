@@ -2,10 +2,13 @@ import Discord from 'discord.js';
 
 export default (client: Discord.Client): void => {
   client.on('messageCreate', async (message: Discord.Message) => {
-    if (Math.floor(Math.random() * 200) == 50 && !message.author.bot) {
+    if (true) {
+      // (Math.floor(Math.random() * 200) == 50 && !message.author.bot) {
       const emoji = message.guild?.emojis.cache.random() as Discord.GuildEmoji;
       if (Math.round(Math.random()) == 1) {
-        message.channel.send('<:' + emoji?.name + ':' + emoji?.id + '>');
+        message.channel.send(
+          `<${emoji.animated ? 'a' : ''}:${emoji.name}:${emoji.id}>`
+        );
       } else {
         message.react(emoji).catch(console.error);
       }
