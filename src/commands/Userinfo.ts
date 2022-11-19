@@ -18,7 +18,7 @@ export const Userinfo: Command = {
         ru: 'участник',
         uk: 'користувач',
       },
-      type: Discord.ApplicationCommandOptionType.Mentionable,
+      type: Discord.ApplicationCommandOptionType.User,
       description: 'Investigated member',
       descriptionLocalizations: {
         ru: 'Исследуемый участник',
@@ -34,6 +34,12 @@ export const Userinfo: Command = {
   ) => {
     const member = interaction.options.get('member', true)
       .member as Discord.GuildMember;
+    if (!member) {
+      return interaction.followUp({
+        content: 'Укажите корректного участника!',
+        ephemeral: true,
+      });
+    }
     const user = member.user;
     const userinfoEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),

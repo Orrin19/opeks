@@ -15,7 +15,7 @@ export const Avatar: Command = {
         ru: 'пользователь',
         uk: 'користувач',
       },
-      type: Discord.ApplicationCommandOptionType.Mentionable,
+      type: Discord.ApplicationCommandOptionType.User,
       description: 'User with an interesting avatar',
       descriptionLocalizations: {
         ru: 'Пользователь с интересным аватаром',
