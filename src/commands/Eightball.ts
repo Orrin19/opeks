@@ -35,10 +35,11 @@ export const Eightball: Command = {
     const question = interaction.options.get('question', true).value as string;
     const ballEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
+      title: `Вопрос от ${interaction.member?.user.username}:`,
       description: question,
       image: {
         url: `https://raw.githubusercontent.com/Orrin19/opeks/master/assets/8ball/${getRandomInt(
-          2
+          7
         )}.png`,
       },
       footer: new Footer(interaction),
