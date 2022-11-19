@@ -8,6 +8,7 @@ import { Eightball } from './commands/Eightball';
 import { Meow } from './commands/Meow';
 import { Nekoslife } from './commands/Nekoslife';
 import { Roll } from './commands/Roll';
+import { Rps } from './commands/Rps';
 import { Serverinfo } from './commands/Serverinfo';
 import { Special } from './commands/Special';
 import { Userinfo } from './commands/Userinfo';
@@ -23,6 +24,7 @@ export const Commands: Command[] = [
   Meow,
   Nekoslife,
   Roll,
+  Rps,
   Serverinfo,
   Special,
   Userinfo,
