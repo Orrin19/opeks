@@ -4,6 +4,7 @@ import { Avatar } from './commands/Avatar';
 import { Choice } from './commands/Choice';
 import { Clean } from './commands/Clean';
 import { Dice } from './commands/Dice';
+import { Eightball } from './commands/Eightball';
 import { Meow } from './commands/Meow';
 import { Nekoslife } from './commands/Nekoslife';
 import { Roll } from './commands/Roll';
@@ -18,6 +19,7 @@ export const Commands: Command[] = [
   Choice,
   Clean,
   Dice,
+  Eightball,
   Meow,
   Nekoslife,
   Roll,
