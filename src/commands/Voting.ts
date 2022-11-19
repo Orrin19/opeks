@@ -186,18 +186,16 @@ export const Voting: Command = {
     const description = interaction.options.get('description', true)
       ?.value as string;
     const variables = new Array<string>();
-    variables.push(
-      (buttons[0] +
-        ' ' +
-        interaction.options.get('option_1', true)?.value) as string
-    );
-    for (let i = 2; i < 11; i++) {
-      if (!interaction.options.get('option_' + i, false)?.value) break;
-      variables.push(
-        (buttons[i - 1] +
-          ' ' +
-          interaction.options.get('option_' + i, false)?.value) as string
-      );
+    let j = 0;
+    for (let i = 1; i < 11; i++) {
+      if (interaction.options.get('option_' + i, false)?.value) {
+        variables.push(
+          (buttons[j] +
+            ' ' +
+            interaction.options.get('option_' + i, false)?.value) as string
+        );
+        j++;
+      }
     }
 
     const rollEmbed: Discord.APIEmbed = {

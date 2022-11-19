@@ -157,12 +157,12 @@ export const Choice: Command = {
     interaction: Discord.CommandInteraction
   ) => {
     const variables = new Array<string>();
-    variables.push(interaction.options.get('option_1', true)?.value as string);
-    for (let i = 2; i < 11; i++) {
-      if (!interaction.options.get('option_' + i, false)?.value) break;
-      variables.push(
-        interaction.options.get('option_' + i, false)?.value as string
-      );
+    for (let i = 1; i < 11; i++) {
+      if (interaction.options.get('option_' + i, false)?.value) {
+        variables.push(
+          interaction.options.get('option_' + i, false)?.value as string
+        );
+      }
     }
     await interaction.followUp({
       content: getRandArrElement(variables),
