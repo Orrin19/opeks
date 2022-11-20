@@ -82,12 +82,28 @@ export const Tracemoe: Command = {
       new Discord.ActionRowBuilder<Discord.ButtonBuilder>().addComponents(
         new Discord.ButtonBuilder()
           .setLabel('Смотреть видеофрагмент')
-          .setStyle(Discord.ButtonStyle.Link)
-          .setURL(request.result[0].video)
+          .setStyle(Discord.ButtonStyle.Primary)
+          .setCustomId('videoButton')
       );
-    return await interaction.followUp({
-      embeds: [tmEmbed],
-      components: [component],
-    });
+    return await interaction
+      .followUp({
+        embeds: [tmEmbed],
+        components: [component],
+      })
+      .then((msg) => {
+        const filter = (i: any) =>
+          i.customId === 'videoButton' && i.user.id === interaction.user.id;
+        const collector = msg.createMessageComponentCollector({
+          filter,
+          time: 60000,
+        });
+        collector.on('collect', async (_) => {
+          await msg.edit({ components: [] });
+          msg.channel?.send({ files: [request.result[0].video] });
+        });
+        collector.on('end', async (_) => {
+          await msg.edit({ components: [] });
+        });
+      });
   },
 };
