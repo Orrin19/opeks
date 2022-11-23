@@ -1,4 +1,4 @@
-import Discord, { DiscordjsTypeError } from 'discord.js';
+import Discord from 'discord.js';
 import { TraceMoe } from 'trace.moe.ts';
 import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
@@ -85,6 +85,20 @@ export const Tracemoe: Command = {
           .setStyle(Discord.ButtonStyle.Primary)
           .setCustomId('videoButton')
       );
+    /*const component: Discord.ActionRow<Discord.ButtonComponent> = {
+      type: Discord.ComponentType.ActionRow,
+      components: [
+        {
+          customId: 'videoButton',
+          data: null,
+          disabled: false,
+          emoji: null,
+          label: 'Смотреть видеофрагмент',
+          style: Discord.ButtonStyle.Primary,
+          type: Discord.ComponentType.Button,
+        },
+      ],
+    };*/
     return await interaction
       .followUp({
         embeds: [tmEmbed],
