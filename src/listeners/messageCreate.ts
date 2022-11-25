@@ -2,17 +2,6 @@ import Discord from 'discord.js';
 
 export default (client: Discord.Client): void => {
   client.on('messageCreate', async (message: Discord.Message) => {
-    const filter = (reaction: any) => reaction.emoji.name === '🐓';
-    const collector = message.createReactionCollector({ filter, time: 60_000 });
-    collector.on('end', (collected) => {
-      if (collected.size > 4) {
-        message.guild?.members.cache
-          .find((m) => m.user == message.author)
-          ?.timeout(300_000)
-          .catch(console.error);
-      }
-    });
-
     if (Math.floor(Math.random() * 200) == 50 && !message.author.bot) {
       const emoji = message.guild?.emojis.cache.random() as Discord.GuildEmoji;
       if (Math.round(Math.random()) == 1) {
