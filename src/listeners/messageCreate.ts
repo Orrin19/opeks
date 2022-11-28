@@ -72,14 +72,16 @@ export default (client: Discord.Client): void => {
     // react trigger
     const reactions = new Map()
       .set('kiddy blade', 'MuraAngry')
-      .set('суидал', 'suicidal')
+      .set('суидал', 'suidal')
       .set('верд', 'coolStoryBob');
 
     reactions.forEach((emojiName, trigger) => {
       if (message.content.toLowerCase().includes(trigger)) {
-        const emoji = message.guild?.emojis.cache.find(
-          (e) => e.name == emojiName
-        ) as Discord.GuildEmoji;
+        const emoji = (
+          client.guilds.cache.find(
+            (g) => g.id == '461757596236382229'
+          ) as Discord.Guild
+        ).emojis.cache.find((e) => e.name == emojiName) as Discord.GuildEmoji;
         message.react(emoji).catch(console.error);
       }
     });
