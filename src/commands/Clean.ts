@@ -32,7 +32,6 @@ export const Clean: Command = {
   ) => {
     const messCount = interaction.options.get('amount', true).value as number;
     if (interaction.channel?.type == Discord.ChannelType.DM) return;
-    if (interaction.user.id == '567758212317577227') return;
     let amount = messCount + 1;
     if (amount <= 1 || amount > 100)
       return interaction.followUp({
