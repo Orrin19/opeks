@@ -16,6 +16,7 @@ const client = new Client({
     'GuildMessages',
     'GuildMembers',
     'GuildMessageReactions',
+    'GuildPresences',
     'DirectMessages',
     'MessageContent',
   ],
