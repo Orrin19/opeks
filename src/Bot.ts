@@ -1,5 +1,6 @@
 import { Client, PresenceUpdateStatus } from 'discord.js';
 import guildMemberAdd from './listeners/guildMemberAdd';
+import guildMemberRemove from './listeners/guildMemberRemove';
 import interactionCreate from './listeners/interactionCreate';
 import messageCreate from './listeners/messageCreate';
 import ready from './listeners/ready';
@@ -31,6 +32,7 @@ const client = new Client({
 
 ready(client);
 guildMemberAdd(client);
+guildMemberRemove(client);
 interactionCreate(client);
 messageCreate(client);
 
