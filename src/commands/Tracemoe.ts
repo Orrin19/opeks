@@ -4,6 +4,7 @@ import { Command } from '../Command';
 import { Footer } from '../custom/Footer';
 import config from '../config';
 import { getTime } from '../custom/commonFunctions';
+import { SearchResponse } from 'trace.moe.ts/dist/structures/SearchResponse';
 
 export const Tracemoe: Command = {
   name: 'trace-moe',
@@ -35,7 +36,9 @@ export const Tracemoe: Command = {
   ) => {
     const api = new TraceMoe();
     const link = interaction.options.get('link', true)?.value as string;
-    const request = await api.fetchAnime(link, { anilistInfo: true });
+    const request = (await api
+      .fetchAnime(link, { anilistInfo: true })
+      .catch(console.error)) as SearchResponse;
     if (request.error)
       return interaction.followUp({
         content: 'Введите корректную ссылку на изображение!',
