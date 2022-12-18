@@ -39,7 +39,7 @@ export const Tracemoe: Command = {
     const request = (await api
       .fetchAnime(link, { anilistInfo: true })
       .catch(console.error)) as SearchResponse;
-    if (request.error)
+    if (!request || request.error)
       return interaction.followUp({
         content: 'Введите корректную ссылку на изображение!',
         ephemeral: true,
@@ -88,20 +88,6 @@ export const Tracemoe: Command = {
           .setStyle(Discord.ButtonStyle.Primary)
           .setCustomId('videoButton')
       );
-    /*const component: Discord.ActionRow<Discord.ButtonComponent> = {
-      type: Discord.ComponentType.ActionRow,
-      components: [
-        {
-          customId: 'videoButton',
-          data: null,
-          disabled: false,
-          emoji: null,
-          label: 'Смотреть видеофрагмент',
-          style: Discord.ButtonStyle.Primary,
-          type: Discord.ComponentType.Button,
-        },
-      ],
-    };*/
     return await interaction
       .followUp({
         embeds: [tmEmbed],
