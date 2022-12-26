@@ -7,6 +7,7 @@ export default (client: Discord.Client): void => {
       const channel = member.guild.channels.cache.find(
         (c) => c.name == 'checkuser'
       ) as Discord.TextChannel;
+      if (!channel) return;
       channel
         .send(`${Discord.userMention(member.id)} куда-то ушёл...`)
         .catch(console.error);
