@@ -11,6 +11,7 @@ import { Roll } from './commands/Roll';
 import { Rps } from './commands/Rps';
 import { Serverinfo } from './commands/Serverinfo';
 import { Special } from './commands/Special';
+import { Timeout } from './commands/Timeout';
 import { Tracemoe } from './commands/Tracemoe';
 import { Userinfo } from './commands/Userinfo';
 import { Voting } from './commands/Voting';
@@ -28,6 +29,7 @@ export const Commands: Command[] = [
   Rps,
   Serverinfo,
   Special,
+  Timeout,
   Tracemoe,
   Userinfo,
   Voting,

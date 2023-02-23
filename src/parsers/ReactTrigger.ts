@@ -1,6 +1,5 @@
 import Discord from 'discord.js';
 import { TextParser } from '../TextParser';
-import { PassThrough } from 'stream';
 
 export const ReactTrigger: TextParser = {
   check: (message: Discord.Message, client: Discord.Client) => {
