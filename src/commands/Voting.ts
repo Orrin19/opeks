@@ -165,6 +165,20 @@ export const Voting: Command = {
       },
       required: false,
     },
+    {
+      name: 'image',
+      nameLocalizations: {
+        ru: 'изображение',
+        uk: 'зображення',
+      },
+      type: Discord.ApplicationCommandOptionType.Attachment,
+      description: 'Image for a voting',
+      descriptionLocalizations: {
+        ru: 'Изображение для голосования',
+        uk: 'Зображення голосування',
+      },
+      required: false,
+    },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
@@ -185,6 +199,8 @@ export const Voting: Command = {
     ];
     const description = interaction.options.get('description', true)
       ?.value as string;
+    let image = interaction.options.get('image', false)
+      ?.attachment as Discord.Attachment;
     const variables = new Array<string>();
     let j = 0;
     for (let i = 1; i < 11; i++) {
@@ -210,6 +226,7 @@ export const Voting: Command = {
       ],
       footer: new Footer(interaction),
     };
+    if (image) rollEmbed.image = { url: image.url };
     interaction
       .followUp({
         embeds: [rollEmbed],
