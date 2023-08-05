@@ -91,7 +91,7 @@ export const Tracemoe: Command = {
     return await interaction
       .followUp({
         embeds: [tmEmbed],
-        components: [component],
+        // components: [component],
       })
       .then((msg) => {
         const filter = (i: any) =>
