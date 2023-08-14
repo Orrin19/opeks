@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { getRandArrElement } from '../custom/commonFunctions';
+import { getRandArrElement } from '../../custom/commonFunctions';
 
 export const Rps: Command = {
   name: 'rps',

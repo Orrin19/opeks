@@ -1,12 +1,12 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { Footer } from '../custom/Footer';
+import { Footer } from '../../custom/Footer';
 import {
   getRandomInt,
   getRandArrIndex,
   getRandArrElement,
-} from '../custom/commonFunctions';
-import config from '../config';
+} from '../../custom/commonFunctions';
+import config from '../../config';
 
 export const Special: Command = {
   name: 'special',

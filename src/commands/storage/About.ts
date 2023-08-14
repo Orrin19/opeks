@@ -1,9 +1,9 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { Footer } from '../custom/Footer';
-import { formateDate } from '../custom/commonFunctions';
-import config from '../config';
-const pack = require('./../../package.json');
+import { Footer } from '../../custom/Footer';
+import { formateDate } from '../../custom/commonFunctions';
+import config from '../../config';
+const packageData = require('../../../package.json');
 
 export const About: Command = {
   name: 'about',
@@ -33,9 +33,9 @@ export const About: Command = {
         {
           name: 'Написан на',
           value:
-            `Node.js: v${pack.engines.node}\n` +
-            `TypeScript: v${pack.dependencies['typescript']}\n` +
-            `Discord.js: v${pack.dependencies['discord.js']}`,
+            `Node.js: v${packageData.engines.node}\n` +
+            `TypeScript: v${packageData.dependencies['typescript']}\n` +
+            `Discord.js: v${packageData.dependencies['discord.js']}`,
         },
         {
           name: 'Хостинг',

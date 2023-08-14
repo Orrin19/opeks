@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { formateDate } from '../custom/commonFunctions';
+import { formateDate } from '../../custom/commonFunctions';
 
 export const Timeout: Command = {
   name: 'timeout',

@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import { TextParser } from '../TextParser';
-import { getRandArrElement } from '../custom/commonFunctions';
+import { getRandArrElement } from '../../custom/commonFunctions';
 
 export const BotQuestion: TextParser = {
   check: (message: Discord.Message, client: Discord.Client) => {

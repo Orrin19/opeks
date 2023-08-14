@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { getRandomInt } from '../custom/commonFunctions';
+import { getRandomInt } from '../../custom/commonFunctions';
 
 export const Dice: Command = {
   name: 'dice',

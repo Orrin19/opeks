@@ -1,8 +1,8 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { Footer } from '../custom/Footer';
-import { getRandomInt } from '../custom/commonFunctions';
-import config from '../config';
+import { Footer } from '../../custom/Footer';
+import { getRandomInt } from '../../custom/commonFunctions';
+import config from '../../config';
 
 export const Eightball: Command = {
   name: '8ball',

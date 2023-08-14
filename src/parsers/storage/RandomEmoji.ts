@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import { TextParser } from '../TextParser';
-import { getRandomInt } from '../custom/commonFunctions';
+import { getRandomInt } from '../../custom/commonFunctions';
 
 export const RandomEmoji: TextParser = {
   check: (message: Discord.Message, client: Discord.Client) => {

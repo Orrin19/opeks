@@ -1,15 +1,30 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { getRandArrElement } from '../custom/commonFunctions';
+import { Footer } from '../../custom/Footer';
+import config from '../../config';
 
-export const Choice: Command = {
-  name: 'choice',
-  description: 'Chooses a random option',
+export const Voting: Command = {
+  name: 'voting',
+  description: 'Creates a vote',
   descriptionLocalizations: {
-    ru: 'Выбирает случайный вариант',
-    uk: 'Вибирає випадковий варіант',
+    ru: 'Создаёт голосование',
+    uk: 'Створює голосування',
   },
   options: [
+    {
+      name: 'description',
+      nameLocalizations: {
+        ru: 'описание',
+        uk: 'опис',
+      },
+      type: Discord.ApplicationCommandOptionType.String,
+      description: 'Voting description',
+      descriptionLocalizations: {
+        ru: 'Описание голосования',
+        uk: 'Опис голосування',
+      },
+      required: true,
+    },
     {
       name: 'option_1',
       nameLocalizations: {
@@ -150,22 +165,76 @@ export const Choice: Command = {
       },
       required: false,
     },
+    {
+      name: 'image',
+      nameLocalizations: {
+        ru: 'изображение',
+        uk: 'зображення',
+      },
+      type: Discord.ApplicationCommandOptionType.Attachment,
+      description: 'Image for a voting',
+      descriptionLocalizations: {
+        ru: 'Изображение для голосования',
+        uk: 'Зображення голосування',
+      },
+      required: false,
+    },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
   run: async (
     client: Discord.Client,
     interaction: Discord.CommandInteraction
   ) => {
+    const buttons = [
+      '1️⃣',
+      '2️⃣',
+      '3️⃣',
+      '4️⃣',
+      '5️⃣',
+      '6️⃣',
+      '7️⃣',
+      '8️⃣',
+      '9️⃣',
+      '0️⃣',
+    ];
+    const description = interaction.options.get('description', true)
+      ?.value as string;
+    let image = interaction.options.get('image', false)
+      ?.attachment as Discord.Attachment;
     const variables = new Array<string>();
+    let j = 0;
     for (let i = 1; i < 11; i++) {
       if (interaction.options.get('option_' + i, false)?.value) {
         variables.push(
-          interaction.options.get('option_' + i, false)?.value as string
+          (buttons[j] +
+            ' ' +
+            interaction.options.get('option_' + i, false)?.value) as string
         );
+        j++;
       }
     }
-    await interaction.followUp({
-      content: getRandArrElement(variables),
-    });
+
+    const rollEmbed: Discord.APIEmbed = {
+      color: Number(config.LINE_COLOR),
+      title: 'Голосование',
+      description: description,
+      fields: [
+        {
+          name: 'Варианты',
+          value: variables.join('\n'),
+        },
+      ],
+      footer: new Footer(interaction),
+    };
+    if (image) rollEmbed.image = { url: image.url };
+    interaction
+      .followUp({
+        embeds: [rollEmbed],
+      })
+      .then((msg) => {
+        for (let i = 0; i < variables.length; i++) {
+          msg.react(buttons[i]);
+        }
+      });
   },
 };

@@ -1,8 +1,8 @@
 import Discord from 'discord.js';
 import NekoClient from 'nekos.life';
 import { Command } from '../Command';
-import { Footer } from '../custom/Footer';
-import config from '../config';
+import { Footer } from '../../custom/Footer';
+import config from '../../config';
 
 export const Nekoslife: Command = {
   name: 'nekos-life',

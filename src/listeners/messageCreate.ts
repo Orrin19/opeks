@@ -1,5 +1,5 @@
 import Discord from 'discord.js';
-import { Parsers } from '../Parsers';
+import { Parsers } from '../parsers/Parsers';
 
 export default (client: Discord.Client): void => {
   client.on('messageCreate', async (message: Discord.Message) => {

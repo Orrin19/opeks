@@ -1,8 +1,8 @@
 import Discord from 'discord.js';
 import { Command } from '../Command';
-import { Footer } from '../custom/Footer';
-import { formateDate } from '../custom/commonFunctions';
-import config from '../config';
+import { Footer } from '../../custom/Footer';
+import { formateDate } from '../../custom/commonFunctions';
+import config from '../../config';
 
 export const Serverinfo: Command = {
   name: 'serverinfo',

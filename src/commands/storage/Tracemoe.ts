@@ -1,9 +1,9 @@
 import Discord from 'discord.js';
 import { TraceMoe } from 'trace.moe.ts';
 import { Command } from '../Command';
-import { Footer } from '../custom/Footer';
-import config from '../config';
-import { getTime } from '../custom/commonFunctions';
+import { Footer } from '../../custom/Footer';
+import config from '../../config';
+import { getTime } from '../../custom/commonFunctions';
 import { SearchResponse } from 'trace.moe.ts/dist/structures/SearchResponse';
 
 export const Tracemoe: Command = {
