@@ -12,6 +12,7 @@
   "author": "Orrin19",
   "license": "ISC",
   "dependencies": {
+    "@types/gaussian": "^1.2.2",
     "@types/node": "18.7.14",
     "discord.js": "14.6.0",
     "dotenv": "16.0.3",
@@ -22,7 +23,6 @@
     "typescript": "4.8.2"
   },
   "devDependencies": {
-    "@types/gaussian": "^1.2.2",
     "@types/superagent": "^4.1.15"
   }
 }

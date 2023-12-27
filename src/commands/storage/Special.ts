@@ -37,9 +37,13 @@ export const Special: Command = {
     ];
 
     const distribution = gaussian(5, 2);
-    let values = distribution.random(specials.length).map((x) => Math.round(x));
+    let values = distribution
+      .random(specials.length)
+      .map((x: number) => Math.round(x));
     while (![35, 36, 37, 38, 39, 40].includes(sum(values))) {
-      values = distribution.random(specials.length).map((x) => Math.round(x));
+      values = distribution
+        .random(specials.length)
+        .map((x: number) => Math.round(x));
     }
 
     const specialMap = new Map(
