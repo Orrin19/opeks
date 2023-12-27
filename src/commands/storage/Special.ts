@@ -1,11 +1,7 @@
 import Discord from 'discord.js';
+import gaussian from 'gaussian';
 import { Command } from '../Command';
 import { Footer } from '../../custom/Footer';
-import {
-  getRandomInt,
-  getRandArrIndex,
-  getRandArrElement,
-} from '../../custom/commonFunctions';
 import config from '../../config';
 
 export const Special: Command = {
@@ -28,32 +24,32 @@ export const Special: Command = {
       footer: new Footer(interaction),
     };
 
+    const sum = (array: number[]) => array.reduce((a, b) => a + b, 0);
+
     const specials = [
-      [':muscle: Сила:', 5],
-      [':eyes: Восприятие:', 5],
-      [':man_running: Выносливость:', 5],
-      [':sunglasses: Харизма:', 5],
-      [':brain: Интеллект:', 5],
-      [':cartwheel: Ловкость:', 5],
-      [':unicorn: Удача:', 5],
+      ':muscle: Сила:',
+      ':eyes: Восприятие:',
+      ':man_running: Выносливость:',
+      ':sunglasses: Харизма:',
+      ':brain: Интеллект:',
+      ':cartwheel: Ловкость:',
+      ':unicorn: Удача:',
     ];
-    let cash = getRandomInt(2) + 3;
-    while (cash > 0) {
-      let index = getRandArrIndex(specials);
-      let rand = getRandArrElement([-1, -1, -1, -1, 1, 1, 1]);
-      if ((specials[index][1] as number) == 10) {
-        rand -= 1;
-      }
-      if ((specials[index][1] as number) == 0) {
-        rand += 1;
-      }
-      cash -= rand;
-      (specials[index][1] as number) += rand;
+
+    const distribution = gaussian(5, 2);
+    let values = distribution.random(specials.length).map((x) => Math.round(x));
+    while (![35, 36, 37, 38, 39, 40].includes(sum(values))) {
+      values = distribution.random(specials.length).map((x) => Math.round(x));
     }
-    for (let spec of specials) {
+
+    const specialMap = new Map(
+      specials.map((key, index) => [key, values[index]])
+    );
+
+    for (const [spec, value] of specialMap) {
       specialEmbed.fields?.push({
-        name: spec[0] as string,
-        value: `**${spec[1]}**`,
+        name: spec as string,
+        value: `**${value}**`,
       });
     }
 
