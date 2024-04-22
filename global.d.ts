@@ -1,3 +1,4 @@
+declare module '*';
 namespace NodeJS {
   interface ProcessEnv {
     TOKEN: string;
