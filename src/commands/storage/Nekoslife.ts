@@ -99,7 +99,7 @@ export const Nekoslife: Command = {
             url: (
               await func().catch(async (error: any) => {
                 console.error(error);
-                return await interaction.followUp({
+                return await interaction.reply({
                   content:
                     'Извините, произошла ошибка. Повторите запрос позже.',
                 });
