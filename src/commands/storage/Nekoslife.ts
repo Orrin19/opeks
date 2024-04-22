@@ -3,7 +3,6 @@ import NekoClient from 'nekos.life';
 import { Command } from '../Command';
 import { Footer } from '../../custom/Footer';
 import config from '../../config';
-import { text } from 'stream/consumers';
 
 export const Nekoslife: Command = {
   name: 'nekos-life',
@@ -95,17 +94,7 @@ export const Nekoslife: Command = {
       if (request == name) {
         const nekoEmbed: Discord.APIEmbed = {
           color: Number(config.LINE_COLOR),
-          image: {
-            url: (
-              await func().catch(async (error: any) => {
-                console.error(error);
-                return await interaction.reply({
-                  content:
-                    'Извините, произошла ошибка. Повторите запрос позже.',
-                });
-              })
-            ).url,
-          },
+          image: { url: (await func().catch(console.error)).url },
           footer: new Footer(interaction),
         };
         return await interaction.followUp({
