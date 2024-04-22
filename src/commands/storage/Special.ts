@@ -36,14 +36,11 @@ export const Special: Command = {
       ':unicorn: Удача:',
     ];
 
-    const distribution = gaussian(5, 4);
-    let values = new Array(specials.length).fill(0);
-    while (
-      sum(values) < 35 ||
-      sum(values) > 40 ||
-      values.find((v) => v < 1) ||
-      values.find((v) => v > 10)
-    ) {
+    const distribution = gaussian(5, 2);
+    let values = distribution
+      .random(specials.length)
+      .map((x: number) => Math.round(x));
+    while (![35, 36, 37, 38, 39, 40].includes(sum(values))) {
       values = distribution
         .random(specials.length)
         .map((x: number) => Math.round(x));
