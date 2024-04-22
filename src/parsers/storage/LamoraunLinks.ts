@@ -17,7 +17,7 @@ export const LamoraunLinks: TextParser = {
       .forEach((str1: string) => {
         links.push(str1.split(']]')[0].replaceAll(' ', '_'));
       });
-    message.channel.send(
+    (message.channel as Discord.TextChannel)?.send(
       `<https://lamoraun.fandom.com/ru/wiki/${links.join(
         '>\n<https://lamoraun.fandom.com/ru/wiki/'
       )}>`

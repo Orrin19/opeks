@@ -102,7 +102,9 @@ export const Tracemoe: Command = {
         });
         collector.on('collect', async (_) => {
           await msg.edit({ components: [] });
-          msg.channel?.send({ files: [request.result[0].video] });
+          (msg.channel as Discord.TextChannel)?.send({
+            files: [request.result[0].video],
+          });
         });
         collector.on('end', async (_) => {
           await msg.edit({ components: [] });

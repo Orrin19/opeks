@@ -92,14 +92,23 @@ export const Nekoslife: Command = {
     const request = interaction.options.get('request', true)?.value as string;
     images.forEach(async (func, name) => {
       if (request == name) {
-        const nekoEmbed: Discord.APIEmbed = {
-          color: Number(config.LINE_COLOR),
-          image: { url: (await func().catch(console.error)).url },
-          footer: new Footer(interaction),
-        };
-        return await interaction.followUp({
-          embeds: [nekoEmbed],
-        });
+        try {
+          const nekoEmbed: Discord.APIEmbed = {
+            color: Number(config.LINE_COLOR),
+            image: {
+              url: (await func().catch(console.error)).url,
+            },
+            footer: new Footer(interaction),
+          };
+          return await interaction.followUp({
+            embeds: [nekoEmbed],
+          });
+        } catch (err) {
+          return await interaction.followUp({
+            content: 'Возникла ошибка при выполнении команды',
+            ephemeral: true,
+          });
+        }
       }
     });
   },

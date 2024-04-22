@@ -9,7 +9,7 @@ export const RandomEmoji: TextParser = {
   run: (message: Discord.Message, client: Discord.Client) => {
     const emoji = message.guild?.emojis.cache.random() as Discord.GuildEmoji;
     if (getRandomInt(2) == 1) {
-      message.channel.send(
+      (message.channel as Discord.TextChannel)?.send(
         `<${emoji.animated ? 'a' : ''}:${emoji.name}:${emoji.id}>`
       );
     } else {
