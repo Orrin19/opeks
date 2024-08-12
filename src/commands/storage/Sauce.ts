@@ -58,6 +58,18 @@ export const Sauce: Command = {
         return;
       }
     } else {
+      if (
+        attachment.contentType?.split('/')[0] !== 'image' ||
+        attachment.contentType.includes('svg+xml') ||
+        attachment.contentType.includes('vnd') ||
+        attachment.contentType.includes('tiff')
+      ) {
+        await interaction.followUp({
+          content: 'Пожалуйста, прикрепите изображение',
+          ephemeral: true,
+        });
+        return;
+      }
       imageURL = attachment!.url;
     }
     const apiClient = sagiri(config.SAUCE_TOKEN);
