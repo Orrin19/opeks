@@ -24,7 +24,21 @@ export const Sauce: Command = {
         ru: 'Прикрепите своё изображение',
         uk: 'Прикріпіть своє зображення',
       },
-      required: true,
+      required: false,
+    },
+    {
+      name: 'link',
+      nameLocalizations: {
+        ru: 'ссылка',
+        uk: 'посилання',
+      },
+      type: Discord.ApplicationCommandOptionType.String,
+      description: 'Image link',
+      descriptionLocalizations: {
+        ru: 'Ссылка на изображение',
+        uk: 'Посилання на зображення',
+      },
+      required: false,
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
@@ -32,8 +46,20 @@ export const Sauce: Command = {
     client: Discord.Client,
     interaction: Discord.CommandInteraction
   ) => {
-    const attachment = interaction.options.get('image', true).attachment;
-    const imageURL = attachment!.url;
+    let imageURL = '';
+    const attachment = interaction.options.get('image', false)?.attachment;
+    if (!attachment) {
+      imageURL = interaction.options.get('link', false)?.value as string;
+      if (!imageURL) {
+        await interaction.followUp({
+          content: 'Пожалуйста, прикрепите изображение или введите ссылку',
+          ephemeral: true,
+        });
+        return;
+      }
+    } else {
+      imageURL = attachment!.url;
+    }
     const apiClient = sagiri(config.SAUCE_TOKEN);
     const results = await apiClient(imageURL);
     const result = results[0];
