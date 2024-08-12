@@ -14,6 +14,7 @@ interface ENV {
   LINE_COLOR: string | undefined;
   ACTIVITY_NAME: string | undefined;
   ACTIVITY_TYPE: string | undefined;
+  SAUCE_TOKEN: string | undefined;
 }
 
 interface Config {
@@ -22,6 +23,7 @@ interface Config {
   LINE_COLOR: string;
   ACTIVITY_NAME: string;
   ACTIVITY_TYPE: string;
+  SAUCE_TOKEN: string;
 }
 
 // Loading process.env as ENV interface
@@ -33,6 +35,7 @@ const getConfig = (): ENV => {
     LINE_COLOR: process.env.LINE_COLOR,
     ACTIVITY_NAME: process.env.ACTIVITY_NAME,
     ACTIVITY_TYPE: process.env.ACTIVITY_TYPE,
+    SAUCE_TOKEN: process.env.SAUCE_TOKEN,
   };
 };
 

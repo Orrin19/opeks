@@ -6,5 +6,6 @@ namespace NodeJS {
     HOSTING: string;
     ACTIVITY_NAME: string;
     ACTIVITY_TYPE: string;
+    SAUCE_TOKEN: string;
   }
 }

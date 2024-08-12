@@ -9,6 +9,7 @@ import { Meow } from './storage/Meow';
 import { Nekoslife } from './storage/Nekoslife';
 import { Roll } from './storage/Roll';
 import { Rps } from './storage/Rps';
+import { Sauce } from './storage/Sauce';
 import { Serverinfo } from './storage/Serverinfo';
 import { Special } from './storage/Special';
 import { Timeout } from './storage/Timeout';
@@ -27,6 +28,7 @@ export const Commands: Command[] = [
   Nekoslife,
   Roll,
   Rps,
+  Sauce,
   Serverinfo,
   Special,
   Timeout,
