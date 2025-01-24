@@ -6,6 +6,18 @@ import interactionCreate from './listeners/interactionCreate';
 import messageCreate from './listeners/messageCreate';
 import ready from './listeners/ready';
 import config from './config';
+import http from 'http';
+
+const PORT = process.env.PORT || 3000;
+
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Server is running.');
+  })
+  .listen(PORT, () => {
+    console.log(`Port ${PORT} is open`);
+  });
 
 const token = config.TOKEN;
 
