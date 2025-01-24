@@ -7,7 +7,7 @@ meta:
     version: 20.12.1
 build:
   skip: false
-  additionalCommands: npm ci
+  additionalCommands: ""
   artifacts:
     '*': /
 run:
@@ -17,4 +17,3 @@ run:
   command: npm start
   persistenceMount: /data
   containerPort: 80
-  servicePort: 80
