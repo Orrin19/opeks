@@ -1,0 +1,19 @@
+---
+version: null
+meta:
+  environment: node
+  toolchain:
+    name: npm
+    version: 20.12.1
+build:
+  skip: false
+  additionalCommands: ""
+  artifacts:
+    '*': /
+run:
+  scriptName: src/Bot.ts
+  scriptArguments: null
+  nodeArguments: null
+  command: npm start
+  persistenceMount: /data
+  containerPort: 80
