@@ -61,8 +61,8 @@ export const Roll: Command = {
     client: Discord.Client,
     interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const max = interaction.options.getNumber('maximum') || 20;
-    const min = interaction.options.getNumber('minimum') || 1;
+    const max = interaction.options.getInteger('maximum') || 20;
+    const min = interaction.options.getInteger('minimum') || 1;
     if (min > max) {
       await interaction.followUp({
         ephemeral: true,

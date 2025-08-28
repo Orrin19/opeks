@@ -30,7 +30,7 @@ export const Dice: Command = {
     client: Discord.Client,
     interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const amount = interaction.options.getNumber('amount') || 1;
+    const amount = interaction.options.getInteger('amount') || 1;
     if (amount > 100) {
       await interaction.followUp({
         ephemeral: true,

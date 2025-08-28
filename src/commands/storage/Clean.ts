@@ -30,7 +30,7 @@ export const Clean: Command = {
     client: Discord.Client,
     interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const messCount = interaction.options.getNumber('amount', true);
+    const messCount = interaction.options.getInteger('amount', true);
     if (interaction.channel?.type == Discord.ChannelType.DM) return;
     let amount = messCount + 1;
     if (amount <= 1 || amount > 100) {

@@ -102,7 +102,7 @@ export const Special: Command = {
     const importance: string =
       interaction.options.getString('importance') || 'medium';
     const mainSkill: number[] = [
-      (interaction.options.getNumber('main', false) || 0) - 1,
+      (interaction.options.getInteger('main', false) || 0) - 1,
       0,
     ];
     let pointsRange: number[] = new Array(6).fill(0),
