@@ -1,9 +1,9 @@
-import { CommandInteraction, User } from 'discord.js';
+import { ChatInputCommandInteraction, User } from 'discord.js';
 
 export class Footer {
   text: string;
   iconURL: string;
-  constructor(interaction: CommandInteraction) {
+  constructor(interaction: ChatInputCommandInteraction) {
     this.text =
       (interaction.client.user?.username as string) +
       ' © ' +

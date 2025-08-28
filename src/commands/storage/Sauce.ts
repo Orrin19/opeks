@@ -42,14 +42,14 @@ export const Sauce: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    let imageURL = '';
-    const attachment = interaction.options.get('image', false)?.attachment;
+    let imageURL: string | null = '';
+    const attachment = interaction.options.getAttachment('image');
     if (!attachment) {
-      imageURL = interaction.options.get('link', false)?.value as string;
+      let imageURL = interaction.options.getString('link');
       if (!imageURL) {
         await interaction.followUp({
           content: 'Пожалуйста, прикрепите изображение или введите ссылку',

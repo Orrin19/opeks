@@ -30,20 +30,22 @@ export const Tracemoe: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const api = new TraceMoe();
-    const link = interaction.options.get('link', true)?.value as string;
+    const link = interaction.options.getString('link', true);
     const request = (await api
       .fetchAnime(link, { anilistInfo: true })
       .catch(console.error)) as SearchResponse;
-    if (!request || request.error)
-      return interaction.followUp({
+    if (!request || request.error) {
+      await interaction.followUp({
         content: 'Введите корректную ссылку на изображение!',
         ephemeral: true,
       });
+      return;
+    }
     const tmEmbed: Discord.APIEmbed = {
       title: 'Поиск аниме по кадру',
       color: Number(config.LINE_COLOR),
@@ -88,7 +90,7 @@ export const Tracemoe: Command = {
           .setStyle(Discord.ButtonStyle.Primary)
           .setCustomId('videoButton')
       );
-    return await interaction
+    await interaction
       .followUp({
         embeds: [tmEmbed],
         // components: [component],

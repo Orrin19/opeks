@@ -28,17 +28,19 @@ export const Userinfo: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const member = interaction.options.get('member', true)
-      .member as Discord.GuildMember;
+    const member = interaction.options.getMember(
+      'member'
+    ) as Discord.GuildMember;
     if (!member) {
-      return interaction.followUp({
+      await interaction.followUp({
         content: 'Укажите корректного участника!',
         ephemeral: true,
       });
+      return;
     }
     const user = member.user;
     const userinfoEmbed: Discord.APIEmbed = {
@@ -69,7 +71,7 @@ export const Userinfo: Command = {
       ],
       footer: new Footer(interaction),
     };
-    interaction.followUp({
+    await interaction.followUp({
       embeds: [userinfoEmbed],
     });
   },

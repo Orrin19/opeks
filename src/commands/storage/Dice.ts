@@ -26,17 +26,18 @@ export const Dice: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const amount =
-      (interaction.options.get('amount', false)?.value as number) || 1;
-    if (amount > 100)
-      return interaction.followUp({
+    const amount = interaction.options.getNumber('amount') || 1;
+    if (amount > 100) {
+      await interaction.followUp({
         ephemeral: true,
         content: 'Нет у меня столько кубиков)',
       });
+      return;
+    }
     const dices = [
       null,
       ':one:',
@@ -50,7 +51,8 @@ export const Dice: Command = {
 
     if (amount == 1) {
       result = getRandomInt(6) + 1;
-      return interaction.followUp(`Брошен кубик. Результат: ${dices[result]}`);
+      await interaction.followUp(`Брошен кубик. Результат: ${dices[result]}`);
+      return;
     }
 
     let sum = 0;
@@ -60,7 +62,7 @@ export const Dice: Command = {
       sum += result;
       results[i] = dices[result];
     }
-    return interaction.followUp(
+    await interaction.followUp(
       `Брошено кубиков: ${amount}\nРезультаты: ${results.join(
         ' '
       )}\nСумма: ${sum}`

@@ -95,15 +95,14 @@ export const Special: Command = {
       required: false,
     },
   ],
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const importance: string =
-      (interaction.options.get('importance', false)?.value as string) ||
-      'medium';
+      interaction.options.getString('importance') || 'medium';
     const mainSkill: number[] = [
-      ((interaction.options.get('main', false)?.value as number) || 0) - 1,
+      (interaction.options.getNumber('main', false) || 0) - 1,
       0,
     ];
     let pointsRange: number[] = new Array(6).fill(0),

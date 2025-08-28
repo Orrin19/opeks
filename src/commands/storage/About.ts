@@ -13,9 +13,9 @@ export const About: Command = {
     uk: 'Інформація про роботу',
   },
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const aboutEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),

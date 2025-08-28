@@ -25,20 +25,22 @@ export const Avatar: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const member = interaction.options.get('member', true)
-      .member as Discord.GuildMember;
-    if (!member) {
-      return interaction.followUp({
+    const user = interaction.options.getUser('member', true);
+
+    if (!user) {
+      await interaction.followUp({
         content: 'Укажите корректного пользователя!',
         ephemeral: true,
       });
+      return;
     }
-    return interaction.followUp(
-      member.displayAvatarURL({
+
+    await interaction.followUp(
+      user.displayAvatarURL({
         size: 1024,
       })
     );

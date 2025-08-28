@@ -152,17 +152,14 @@ export const Choice: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const variables = new Array<string>();
-    for (let i = 1; i < 11; i++) {
-      if (interaction.options.get('option_' + i, false)?.value) {
-        variables.push(
-          interaction.options.get('option_' + i, false)?.value as string
-        );
-      }
+    for (let i = 1; i <= 10; i++) {
+      const option = interaction.options.getString(`option_${i}`);
+      if (option) variables.push(option as string);
     }
     await interaction.followUp({
       content: getRandArrElement(variables),

@@ -52,11 +52,11 @@ export const Rps: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const gesture = interaction.options.get('gesture', true).value as string;
+    const gesture = interaction.options.getString('gesture', true);
     const botGesture = getRandArrElement(['камень', 'бумага', 'ножницы']);
     if (gesture == botGesture) {
       const answers = [
@@ -64,7 +64,8 @@ export const Rps: Command = {
         `Боевая ничья! У нас обоих ${gesture}!`,
         `У нас с тобой ${gesture}... Ничья?`,
       ];
-      return interaction.followUp(getRandArrElement(answers));
+      await interaction.followUp(getRandArrElement(answers));
+      return;
     }
     if (
       (gesture == 'камень' && botGesture == 'ножницы') ||
@@ -76,7 +77,8 @@ export const Rps: Command = {
         `Ты победил! У тебя ${gesture}, а у меня ${botGesture}. Но в следующий раз...`,
         `Подожди, это ${gesture}? Похоже, ты победил, у меня ${botGesture}!`,
       ];
-      return interaction.followUp(getRandArrElement(answers));
+      await interaction.followUp(getRandArrElement(answers));
+      return;
     }
     if (
       (gesture == 'камень' && botGesture == 'бумага') ||
@@ -88,7 +90,8 @@ export const Rps: Command = {
         `Я победил! У тебя ${gesture}, а у меня ${botGesture}. Ничего, потом повезёт.`,
         `Подожди, это ${gesture}? О-хо-хо, а у меня ${botGesture}! Выкуси!`,
       ];
-      return interaction.followUp(getRandArrElement(answers));
+      await interaction.followUp(getRandArrElement(answers));
+      return;
     }
   },
 };

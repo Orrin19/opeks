@@ -181,9 +181,9 @@ export const Voting: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const buttons = [
       '1️⃣',
@@ -197,44 +197,37 @@ export const Voting: Command = {
       '9️⃣',
       '0️⃣',
     ];
-    const description = interaction.options.get('description', true)
-      ?.value as string;
-    let image = interaction.options.get('image', false)
-      ?.attachment as Discord.Attachment;
-    const variables = new Array<string>();
-    let j = 0;
-    for (let i = 1; i < 11; i++) {
-      if (interaction.options.get('option_' + i, false)?.value) {
-        variables.push(
-          (buttons[j] +
-            ' ' +
-            interaction.options.get('option_' + i, false)?.value) as string
-        );
-        j++;
-      }
-    }
+
+    const description = interaction.options.getString('description', true);
+    const image = interaction.options.getAttachment('image');
+
+    const variables = Array.from({ length: 10 }, (_, i) => {
+      const option = interaction.options.getString(`option_${i + 1}`);
+      return option ? `${buttons[i]} ${option}` : null;
+    }).filter(Boolean) as string[];
 
     const rollEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
       title: 'Голосование',
       description: description,
-      fields: [
-        {
-          name: 'Варианты',
-          value: variables.join('\n'),
-        },
-      ],
+      fields:
+        variables.length > 0
+          ? [
+              {
+                name: 'Варианты',
+                value: variables.join('\n'),
+              },
+            ]
+          : [],
       footer: new Footer(interaction),
     };
+
     if (image) rollEmbed.image = { url: image.url };
-    interaction
-      .followUp({
-        embeds: [rollEmbed],
-      })
-      .then((msg) => {
-        for (let i = 0; i < variables.length; i++) {
-          msg.react(buttons[i]);
-        }
-      });
+
+    const msg = await interaction.followUp({ embeds: [rollEmbed] });
+
+    for (let i = 0; i < variables.length; i++) {
+      await msg.react(buttons[i]);
+    }
   },
 };

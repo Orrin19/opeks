@@ -12,9 +12,9 @@ export const Meow: Command = {
     uk: 'Відправляє картинку з котиком',
   },
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const nekos = new NekoClient();
     const meowEmbed: Discord.APIEmbed = {

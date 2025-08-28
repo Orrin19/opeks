@@ -26,18 +26,20 @@ export const Clean: Command = {
   ],
   type: Discord.ApplicationCommandType.ChatInput,
   defaultMemberPermissions: Discord.PermissionsBitField.Flags.ManageMessages,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const messCount = interaction.options.get('amount', true).value as number;
+    const messCount = interaction.options.getNumber('amount', true);
     if (interaction.channel?.type == Discord.ChannelType.DM) return;
     let amount = messCount + 1;
-    if (amount <= 1 || amount > 100)
-      return interaction.followUp({
+    if (amount <= 1 || amount > 100) {
+      await interaction.followUp({
         ephemeral: true,
         content: 'Необходимо ввести число от 1 до 99.',
       });
+      return;
+    }
     const channel = interaction.guild?.channels.cache.find(
       (c) => c.id === interaction.channelId
     );

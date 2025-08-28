@@ -12,9 +12,9 @@ export const Serverinfo: Command = {
     uk: 'Видає інформацію о сервер',
   },
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const guild = interaction.guild as Discord.Guild;
     const serverinfoEmbed: Discord.APIEmbed = {
@@ -46,7 +46,7 @@ export const Serverinfo: Command = {
       ],
       footer: new Footer(interaction),
     };
-    interaction.followUp({
+    await interaction.followUp({
       embeds: [serverinfoEmbed],
     });
   },

@@ -28,11 +28,11 @@ export const Eightball: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const question = interaction.options.get('question', true).value as string;
+    const question = interaction.options.getString('question', true);
     const ballEmbed: Discord.APIEmbed = {
       color: Number(config.LINE_COLOR),
       title: `Вопрос от ${interaction.member?.user.username}:`,
@@ -44,7 +44,7 @@ export const Eightball: Command = {
       },
       footer: new Footer(interaction),
     };
-    interaction.followUp({
+    await interaction.followUp({
       embeds: [ballEmbed],
     });
   },

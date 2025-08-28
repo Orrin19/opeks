@@ -53,9 +53,9 @@ export const Nekoslife: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
     const nekos = new NekoClient();
     const images = new Map()
@@ -89,7 +89,7 @@ export const Nekoslife: Command = {
       .set('eightBall', nekos.eightBall)
       .set('fact', nekos.fact);
 
-    const request = interaction.options.get('request', true)?.value as string;
+    const request = interaction.options.getString('request', true);
     images.forEach(async (func, name) => {
       if (request == name) {
         try {

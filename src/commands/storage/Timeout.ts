@@ -57,30 +57,33 @@ export const Timeout: Command = {
   ],
   type: Discord.ApplicationCommandType.ChatInput,
   defaultMemberPermissions: Discord.PermissionsBitField.Flags.ModerateMembers,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const member = interaction.options.get('member', true)
-      .member as Discord.GuildMember;
+    const member = interaction.options.getMember(
+      'member'
+    ) as Discord.GuildMember;
     if (!member) {
-      return interaction.followUp({
+      await interaction.followUp({
         content: 'Укажите корректного участника!',
         ephemeral: true,
       });
+      return;
     }
     if (!member.moderatable) {
-      return interaction.followUp({
+      await interaction.followUp({
         content: 'У меня недостаточно прав!',
         ephemeral: true,
       });
+      return;
     }
     const timeout =
       (interaction.options.get('timeout', true).value as number) * 3.6e6;
     const reason = interaction.options.get('reason', false)?.value as string;
     await member.timeout(timeout, reason).catch((e) => console.log(e));
     const date = new Date(new Date().getTime() + timeout);
-    return interaction.followUp(
+    await interaction.followUp(
       Discord.userMention(member.id) +
         ' успешно заглушен до ' +
         formateDate(date)

@@ -57,19 +57,18 @@ export const Roll: Command = {
     },
   ],
   type: Discord.ApplicationCommandType.ChatInput,
-  run: async (
+  runChatInput: async (
     client: Discord.Client,
-    interaction: Discord.CommandInteraction
+    interaction: Discord.ChatInputCommandInteraction
   ) => {
-    const max =
-      (interaction.options.get('maximum', false)?.value as number) || 20;
-    const min =
-      (interaction.options.get('minimum', false)?.value as number) || 1;
-    if (min > max)
-      return interaction.followUp({
+    const max = interaction.options.getNumber('maximum') || 20;
+    const min = interaction.options.getNumber('minimum') || 1;
+    if (min > max) {
+      await interaction.followUp({
         ephemeral: true,
         content: 'Введите корректные величины.',
       });
+    }
     const result = getRandomInt(max - min + 1) + min;
 
     const rollEmbed: Discord.APIEmbed = {
@@ -87,8 +86,7 @@ export const Roll: Command = {
       };
     }
 
-    const modstring =
-      (interaction.options.get('modifiers', false)?.value as string) || null;
+    const modstring = interaction.options.getString('modifiers');
     if (modstring) {
       let mods = new Array();
       let finalResult = result;
@@ -112,7 +110,7 @@ export const Roll: Command = {
       }
     }
 
-    return interaction.followUp({
+    await interaction.followUp({
       embeds: [rollEmbed],
     });
   },
