@@ -24,15 +24,22 @@ const handleSlashCommand = async (
 ): Promise<void> => {
   const slashCommand = Commands.find((c) => c.name === interaction.commandName);
   if (!slashCommand) {
-    interaction.reply({ content: 'Command not found', ephemeral: true });
+    await interaction.reply({ content: 'Command not found', ephemeral: true });
     return;
   }
 
   if (slashCommand.runChatInput) {
-    await interaction.deferReply();
-    slashCommand.runChatInput(client, interaction);
+    try {
+      await interaction.deferReply();
+      await slashCommand.runChatInput(client, interaction);
+    } catch (error) {
+      console.error('Error handling slash command:', error);
+      await interaction.editReply({
+        content: 'Произошла ошибка при выполнении команды',
+      });
+    }
   } else {
-    interaction.reply({
+    await interaction.reply({
       content: 'This command is not available as a slash command',
       ephemeral: true,
     });
