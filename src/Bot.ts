@@ -4,6 +4,7 @@ import guildMemberRemove from './listeners/guildMemberRemove';
 import guildMemberUpdate from './listeners/guildMemberUpdate';
 import interactionCreate from './listeners/interactionCreate';
 import messageCreate from './listeners/messageCreate';
+import messageReactionAdd from './listeners/messageReactionAdd';
 import ready from './listeners/ready';
 import config from './config';
 
@@ -38,5 +39,6 @@ guildMemberRemove(client);
 guildMemberUpdate(client);
 interactionCreate(client);
 messageCreate(client);
+messageReactionAdd(client);
 
 client.login(token);
