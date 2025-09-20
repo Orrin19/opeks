@@ -7,7 +7,10 @@ export default (client: Discord.Client): void => {
       reaction: Discord.MessageReaction | Discord.PartialMessageReaction,
       user: Discord.User | Discord.PartialUser
     ) => {
-      if (user.id === '478857385780183041') {
+      if (
+        user.id === '478857385780183041' &&
+        [null, 1].includes(reaction.count)
+      ) {
         reaction.remove().catch(console.error);
       }
     }
