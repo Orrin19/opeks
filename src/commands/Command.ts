@@ -1,12 +1,14 @@
 import {
+  ApplicationCommandType,
+  ApplicationCommandOptionData,
   ChatInputCommandInteraction,
-  ChatInputApplicationCommandData,
-  Client,
   MessageContextMenuCommandInteraction,
+  PermissionsBitField,
   UserContextMenuCommandInteraction,
+  Client,
 } from 'discord.js';
 
-export interface Command extends ChatInputApplicationCommandData {
+interface BaseCommand {
   name: string;
   runChatInput?: (
     client: Client,
@@ -21,3 +23,25 @@ export interface Command extends ChatInputApplicationCommandData {
     interaction: UserContextMenuCommandInteraction
   ) => Promise<void>;
 }
+
+interface ChatInputCommand extends BaseCommand {
+  description: string;
+  descriptionLocalizations?: Record<string, string>;
+  options?: ApplicationCommandOptionData[];
+  defaultMemberPermissions?: bigint;
+  type?: ApplicationCommandType.ChatInput;
+}
+
+interface MessageContextMenuCommand extends BaseCommand {
+  type: ApplicationCommandType.Message;
+}
+
+interface UserContextMenuCommand extends BaseCommand {
+  type: ApplicationCommandType.User;
+}
+
+// Объединяем все возможные типы
+export type Command =
+  | ChatInputCommand
+  | MessageContextMenuCommand
+  | UserContextMenuCommand;

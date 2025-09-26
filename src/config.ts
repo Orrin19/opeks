@@ -14,6 +14,7 @@ interface ENV {
   LINE_COLOR: string | undefined;
   ACTIVITY_NAME: string | undefined;
   ACTIVITY_TYPE: string | undefined;
+  OPENROUTER_API_KEY: string | undefined;
   SAUCE_TOKEN: string | undefined;
 }
 
@@ -23,6 +24,7 @@ interface Config {
   LINE_COLOR: string;
   ACTIVITY_NAME: string;
   ACTIVITY_TYPE: string;
+  OPENROUTER_API_KEY: string;
   SAUCE_TOKEN: string;
 }
 
@@ -35,6 +37,7 @@ const getConfig = (): ENV => {
     LINE_COLOR: process.env.LINE_COLOR,
     ACTIVITY_NAME: process.env.ACTIVITY_NAME,
     ACTIVITY_TYPE: process.env.ACTIVITY_TYPE,
+    OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
     SAUCE_TOKEN: process.env.SAUCE_TOKEN,
   };
 };

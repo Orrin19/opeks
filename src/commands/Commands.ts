@@ -15,6 +15,7 @@ import { Special } from './storage/Special';
 import { Timeout } from './storage/Timeout';
 import { Tracemoe } from './storage/Tracemoe';
 import { Userinfo } from './storage/Userinfo';
+import { Verdict } from './storage/Verdict';
 import { Voting } from './storage/Voting';
 
 export const Commands: Command[] = [
@@ -34,5 +35,6 @@ export const Commands: Command[] = [
   Timeout,
   Tracemoe,
   Userinfo,
+  Verdict,
   Voting,
 ];
