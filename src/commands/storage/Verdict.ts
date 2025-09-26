@@ -223,6 +223,7 @@ ${targetMessage.author.username}: ${targetMessage.content}
 
       await interaction.editReply({ content: finalContent });
     } catch (err) {
+      console.error(err);
       await interaction.editReply({
         content: '❌ Не удалось сгенерировать вердикт. Попробуйте позже.',
       });
