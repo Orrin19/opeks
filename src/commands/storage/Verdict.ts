@@ -113,22 +113,24 @@ async function callLLM(prompt: string): Promise<string> {
         'X-Title': 'Opeks Bot',
       },
       body: JSON.stringify({
-        model: 'mistralai/mistral-7b-instruct:free',
+        model: 'nvidia/nemotron-3-super-120b-a12b:free',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 512,
+        max_tokens: 2048,
         temperature: 0.7,
       }),
-    }
+    },
   );
 
   if (!response.ok) throw new Error(`LLM error: ${response.status}`);
   const data = await response.json();
-  return data.choices[0].message.content.trim();
+  const content: string | null = data.choices?.[0]?.message?.content;
+  if (!content) throw new Error('LLM вернул пустой ответ');
+  return content.trim();
 }
 
 async function buildThreadContext(
   channel: Discord.TextBasedChannel,
-  startMessage: Discord.Message
+  startMessage: Discord.Message,
 ): Promise<string> {
   const visited = new Set<string>();
   const lines: string[] = [];
@@ -137,7 +139,7 @@ async function buildThreadContext(
   while (current && !visited.has(current.id) && lines.length < 25) {
     visited.add(current.id);
     lines.unshift(
-      `${current.author.username}: ${current.content || '(вложение/эмбед)'}`
+      `${current.author.username}: ${current.content || '(вложение/эмбед)'}`,
     );
 
     if (current.reference?.messageId) {
@@ -167,7 +169,7 @@ export const Verdict: Command = {
     const channel = interaction.channel;
     if (!channel?.isTextBased()) {
       await interaction.editReply(
-        'Команда работает только в текстовых каналах.'
+        'Команда работает только в текстовых каналах.',
       );
       return;
     }

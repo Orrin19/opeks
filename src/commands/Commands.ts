@@ -17,6 +17,7 @@ import { Tracemoe } from './storage/Tracemoe';
 import { Userinfo } from './storage/Userinfo';
 import { Verdict } from './storage/Verdict';
 import { Voting } from './storage/Voting';
+import { Wiki } from './storage/Wiki';
 
 export const Commands: Command[] = [
   About,
@@ -37,4 +38,5 @@ export const Commands: Command[] = [
   Userinfo,
   Verdict,
   Voting,
+  Wiki,
 ];
