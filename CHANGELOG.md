@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.1.0](https://github.com/Orrin19/opeks/compare/v3.0.1...v3.1.0) (2026-10-27)
+
+### Features
+
+* big dice command rework ([b6c1724](https://github.com/Orrin19/opeks/commit/b6c17249f5afac3ab3763e4655d6b25e376320be))
+
+### Bug Fixes
+
+* moved range dice functional in a different command ([e556474](https://github.com/Orrin19/opeks/commit/e556474c58e16fcbf0dadbc2121d9047a94e67e6))
+
 ## 3.0.1 (2026-10-27)
 
 ### ⚠ BREAKING CHANGES
