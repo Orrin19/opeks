@@ -22,7 +22,6 @@ const WIKIS: Record<string, WikiConfig> = {
 
 const SERVER_WIKI_MAP: Record<string, string> = {
   '664491015914258452': 'lamoraun',
-  '461757596236382229': 'lamoraun',
   '410837371299561473': 'stalker',
 };
 
