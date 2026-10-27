@@ -98,6 +98,33 @@ Pre-commit хук (`.husky/pre-commit`) выполняет `npm run build && npm
 
 См. [services.md](services.md#как-добавить-сервис).
 
+## Версионирование и релизы
+
+Версия обновляется автоматически через `commit-and-tag-version` (форк `standard-version`)
+по conventional-коммитам. Соответствие префикса → bump:
+
+| Префикс                       | Bump          |
+| ----------------------------- | ------------- |
+| `fix:`                        | patch         |
+| `feat:`                       | minor         |
+| `BREAKING CHANGE:` / `feat!:` | major         |
+| `docs:`, `chore:`, `test:`, … | без изменений |
+
+Скрипты:
+
+| Скрипт                  | Действие                                                  |
+| ----------------------- | --------------------------------------------------------- |
+| `npm run release`       | авто-bump по коммитам + `CHANGELOG.md` + git-тег `vX.Y.Z` |
+| `npm run release:patch` | принудительный patch-bump                                 |
+| `npm run release:minor` | принудительный minor-bump                                 |
+| `npm run release:major` | принудительный major-bump                                 |
+
+Хук Husky `post-merge` автоматически вызывает `npm run release` при merge в `master`
+(флаг `--noBumpWhenEmptyChanges` пропускает релиз, если bump-достойных коммитов нет).
+
+Релиз делает собственный коммит `chore(release): vX.Y.Z` и тег; для публикации тега на
+удалённый репозиторий используйте `git push --follow-tags`.
+
 ## Деплой
 
 - `Procfile`: `worker: npm ci && npm run build && npm start`.

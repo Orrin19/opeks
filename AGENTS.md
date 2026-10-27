@@ -44,6 +44,24 @@ nekos.life). Полное описание — в каталоге `docs/`.
 | Линт / автофикс        | `npm run lint` / `npm run lint:fix`       |
 | Формат / проверка      | `npm run format` / `npm run format:check` |
 | Тесты                  | `npm test`                                |
+| Релиз                  | `npm run release`                         |
+
+## Версии и релизы
+
+Версия в `package.json` обновляется автоматически через `commit-and-tag-version`
+(поддерживаемый форк `standard-version`) на основе conventional-коммитов:
+
+- `fix:` → **patch** (`3.0.0` → `3.0.1`);
+- `feat:` → **minor** (`3.0.0` → `3.1.0`);
+- `BREAKING CHANGE:` / `feat!:` → **major** (`3.0.0` → `4.0.0`);
+- `docs:` / `chore:` / `test:` и пр. — версию не меняют.
+
+Релиз: `npm run release` (или `release:patch` / `release:minor` / `release:major` для
+принудительного bump). Скрипт обновляет версию, `CHANGELOG.md` и создаёт git-тег
+`vX.Y.Z`. Хук Husky `post-merge` запускает релиз автоматически при merge в `master`.
+
+**Всегда пишите сообщения коммитов в формате `type: описание`** — от этого зависит
+корректный bump версии.
 
 ## Структура (кратко)
 

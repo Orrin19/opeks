@@ -1,6 +1,6 @@
 {
   "name": "opeks",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "TypeScript-based bot for Discord",
   "main": "dist/index.js",
   "engines": {
@@ -16,6 +16,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "tsc -p tsconfig.test.json && node --test \".test-dist/test/**/*.test.js\"",
+    "release": "commit-and-tag-version --noBumpWhenEmptyChanges",
+    "release:patch": "commit-and-tag-version --release-as patch",
+    "release:minor": "commit-and-tag-version --release-as minor",
+    "release:major": "commit-and-tag-version --release-as major",
     "prepare": "husky"
   },
   "author": "Orrin19",
@@ -32,6 +36,7 @@
     "@types/gaussian": "^1.2.2",
     "@types/node": "^24.19.2",
     "@types/superagent": "^8.1.11",
+    "commit-and-tag-version": "^13.3.0",
     "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
