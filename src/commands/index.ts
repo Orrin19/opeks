@@ -26,7 +26,7 @@ export const createCommands = (ctx: AppContext): Map<string, Command> => {
     new AvatarCommand(),
     new ChoiceCommand(),
     new CleanCommand(),
-    new DiceCommand(),
+    new DiceCommand(ctx),
     new EightballCommand(ctx),
     new MeowCommand(ctx),
     new NekoslifeCommand(ctx),

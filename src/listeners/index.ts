@@ -1,7 +1,7 @@
 import type { Listener } from '../structures/Listener';
 import type { Command } from '../structures/Command';
 import type { TextParser } from '../structures/TextParser';
-import type { Logger } from '../core/Logger';
+import type { AppContext } from '../core/AppContext';
 import { GuildMemberAddListener } from './GuildMemberAdd';
 import { GuildMemberRemoveListener } from './GuildMemberRemove';
 import { GuildMemberUpdateListener } from './GuildMemberUpdate';
@@ -13,12 +13,12 @@ import { ReadyListener } from './Ready';
 export const createListeners = (
   commands: ReadonlyMap<string, Command>,
   parsers: readonly TextParser[],
-  logger: Logger,
+  ctx: AppContext,
 ): Listener[] => [
-  new ReadyListener(commands, logger),
-  new InteractionCreateListener(commands, logger),
-  new MessageCreateListener(parsers, logger),
-  new MessageReactionAddListener(logger),
+  new ReadyListener(commands, ctx.logger),
+  new InteractionCreateListener(commands, ctx),
+  new MessageCreateListener(parsers, ctx.logger),
+  new MessageReactionAddListener(ctx.logger),
   new GuildMemberAddListener(),
   new GuildMemberRemoveListener(),
   new GuildMemberUpdateListener(),
