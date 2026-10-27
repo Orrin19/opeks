@@ -4,7 +4,7 @@ meta:
   environment: node
   toolchain:
     name: npm
-    version: 20.12.1
+    version: 24.11.1
 build:
   skip: false
   additionalCommands: 'npm run build'
