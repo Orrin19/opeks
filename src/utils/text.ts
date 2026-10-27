@@ -9,7 +9,7 @@ export const cleanWikitext = (raw: string): string =>
     .replace(/\n+/g, '\n')
     .replace(/^\s+|\s+$/g, '');
 
-/** Truncates text to `maxChars`, cutting at a word boundary and appending "…". */
+/** Truncates text to `maxChars`, cutting at a word boundary and appending "...". */
 export const truncate = (text: string, maxChars: number): string =>
   text.length > maxChars
     ? text.substring(0, maxChars).replace(/\s+\S*$/, '') + '...'
