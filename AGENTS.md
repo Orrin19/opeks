@@ -72,7 +72,7 @@ src/
 ├── config/         # env.ts (валидация .env), constants.ts (константы)
 ├── core/           # Logger, ClientFactory, AppContext (DI-контекст)
 ├── structures/     # базовые классы Command / ChatInputCommand / … / TextParser / Listener
-├── commands/       # 18 слеш-команд + 1 контекстная (классы)
+├── commands/       # 19 слеш-команд + 1 контекстная (классы)
 ├── listeners/      # 7 слушателей событий Discord
 ├── parsers/        # 6 парсеров обычных сообщений
 ├── services/       # wiki, llm, sauce, traceMoe, nekos + prompts

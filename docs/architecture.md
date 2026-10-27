@@ -22,7 +22,7 @@ src/
 ├── commands/                 # по одному классу на команду
 │   ├── index.ts              # createCommands(): Map<name, Command>
 │   ├── options.ts            # фабрики опций (устраняют дубли option_1..10)
-│   └── About.ts, Roll.ts, …  # 18 слеш-команд + 1 контекстная (Verdict)
+│   └── About.ts, Roll.ts, …  # 19 слеш-команд + 1 контекстная (Verdict)
 ├── listeners/                # обработчики событий Discord
 │   ├── index.ts              # createListeners(): Listener[]
 │   ├── Ready.ts, InteractionCreate.ts, MessageCreate.ts, …

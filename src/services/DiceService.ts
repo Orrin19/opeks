@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import type { ParsedModifier } from '../utils/dice';
+import type { ParsedModifier, ParsedThreshold } from '../utils/dice';
 
 /** A pending dice-roll request created by a game master for a player. */
 export interface DiceRequest {
@@ -8,7 +8,10 @@ export interface DiceRequest {
   max: number;
   purpose: string;
   modifiers: readonly ParsedModifier[];
+  /** Single difficulty threshold (mutually exclusive with `thresholds`). */
   difficulty: number | null;
+  /** Outcome ranges (mutually exclusive with `difficulty`). */
+  thresholds: readonly ParsedThreshold[] | null;
   playerId: string;
 }
 
