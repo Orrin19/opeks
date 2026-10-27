@@ -1,0 +1,70 @@
+# Команды, парсеры и слушатели
+
+Каталог того, что делает бот. Реестры создаются в `commands/index.ts`,
+`parsers/index.ts` и `listeners/index.ts` (см. [architecture.md](architecture.md)).
+
+## Слеш-команды (18)
+
+Все — классы-наследники `ChatInputCommand` в `src/commands/`. Колонка «Зависимости»
+указывает, какие сервисы/внешние данные использует команда (через `AppContext`).
+
+| Команда       | Файл          | Описание                                     | Зависимости        |
+| ------------- | ------------- | -------------------------------------------- | ------------------ |
+| `/8ball`      | Eightball.ts  | Магический шар: случайный ответ-картинка     | статичные картинки |
+| `/about`      | About.ts      | Информация о боте и клиенте                  | config             |
+| `/avatar`     | Avatar.ts     | Аватар указанного участника                  | —                  |
+| `/choice`     | Choice.ts     | Случайный выбор из вариантов                 | —                  |
+| `/clean`      | Clean.ts      | Удалить N сообщений (требует прав)           | —                  |
+| `/dice`       | Dice.ts       | Бросок N кубиков                             | —                  |
+| `/meow`       | Meow.ts       | Картинка с котиком                           | nekos              |
+| `/nekos-life` | Nekoslife.ts  | Аниме-картинка по категории                  | nekos              |
+| `/roll`       | Roll.ts       | Случайное число в диапазоне (± модификаторы) | —                  |
+| `/rps`        | Rps.ts        | Камень-ножницы-бумага                        | —                  |
+| `/sauce`      | Sauce.ts      | Поиск источника арта через SauceNAO          | sauce              |
+| `/serverinfo` | Serverinfo.ts | Информация о сервере                         | —                  |
+| `/special`    | Special.ts    | Генерация характеристик «а-ля Fallout»       | gaussian           |
+| `/timeout`    | Timeout.ts    | Мут участника на N часов (требует прав)      | —                  |
+| `/trace-moe`  | Tracemoe.ts   | Определение аниме по кадру                   | traceMoe           |
+| `/userinfo`   | Userinfo.ts   | Информация об участнике                      | —                  |
+| `/voting`     | Voting.ts     | Создание голосования                         | —                  |
+| `/wiki`       | Wiki.ts       | Поиск статьи по вики + краткая ИИ-сводка     | wiki + llm         |
+
+## Контекстные команды (1)
+
+| Название            | Файл       | Тип                     | Зависимости |
+| ------------------- | ---------- | ----------------------- | ----------- |
+| «Составить вердикт» | Verdict.ts | `MessageContextCommand` | wiki + llm  |
+
+Продолжает ролевой пост с учётом контекста чата и вики (промпт — в
+`services/prompts.ts`).
+
+## Парсеры сообщений (6)
+
+Реакция на обычные сообщения (не команды). Классы-наследники `TextParser` в
+`src/parsers/`.
+
+| Парсер       | Файл            | Условие `matches`                           | Действие                               |
+| ------------ | --------------- | ------------------------------------------- | -------------------------------------- |
+| BotQuestion  | BotQuestion.ts  | бот упомянут, сообщение оканчивается на «?» | случайный ответ «да/нет»               |
+| WikiLinks    | WikiLinks.ts    | текст содержит `[[...]]`                    | раскрывает ссылки на статьи вики       |
+| Marsel       | Marsel.ts       | «хочу марсель» / «хочу в марсель»           | выдаёт/снимает роль «Марсель»          |
+| RandomEmoji  | RandomEmoji.ts  | случайный шанс ~1/200 (и автор не бот)      | случайный эмодзи: отправка или реакция |
+| ReactTrigger | ReactTrigger.ts | всегда (фильтр — внутри `run`)              | реакция-эмодзи на триггер-слова        |
+| Univermag    | Univermag.ts    | «искать/найти/взять инструменты»            | выдаёт/снимает роль «Тушкан»           |
+
+Триггер-слова для `ReactTrigger` лежат в `parsers/triggers/TriggerWords.ts`
+(интерфейс `TriggerWord`: `{ trigger: RegExp; emojiName: string; chance: number }`).
+
+## Слушатели (7)
+
+Обработчики событий Discord. Классы-наследники `Listener` в `src/listeners/`.
+
+| Слушатель          | Файл                  | Событие              | Поведение                                         |
+| ------------------ | --------------------- | -------------------- | ------------------------------------------------- |
+| Ready              | Ready.ts              | `ClientReady`        | регистрация команд, лог «online»                  |
+| InteractionCreate  | InteractionCreate.ts  | `InteractionCreate`  | диспетчеризация команд по имени                   |
+| MessageCreate      | MessageCreate.ts      | `MessageCreate`      | перебор парсеров (пропускает ботов)               |
+| MessageReactionAdd | MessageReactionAdd.ts | `MessageReactionAdd` | снимает реакцию у заданного пользователя          |
+| GuildMemberAdd     | GuildMemberAdd.ts     | `GuildMemberAdd`     | выдаёт роль «Начинающий» (сервер «Ламоран»)       |
+| GuildMemberRemove  | GuildMemberRemove.ts  | `GuildMemberRemove`  | уведомляет в канал `checkuser` о выходе участника |
+| GuildMemberUpdate  | GuildMemberUpdate.ts  | `GuildMemberUpdate`  | снимает роль «Тушкан» у заданного пользователя    |
