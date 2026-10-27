@@ -18,7 +18,7 @@ const bootstrap = async (): Promise<void> => {
 
   const commands = createCommands(ctx);
   const parsers = createParsers(ctx);
-  const listeners = createListeners(commands, parsers, logger);
+  const listeners = createListeners(commands, parsers, ctx);
 
   for (const listener of listeners) {
     registerListener(client, listener);

@@ -83,3 +83,14 @@ export const WIKI_SNIPPET_CHARS = 600;
 export const WIKI_ARTICLE_CHARS = 800;
 export const DICE_FACES = 6;
 export const DICE_MAX_AMOUNT = 100;
+
+// --- Dice: game-master roll request (/dice) ---
+export const DICE_DEFAULT_MIN = 1;
+export const DICE_DEFAULT_MAX = 20;
+/** Абсолютная граница значений min/max в опциях /dice. */
+export const DICE_RANGE_LIMIT = 1_000_000;
+export const DICE_MAX_MODIFIERS = 10;
+/** Роли, которым разрешено запрашивать бросок куба. */
+export const DICE_ROLE_NAMES: readonly string[] = ['Администратор', 'Младший вердер'];
+/** Префикс customId кнопки броска куба. */
+export const DICE_BUTTON_PREFIX = 'dice:';

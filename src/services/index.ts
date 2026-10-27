@@ -1,5 +1,6 @@
 import type { Config } from '../config/env';
 import type { Logger } from '../core/Logger';
+import { DiceService } from './DiceService';
 import { LlmService } from './LlmService';
 import { NekosService } from './NekosService';
 import { SauceService } from './SauceService';
@@ -12,6 +13,7 @@ export interface Services {
   sauce: SauceService;
   traceMoe: TraceMoeService;
   nekos: NekosService;
+  dice: DiceService;
 }
 
 export const createServices = (config: Config, logger: Logger): Services => ({
@@ -20,6 +22,7 @@ export const createServices = (config: Config, logger: Logger): Services => ({
   sauce: new SauceService(config, logger),
   traceMoe: new TraceMoeService(logger),
   nekos: new NekosService(logger),
+  dice: new DiceService(),
 });
 
 export type { WikiArticle } from './WikiService';
