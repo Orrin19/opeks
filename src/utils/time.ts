@@ -13,9 +13,7 @@ export const formatDuration = (seconds: number): string => {
   const hours = Math.floor(total / 3600);
   const minutes = Math.floor((total - hours * 3600) / 60);
   const secs = total - hours * 3600 - minutes * 60;
-  return [hours, minutes, secs]
-    .map((part) => String(part).padStart(2, '0'))
-    .join(':');
+  return [hours, minutes, secs].map((part) => String(part).padStart(2, '0')).join(':');
 };
 
 export const hoursToMs = (hours: number): number => hours * MS_PER_HOUR;

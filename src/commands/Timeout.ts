@@ -17,8 +17,7 @@ export class TimeoutCommand extends ChatInputCommand {
     ru: 'Глушит пользователя на указанное время',
     uk: 'Глушить користувача на вказаний час',
   };
-  readonly defaultMemberPermissions =
-    PermissionsBitField.Flags.ModerateMembers;
+  readonly defaultMemberPermissions = PermissionsBitField.Flags.ModerateMembers;
   readonly options: ApplicationCommandOptionData[] = [
     {
       name: 'member',
@@ -80,8 +79,6 @@ export class TimeoutCommand extends ChatInputCommand {
 
     await member.timeout(timeoutMs, reason);
     const date = new Date(Date.now() + timeoutMs);
-    await interaction.followUp(
-      `${userMention(member.id)} успешно заглушен до ${formatDate(date)}`,
-    );
+    await interaction.followUp(`${userMention(member.id)} успешно заглушен до ${formatDate(date)}`);
   }
 }

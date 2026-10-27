@@ -1,15 +1,7 @@
-import {
-  ChannelType,
-  type Guild,
-  type GuildMember,
-  type Role,
-  type TextChannel,
-} from 'discord.js';
+import { ChannelType, type Guild, type GuildMember, type Role, type TextChannel } from 'discord.js';
 
-export const findRoleByName = (
-  guild: Guild | null | undefined,
-  name: string,
-): Role | undefined => guild?.roles.cache.find((role) => role.name === name);
+export const findRoleByName = (guild: Guild | null | undefined, name: string): Role | undefined =>
+  guild?.roles.cache.find((role) => role.name === name);
 
 export const findTextChannelByName = (
   guild: Guild | null | undefined,

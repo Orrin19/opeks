@@ -64,9 +64,7 @@ export class UserinfoCommand extends ChatInputCommand {
         {
           name: ':map: На этом сервере:',
           value:
-            `**Присоединился:** *${formatDate(
-              member.joinedAt ?? new Date(0),
-            )}*\n` +
+            `**Присоединился:** *${formatDate(member.joinedAt ?? new Date(0))}*\n` +
             `**Роли:** *${member.roles.cache
               .map((role) => roleMention(role.id))
               .slice(0, -1)

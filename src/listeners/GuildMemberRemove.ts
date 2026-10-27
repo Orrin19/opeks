@@ -11,9 +11,7 @@ export class GuildMemberRemoveListener extends Listener {
 
     const channel = findTextChannelByName(member.guild, CHANNEL_NAMES.checkuser);
     if (channel) {
-      await channel.send(
-        `Пользователь **${member.user.username}** вышел из сервера.`,
-      );
+      await channel.send(`Пользователь **${member.user.username}** вышел из сервера.`);
     }
   }
 }

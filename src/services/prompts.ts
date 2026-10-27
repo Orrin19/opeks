@@ -48,11 +48,7 @@ interface WikiPromptParams {
   wikiContext: string;
 }
 
-export const buildWikiPrompt = ({
-  wikiName,
-  query,
-  wikiContext,
-}: WikiPromptParams): string =>
+export const buildWikiPrompt = ({ wikiName, query, wikiContext }: WikiPromptParams): string =>
   `
 Ты — помощник, знающий вики «${wikiName}».
 Пользователь задал запрос: "${query}"

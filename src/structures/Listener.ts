@@ -12,10 +12,7 @@ type EventEmitterLike = {
 
 /** Registers a listener on the client, bridging the generic emitter signature. */
 export const registerListener = (client: Client, listener: Listener): void => {
-  (client as unknown as EventEmitterLike).on(
-    listener.event,
-    (...args: unknown[]) => {
-      void listener.run(...args);
-    },
-  );
+  (client as unknown as EventEmitterLike).on(listener.event, (...args: unknown[]) => {
+    void listener.run(...args);
+  });
 };

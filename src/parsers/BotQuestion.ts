@@ -21,10 +21,7 @@ const ANSWERS = [
 
 export class BotQuestionParser extends TextParser {
   matches(message: Message): boolean {
-    return (
-      message.mentions.users.first() === message.client.user &&
-      message.content.endsWith('?')
-    );
+    return message.mentions.users.first() === message.client.user && message.content.endsWith('?');
   }
 
   async run(message: Message): Promise<void> {

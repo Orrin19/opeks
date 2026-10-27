@@ -21,8 +21,7 @@ export class Logger {
   private log(level: LogLevel, message: string, ...args: unknown[]): void {
     if (!this.enabled(level)) return;
     const line = `[${new Date().toISOString()}] [${level.toUpperCase()}] ${message}`;
-    const write =
-      level === 'warn' || level === 'error' ? console.error : console.log;
+    const write = level === 'warn' || level === 'error' ? console.error : console.log;
     write(line, ...args);
   }
 

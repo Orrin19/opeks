@@ -107,8 +107,7 @@ export class WikiService {
       const page = Object.values(pages)[0];
       if (!page || page.invalid || page.missing) return null;
 
-      const wikitext =
-        page.revisions?.[0]?.slots?.main?.['*'] || page.revisions?.[0]?.['*'];
+      const wikitext = page.revisions?.[0]?.slots?.main?.['*'] || page.revisions?.[0]?.['*'];
       if (typeof wikitext !== 'string' || wikitext.trim().length < 20) {
         return null;
       }
@@ -120,9 +119,7 @@ export class WikiService {
       return {
         title: realTitle,
         content: clean,
-        url: `${wiki.articleBase}${encodeURIComponent(
-          realTitle.replace(/ /g, '_'),
-        )}`,
+        url: `${wiki.articleBase}${encodeURIComponent(realTitle.replace(/ /g, '_'))}`,
         imageUrl: page.thumbnail?.source,
       };
     } catch (error) {
@@ -131,11 +128,7 @@ export class WikiService {
     }
   }
 
-  async search(
-    query: string,
-    wikiKey: string,
-    limit = 3,
-  ): Promise<WikiArticle[]> {
+  async search(query: string, wikiKey: string, limit = 3): Promise<WikiArticle[]> {
     const wiki = WIKIS[wikiKey];
     if (!wiki) return [];
 
@@ -168,9 +161,7 @@ export class WikiService {
       if (data?.error || !data?.query?.search?.length) return results;
 
       const fetched = await Promise.all(
-        data.query.search
-          .slice(0, limit)
-          .map((entry) => this.fetchArticle(entry.title, wikiKey)),
+        data.query.search.slice(0, limit).map((entry) => this.fetchArticle(entry.title, wikiKey)),
       );
 
       for (const article of fetched) {
@@ -238,9 +229,7 @@ export class WikiService {
                 (iw) => iw.prefix?.toLowerCase() === interwiki.prefix,
               );
               if (entry?.url) {
-                const targetTitle = encodeURIComponent(
-                  interwiki.title.replace(/ /g, '_'),
-                );
+                const targetTitle = encodeURIComponent(interwiki.title.replace(/ /g, '_'));
                 return entry.url.replace('$1', targetTitle);
               }
             }
@@ -276,9 +265,7 @@ export class WikiService {
       if (page.fullurl) return page.fullurl;
 
       const realTitle = page.title ?? trimmed;
-      return `${wiki.articleBase}${encodeURIComponent(
-        realTitle.replace(/ /g, '_'),
-      )}`;
+      return `${wiki.articleBase}${encodeURIComponent(realTitle.replace(/ /g, '_'))}`;
     } catch {
       return null;
     }

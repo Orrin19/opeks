@@ -7,7 +7,7 @@ meta:
     version: 20.12.1
 build:
   skip: false
-  additionalCommands: "npm run build"
+  additionalCommands: 'npm run build'
   artifacts:
     '*': /
 run:

@@ -1,9 +1,4 @@
-import {
-  ActivityType,
-  Client,
-  GatewayIntentBits,
-  PresenceUpdateStatus,
-} from 'discord.js';
+import { ActivityType, Client, GatewayIntentBits, PresenceUpdateStatus } from 'discord.js';
 import type { Config } from '../config/env';
 
 export const createClient = (config: Config): Client =>

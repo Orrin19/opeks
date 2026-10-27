@@ -7,14 +7,7 @@ import { ChatInputCommand } from '../structures/ChatInputCommand';
 import { DICE_FACES, DICE_MAX_AMOUNT } from '../config/constants';
 import { getRandomInt } from '../utils/random';
 
-const DICE_FACES_EMOJI = [
-  ':one:',
-  ':two:',
-  ':three:',
-  ':four:',
-  ':five:',
-  ':six:',
-] as const;
+const DICE_FACES_EMOJI = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:'] as const;
 
 export class DiceCommand extends ChatInputCommand {
   readonly name = 'dice';
@@ -47,21 +40,15 @@ export class DiceCommand extends ChatInputCommand {
       return;
     }
 
-    const rolls = Array.from({ length: amount }, () =>
-      getRandomInt(1, DICE_FACES),
-    );
+    const rolls = Array.from({ length: amount }, () => getRandomInt(1, DICE_FACES));
 
     if (amount === 1) {
-      await interaction.followUp(
-        `Брошен кубик. Результат: ${DICE_FACES_EMOJI[rolls[0] - 1]}`,
-      );
+      await interaction.followUp(`Брошен кубик. Результат: ${DICE_FACES_EMOJI[rolls[0] - 1]}`);
       return;
     }
 
     const sum = rolls.reduce((acc, value) => acc + value, 0);
     const results = rolls.map((roll) => DICE_FACES_EMOJI[roll - 1]).join(' ');
-    await interaction.followUp(
-      `Брошено кубиков: ${amount}\nРезультаты: ${results}\nСумма: ${sum}`,
-    );
+    await interaction.followUp(`Брошено кубиков: ${amount}\nРезультаты: ${results}\nСумма: ${sum}`);
   }
 }

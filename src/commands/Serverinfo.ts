@@ -48,9 +48,7 @@ export class ServerinfoCommand extends ChatInputCommand {
           value:
             `**Количество участников:** *${guild.memberCount}*\n` +
             `**Количество ролей:** *${guild.roles.cache.size}*\n` +
-            `**Вы присоединились:** *${formatDate(
-              member.joinedAt ?? new Date(0),
-            )}*`,
+            `**Вы присоединились:** *${formatDate(member.joinedAt ?? new Date(0))}*`,
         },
       ],
       footer: buildFooter(interaction.client),

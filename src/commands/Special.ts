@@ -35,8 +35,7 @@ const IMPORTANCES: Record<Importance, ImportanceConfig> = {
 const VARIANCE = 4;
 const MAX_ATTEMPTS = 10_000;
 
-const sum = (values: number[]): number =>
-  values.reduce((acc, value) => acc + value, 0);
+const sum = (values: number[]): number => values.reduce((acc, value) => acc + value, 0);
 
 const generateValues = (
   mean: number,
@@ -47,9 +46,7 @@ const generateValues = (
   const distribution = gaussian(mean, VARIANCE);
 
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
-    const values = distribution
-      .random(SPECIALS.length)
-      .map((value) => Math.round(value));
+    const values = distribution.random(SPECIALS.length).map((value) => Math.round(value));
     const isValid =
       pointsRange.includes(sum(values)) &&
       values.every((value) => value >= 1 && value <= 10) &&
@@ -82,8 +79,16 @@ export class SpecialCommand extends ChatInputCommand {
       },
       choices: [
         { name: 'NPC', nameLocalizations: { ru: 'NPC', uk: 'NPC' }, value: 'low' },
-        { name: 'Standart', nameLocalizations: { ru: 'Стандартная', uk: 'Стандартна' }, value: 'medium' },
-        { name: 'Main character', nameLocalizations: { ru: 'Главный герой', uk: 'Головний герой' }, value: 'high' },
+        {
+          name: 'Standart',
+          nameLocalizations: { ru: 'Стандартная', uk: 'Стандартна' },
+          value: 'medium',
+        },
+        {
+          name: 'Main character',
+          nameLocalizations: { ru: 'Главный герой', uk: 'Головний герой' },
+          value: 'high',
+        },
       ],
       required: false,
     },
@@ -99,7 +104,11 @@ export class SpecialCommand extends ChatInputCommand {
       choices: [
         { name: 'Strength', nameLocalizations: { ru: 'Сила', uk: 'Сила' }, value: 1 },
         { name: 'Perception', nameLocalizations: { ru: 'Восприятие', uk: 'Сприйняття' }, value: 2 },
-        { name: 'Endurance', nameLocalizations: { ru: 'Выносливость', uk: 'Витривалість' }, value: 3 },
+        {
+          name: 'Endurance',
+          nameLocalizations: { ru: 'Выносливость', uk: 'Витривалість' },
+          value: 3,
+        },
         { name: 'Charisma', nameLocalizations: { ru: 'Харизма', uk: 'Харизма' }, value: 4 },
         { name: 'Intelligence', nameLocalizations: { ru: 'Интеллект', uk: 'Iнтелект' }, value: 5 },
         { name: 'Agility', nameLocalizations: { ru: 'Ловкость', uk: 'Спритність' }, value: 6 },
@@ -114,8 +123,7 @@ export class SpecialCommand extends ChatInputCommand {
   }
 
   async run(interaction: ChatInputCommandInteraction): Promise<void> {
-    const importance = (interaction.options.getString('importance') ??
-      'medium') as Importance;
+    const importance = (interaction.options.getString('importance') ?? 'medium') as Importance;
     const mainOption = interaction.options.getInteger('main');
     const mainIndex = mainOption !== null ? mainOption - 1 : -1;
 

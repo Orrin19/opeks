@@ -14,9 +14,7 @@ export class RandomEmojiParser extends TextParser {
     if (chance(50)) {
       const channel = message.channel;
       if (channel.isSendable()) {
-        await channel.send(
-          `<${emoji.animated ? 'a' : ''}:${emoji.name}:${emoji.id}>`,
-        );
+        await channel.send(`<${emoji.animated ? 'a' : ''}:${emoji.name}:${emoji.id}>`);
       }
     } else {
       await message.react(emoji);

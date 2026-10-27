@@ -3,6 +3,7 @@
 ## 1. Сборка и запуск
 
 Сейчас прод запускается через `ts-node` (`npm start` → `ts-node src/Bot.ts`), что:
+
 - компилирует на лету (медленный старт, выше потребление памяти),
 - требует `typescript`/`ts-node` в продакшн-зависимостях.
 
@@ -17,8 +18,8 @@
     "dev": "ts-node src/index.ts",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "typecheck": "tsc --noEmit"
-  }
+    "typecheck": "tsc --noEmit",
+  },
 }
 ```
 
@@ -28,6 +29,7 @@
 ## 2. `tsconfig.json`
 
 Предложения:
+
 - Явно задать модульный режим: либо добавить `"type": "module"` в `package.json` и
   использовать ESM (тогда импорты через `.js`-расширения), либо зафиксировать
   `module: "commonjs"`. Сейчас `nodenext` без `"type"` — неоднозначно.
@@ -38,15 +40,16 @@
 
 ## 3. `package.json`
 
-| Проблема | Исправление |
-| --- | --- |
-| `"opeks": "file:"` (зависимость на себя) | удалить |
-| `@types/node`, `@types/gaussian`, `@types/superagent` в `dependencies` | перенести в `devDependencies` |
-| `typescript`, `ts-node` в `dependencies` | `typescript` → dev; `ts-node` → dev (нужен только для `dev`) |
-| нет `build`/`lint`/`format` | добавить (см. выше) |
-| `main: "src/Bot.ts"` | `main: "dist/index.js"` |
+| Проблема                                                               | Исправление                                                  |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `"opeks": "file:"` (зависимость на себя)                               | удалить                                                      |
+| `@types/node`, `@types/gaussian`, `@types/superagent` в `dependencies` | перенести в `devDependencies`                                |
+| `typescript`, `ts-node` в `dependencies`                               | `typescript` → dev; `ts-node` → dev (нужен только для `dev`) |
+| нет `build`/`lint`/`format`                                            | добавить (см. выше)                                          |
+| `main: "src/Bot.ts"`                                                   | `main: "dist/index.js"`                                      |
 
 Итоговые зависимости:
+
 - **dependencies**: `discord.js`, `dotenv` (или убрать в пользу node `--env-file`),
   `nekos.life`, `sagiri`, `trace.moe.ts`, `gaussian`, `zod` (опц.).
 - **devDependencies**: `typescript`, `ts-node`, `@types/*`, `eslint`, `prettier`,

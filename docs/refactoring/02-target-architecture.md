@@ -65,6 +65,7 @@ src/
 ## 3. Иерархия классов
 
 ### Команды
+
 ```ts
 // structures/Command.ts
 abstract class Command {
@@ -91,6 +92,7 @@ abstract class ChatInputCommand extends Command {
   бизнес-логику (устраняет разнобой из `interactionCreate.ts`).
 
 ### Парсеры
+
 ```ts
 abstract class TextParser {
   abstract matches(message: Message, client: Client): boolean;
@@ -99,19 +101,21 @@ abstract class TextParser {
 ```
 
 ### Слушатели
+
 ```ts
 abstract class Listener {
   abstract readonly event: string;
   abstract run(...args: unknown[]): Promise<void> | void;
 }
 ```
+
 Реестр слушателей регистрирует их в `client.on(event, listener.run.bind(listener))`.
 
 ## 4. DI и композиция корня
 
 ```ts
 // index.ts (псевдокод)
-const config = loadConfig();                    // zod-валидация, ранний fail-fast
+const config = loadConfig(); // zod-валидация, ранний fail-fast
 const logger = new Logger(config.logLevel);
 const client = createClient(config, logger);
 
@@ -138,7 +142,7 @@ client.login(config.token);
 
 - **S**: `Verdict.ts` сейчас = 234 строки, где смешаны: парсинг текста, поиск по вики,
   вызов LLM, сборка контекста, формирование промпта. После рефакторинга это команда
-  + `WikiService` + `LlmService` + `utils/text`.
+  - `WikiService` + `LlmService` + `utils/text`.
 - **O**: добавление команды = новый класс + одна строка в реестре (или авто-обнаружение).
   Изменение существующих файлов не требуется.
 - **I**: убрать «широкий» интерфейс с тремя необязательными `run*` (см. `Command.ts`).

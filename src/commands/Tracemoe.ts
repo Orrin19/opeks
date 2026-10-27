@@ -97,8 +97,7 @@ export class TracemoeCommand extends ChatInputCommand {
     });
 
     const collector = reply.createMessageComponentCollector({
-      filter: (i) =>
-        i.customId === VIDEO_BUTTON_ID && i.user.id === interaction.user.id,
+      filter: (i) => i.customId === VIDEO_BUTTON_ID && i.user.id === interaction.user.id,
       time: COLLECTOR_TTL_MS,
     });
 

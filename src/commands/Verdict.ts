@@ -1,8 +1,4 @@
-import type {
-  Message,
-  MessageContextMenuCommandInteraction,
-  TextBasedChannel,
-} from 'discord.js';
+import type { Message, MessageContextMenuCommandInteraction, TextBasedChannel } from 'discord.js';
 import { MessageContextCommand } from '../structures/MessageContextCommand';
 import type { AppContext } from '../core/AppContext';
 import { buildVerdictPrompt } from '../services/prompts';
@@ -19,9 +15,7 @@ export class VerdictCommand extends MessageContextCommand {
     super();
   }
 
-  async run(
-    interaction: MessageContextMenuCommandInteraction,
-  ): Promise<void> {
+  async run(interaction: MessageContextMenuCommandInteraction): Promise<void> {
     await interaction.deferReply({ ephemeral: true });
     await interaction.editReply({ content: '🔍 Собираю данные...' });
 
@@ -45,10 +39,9 @@ export class VerdictCommand extends MessageContextCommand {
         content: targetMessage.content,
       });
 
-      const verdict = await this.ctx.services.llm.chat(
-        [{ role: 'user', content: prompt }],
-        { temperature: 0.7 },
-      );
+      const verdict = await this.ctx.services.llm.chat([{ role: 'user', content: prompt }], {
+        temperature: 0.7,
+      });
 
       const finalContent =
         verdict.length > DISCORD_CONTENT_LIMIT
@@ -65,9 +58,7 @@ export class VerdictCommand extends MessageContextCommand {
   }
 
   private async collectWikiContext(message: Message): Promise<string> {
-    const wikiKey =
-      this.ctx.services.wiki.getWikiKeyForGuild(message.guildId) ??
-      DEFAULT_WIKI_KEY;
+    const wikiKey = this.ctx.services.wiki.getWikiKeyForGuild(message.guildId) ?? DEFAULT_WIKI_KEY;
     const properNouns = this.extractPotentialProperNouns(message.content);
 
     const snippets: string[] = [];
@@ -76,9 +67,7 @@ export class VerdictCommand extends MessageContextCommand {
       if (snippet) snippets.push(snippet);
     }
 
-    return snippets.length > 0
-      ? snippets.join('\n\n')
-      : 'Статьи по ключевым словам не найдены.';
+    return snippets.length > 0 ? snippets.join('\n\n') : 'Статьи по ключевым словам не найдены.';
   }
 
   private async buildThreadContext(
@@ -89,15 +78,9 @@ export class VerdictCommand extends MessageContextCommand {
     const lines: string[] = [];
     let current: Message | null = startMessage;
 
-    while (
-      current &&
-      !visited.has(current.id) &&
-      lines.length < MAX_CONTEXT_MESSAGES
-    ) {
+    while (current && !visited.has(current.id) && lines.length < MAX_CONTEXT_MESSAGES) {
       visited.add(current.id);
-      lines.unshift(
-        `${current.author.username}: ${current.content || '(вложение/эмбед)'}`,
-      );
+      lines.unshift(`${current.author.username}: ${current.content || '(вложение/эмбед)'}`);
 
       const replyId: string | undefined = current.reference?.messageId;
       if (!replyId) break;

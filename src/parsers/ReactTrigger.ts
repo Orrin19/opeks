@@ -15,9 +15,7 @@ export class ReactTriggerParser extends TextParser {
 
     for (const word of TriggerWords) {
       if (word.trigger.test(message.content) && chance(word.chance)) {
-        const emoji = emojiGuild.emojis.cache.find(
-          (e) => e.name === word.emojiName,
-        );
+        const emoji = emojiGuild.emojis.cache.find((e) => e.name === word.emojiName);
         if (emoji) await message.react(emoji);
       }
     }

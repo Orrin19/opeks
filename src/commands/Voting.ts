@@ -9,18 +9,7 @@ import type { AppContext } from '../core/AppContext';
 import { buildFooter } from '../utils/embed';
 import { buildChoiceOptions } from './options';
 
-const VOTE_EMOJIS = [
-  '1️⃣',
-  '2️⃣',
-  '3️⃣',
-  '4️⃣',
-  '5️⃣',
-  '6️⃣',
-  '7️⃣',
-  '8️⃣',
-  '9️⃣',
-  '0️⃣',
-] as const;
+const VOTE_EMOJIS = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '0️⃣'] as const;
 
 const OPTION_COUNT = 10;
 
@@ -74,10 +63,7 @@ export class VotingCommand extends ChatInputCommand {
       color: this.ctx.config.lineColor,
       title: 'Голосование',
       description,
-      fields:
-        variables.length > 0
-          ? [{ name: 'Варианты', value: variables.join('\n') }]
-          : [],
+      fields: variables.length > 0 ? [{ name: 'Варианты', value: variables.join('\n') }] : [],
       footer: buildFooter(interaction.client),
     };
 

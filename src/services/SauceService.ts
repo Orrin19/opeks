@@ -16,7 +16,10 @@ type SauceClient = ReturnType<typeof sagiri>;
 export class SauceService {
   private readonly client?: SauceClient;
 
-  constructor(config: Config, private readonly logger: Logger) {
+  constructor(
+    config: Config,
+    private readonly logger: Logger,
+  ) {
     if (config.sauceToken) {
       this.client = sagiri(config.sauceToken);
     } else {

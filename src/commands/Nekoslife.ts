@@ -64,10 +64,7 @@ export class NekoslifeCommand extends ChatInputCommand {
   }
 
   async run(interaction: ChatInputCommandInteraction): Promise<void> {
-    const request = interaction.options.getString(
-      'request',
-      true,
-    ) as NekosCategory;
+    const request = interaction.options.getString('request', true) as NekosCategory;
 
     try {
       const image = await this.ctx.services.nekos.getImage(request);

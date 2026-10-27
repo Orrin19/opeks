@@ -1,15 +1,10 @@
-import {
-  ApplicationCommandOptionType,
-  type ApplicationCommandOptionData,
-} from 'discord.js';
+import { ApplicationCommandOptionType, type ApplicationCommandOptionData } from 'discord.js';
 
 /**
  * Builds the repetitive `option_1` .. `option_N` string options used by the
  * `/choice` and `/voting` commands. The first option is required.
  */
-export const buildChoiceOptions = (
-  count: number,
-): ApplicationCommandOptionData[] =>
+export const buildChoiceOptions = (count: number): ApplicationCommandOptionData[] =>
   Array.from({ length: count }, (_, i) => {
     const index = i + 1;
     return {

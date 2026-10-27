@@ -55,9 +55,7 @@ export class WikiCommand extends ChatInputCommand {
   async run(interaction: ChatInputCommandInteraction): Promise<void> {
     const query = interaction.options.getString('query', true);
     const wikiArg = interaction.options.getString('wiki');
-    const wikiKey =
-      wikiArg ??
-      this.ctx.services.wiki.getWikiKeyForGuild(interaction.guildId);
+    const wikiKey = wikiArg ?? this.ctx.services.wiki.getWikiKeyForGuild(interaction.guildId);
 
     if (!wikiKey) {
       await interaction.followUp(
@@ -74,9 +72,7 @@ export class WikiCommand extends ChatInputCommand {
 
     const articles = await this.ctx.services.wiki.search(query, wikiKey);
     if (articles.length === 0) {
-      await interaction.followUp(
-        `По запросу «${query}» статьи в вики «${wiki.name}» не найдены.`,
-      );
+      await interaction.followUp(`По запросу «${query}» статьи в вики «${wiki.name}» не найдены.`);
       return;
     }
 
@@ -99,9 +95,7 @@ export class WikiCommand extends ChatInputCommand {
         { temperature: 0.35 },
       );
 
-      const links = articles
-        .map((article) => `[${article.title}](${article.url})`)
-        .join('\n');
+      const links = articles.map((article) => `[${article.title}](${article.url})`).join('\n');
       const imageUrl = articles.find((article) => article.imageUrl)?.imageUrl;
 
       const embed = {

@@ -6,9 +6,7 @@ import { applyRoleByText, findRoleByName } from '../utils/discord';
 export class MarselParser extends TextParser {
   matches(message: Message): boolean {
     const content = message.content.toLowerCase();
-    return (
-      content.includes('хочу марсель') || content.includes('хочу в марсель')
-    );
+    return content.includes('хочу марсель') || content.includes('хочу в марсель');
   }
 
   async run(message: Message): Promise<void> {

@@ -11,6 +11,4 @@ export const cleanWikitext = (raw: string): string =>
 
 /** Truncates text to `maxChars`, cutting at a word boundary and appending "...". */
 export const truncate = (text: string, maxChars: number): string =>
-  text.length > maxChars
-    ? text.substring(0, maxChars).replace(/\s+\S*$/, '') + '...'
-    : text;
+  text.length > maxChars ? text.substring(0, maxChars).replace(/\s+\S*$/, '') + '...' : text;

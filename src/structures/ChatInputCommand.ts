@@ -10,8 +10,7 @@ import { Command } from './Command';
 import type { Logger } from '../core/Logger';
 
 export abstract class ChatInputCommand extends Command {
-  readonly type: ApplicationCommandType.ChatInput =
-    ApplicationCommandType.ChatInput;
+  readonly type: ApplicationCommandType.ChatInput = ApplicationCommandType.ChatInput;
 
   abstract readonly description: string;
   readonly descriptionLocalizations?: LocalizationMap;

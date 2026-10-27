@@ -1,8 +1,4 @@
-import {
-  LLM_MAX_PROMPT_CHARS,
-  LLM_MAX_TOKENS,
-  PROJECT_URL,
-} from '../config/constants';
+import { LLM_MAX_PROMPT_CHARS, LLM_MAX_TOKENS, PROJECT_URL } from '../config/constants';
 import type { Config } from '../config/env';
 import type { Logger } from '../core/Logger';
 
@@ -69,8 +65,7 @@ export class LlmService {
         ? {
             ...message,
             content:
-              message.content.substring(0, LLM_MAX_PROMPT_CHARS) +
-              '\n... (контекст обрезан)',
+              message.content.substring(0, LLM_MAX_PROMPT_CHARS) + '\n... (контекст обрезан)',
           }
         : message,
     );

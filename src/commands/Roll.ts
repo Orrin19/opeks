@@ -44,8 +44,7 @@ export class RollCommand extends ChatInputCommand {
       name: 'modifiers',
       nameLocalizations: { ru: 'модификаторы', uk: 'модифікатори' },
       type: ApplicationCommandOptionType.String,
-      description:
-        'Modifiers applied to the roll (signed, separated by a space)',
+      description: 'Modifiers applied to the roll (signed, separated by a space)',
       descriptionLocalizations: {
         ru: 'Применяемые к роллу модификаторы (со знаком через пробел)',
         uk: 'Модифікатори, що застосовуються до ролу (зі знаком через пробіл)',

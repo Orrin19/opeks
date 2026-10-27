@@ -22,5 +22,4 @@ export const pickIndex = <T>(array: readonly T[]): number => {
 };
 
 /** Returns true with the given probability, where `percent` is in [0, 100]. */
-export const chance = (percent: number): boolean =>
-  getRandomInt(0, 99) < percent;
+export const chance = (percent: number): boolean => getRandomInt(0, 99) < percent;

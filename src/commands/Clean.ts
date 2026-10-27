@@ -15,8 +15,7 @@ export class CleanCommand extends ChatInputCommand {
     ru: 'Удаляет указанное число сообщений',
     uk: 'Видаляє вказану кількість повідомлень',
   };
-  readonly defaultMemberPermissions =
-    PermissionsBitField.Flags.ManageMessages;
+  readonly defaultMemberPermissions = PermissionsBitField.Flags.ManageMessages;
   readonly options: ApplicationCommandOptionData[] = [
     {
       name: 'amount',
