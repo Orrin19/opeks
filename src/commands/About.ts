@@ -6,6 +6,7 @@ import { buildFooter } from '../utils/embed';
 import { formatDate } from '../utils/time';
 
 interface PackageJson {
+  version: string;
   engines?: { node?: string };
   dependencies?: Record<string, string>;
 }
@@ -37,18 +38,15 @@ export class AboutCommand extends ChatInputCommand {
       },
       fields: [
         {
-          name: 'Бот создан',
+          name: 'Дата создания',
           value: formatDate(createdAt),
         },
         {
-          name: 'Написан на',
-          value:
-            `Node.js: v${packageJson.engines?.node}\n` +
-            `TypeScript: v${packageJson.dependencies?.typescript}\n` +
-            `Discord.js: v${packageJson.dependencies?.['discord.js']}`,
+          name: 'Версия',
+          value: packageJson.version,
         },
         {
-          name: 'Хостинг',
+          name: 'Хост',
           value: this.ctx.config.hosting,
         },
       ],
