@@ -33,7 +33,15 @@ export abstract class ChatInputCommand extends Command {
   async execute(interaction: Interaction, logger: Logger): Promise<void> {
     if (!interaction.isChatInputCommand()) return;
 
-    await interaction.deferReply();
+    try {
+      await interaction.deferReply();
+    } catch (error) {
+      // Transient (e.g. "Unknown interaction" when the 3s window has already
+      // passed). There is nothing else to do for this interaction.
+      logger.warn(`Command "/${this.name}" could not be deferred:`, error);
+      return;
+    }
+
     try {
       await this.run(interaction);
     } catch (error) {

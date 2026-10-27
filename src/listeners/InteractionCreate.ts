@@ -24,6 +24,10 @@ export class InteractionCreateListener extends Listener {
       return;
     }
 
-    await command.execute(interaction, this.logger);
+    try {
+      await command.execute(interaction, this.logger);
+    } catch (error) {
+      this.logger.error(`Unhandled error in command "${interaction.commandName}":`, error);
+    }
   }
 }

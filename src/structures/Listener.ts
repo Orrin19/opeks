@@ -13,6 +13,9 @@ type EventEmitterLike = {
 /** Registers a listener on the client, bridging the generic emitter signature. */
 export const registerListener = (client: Client, listener: Listener): void => {
   (client as unknown as EventEmitterLike).on(listener.event, (...args: unknown[]) => {
-    void listener.run(...args);
+    void Promise.resolve(listener.run(...args)).catch((error: unknown) => {
+      // Last-resort guard: a listener error must never crash the process.
+      console.error(`Listener "${listener.event}" failed:`, error);
+    });
   });
 };
