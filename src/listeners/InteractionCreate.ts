@@ -15,7 +15,13 @@ import type { Command } from '../structures/Command';
 import type { AppContext } from '../core/AppContext';
 import { DICE_BUTTON_PREFIX } from '../config/constants';
 import type { DiceRequest } from '../services/DiceService';
-import { computeDiceOutcome, formatModifiers, type DiceOutcome } from '../utils/dice';
+import {
+  computeDiceOutcome,
+  formatModifiers,
+  resolveThreshold,
+  type DiceOutcome,
+  type ParsedThreshold,
+} from '../utils/dice';
 import { buildFooter } from '../utils/embed';
 import { getRandomInt } from '../utils/random';
 
@@ -120,6 +126,14 @@ export class InteractionCreateListener extends Listener {
           ? `✅ Успех (итог ≥ ${request.difficulty})`
           : `❌ Провал (итог < ${request.difficulty})`,
       });
+    } else if (request.thresholds !== null && request.thresholds.length > 0) {
+      const threshold = resolveThreshold(outcome.total, request.thresholds);
+      fields.push({
+        name: '🏷️ Результат',
+        value: threshold
+          ? `**${threshold.result}** (${this.formatThresholdRange(outcome.total, threshold)})`
+          : '⚠️ Итог не попадает ни в один диапазон — проверьте настройку диапазонов.',
+      });
     }
 
     return {
@@ -129,5 +143,11 @@ export class InteractionCreateListener extends Listener {
       fields,
       footer: buildFooter(client),
     };
+  }
+
+  private formatThresholdRange(total: number, threshold: ParsedThreshold): string {
+    if (total < threshold.min) return `≤ ${threshold.min}`;
+    if (total > threshold.max) return `≥ ${threshold.max}`;
+    return `${threshold.min}–${threshold.max}`;
   }
 }

@@ -5,6 +5,7 @@ import { AvatarCommand } from './Avatar';
 import { ChoiceCommand } from './Choice';
 import { CleanCommand } from './Clean';
 import { DiceCommand } from './Dice';
+import { DiceRangeCommand } from './DiceRange';
 import { EightballCommand } from './Eightball';
 import { MeowCommand } from './Meow';
 import { NekoslifeCommand } from './Nekoslife';
@@ -27,6 +28,7 @@ export const createCommands = (ctx: AppContext): Map<string, Command> => {
     new ChoiceCommand(),
     new CleanCommand(),
     new DiceCommand(ctx),
+    new DiceRangeCommand(ctx),
     new EightballCommand(ctx),
     new MeowCommand(ctx),
     new NekoslifeCommand(ctx),
