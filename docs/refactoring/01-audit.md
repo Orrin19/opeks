@@ -83,7 +83,7 @@ opeks/
 | 27 | 🟡 | `Avatar.ts`: опция `required: true`, но затем проверка `if (!user)` — недостижимый код. | `Avatar.ts:32-40` |
 | 28 | 🟡 | `About.ts`: `require('../../../package.json')` — лучше `import` (включён `resolveJsonModule`) или чтение версий через `process`. | `About.ts:6,36-38` |
 | 29 | 🟡 | `Dice.ts`: `let result` без типа; массив `dices` с `null` в индексе 0; две ветки для одного и многих кубиков дублируют логику. | `Dice.ts:41-69` |
-| 30 | 🟡 | `Ready.ts`: подписка на `clientReady` — в discord.js v14 событие называется `ready`. **Проверить**, срабатывает ли регистрация команд. | `ready.ts:5` |
+| 30 | 🟡 | `ready.ts`: подписка на событие строкой `'clientReady'`. В discord.js v14.27 событие действительно называется `clientReady` (enum `Events.ClientReady = 'clientReady'`), поэтому подписка корректна. Рекомендация — использовать `Events.ClientReady` вместо магической строки. | `ready.ts:5` |
 | 31 | 🟡 | `messageReactionAdd.ts`: сравнение `[null, 1].includes(reaction.count)` — хрупкая проверка частичных реакций. | `messageReactionAdd.ts:10-15` |
 
 ### 2.5 Типобезопасность и стиль

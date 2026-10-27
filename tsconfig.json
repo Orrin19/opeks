@@ -1,23 +1,25 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "nodenext",
-    "rootDir": "./src/",
-    "outDir": "./dist/",
+    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "strict": true,
-    "moduleResolution": "nodenext",
-    "importHelpers": true,
-    "experimentalDecorators": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
-    "typeRoots": ["node_modules/@types"],
-    "sourceMap": false
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "declaration": false,
+    "typeRoots": ["node_modules/@types"]
   },
-  "files": ["src/Bot.ts"],
-  "include": ["./**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

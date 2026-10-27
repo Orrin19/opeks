@@ -1,5 +1,6 @@
 # Folders
 node_modules/
+dist/
 .idea/
 1.0.0/
 
