@@ -4,14 +4,14 @@ meta:
   environment: node
   toolchain:
     name: npm
-    version: 20.12.1
+    version: 24.11.1
 build:
   skip: false
-  additionalCommands: ""
+  additionalCommands: 'npm run build'
   artifacts:
     '*': /
 run:
-  scriptName: src/Bot.ts
+  scriptName: dist/index.js
   scriptArguments: null
   nodeArguments: null
   command: npm start

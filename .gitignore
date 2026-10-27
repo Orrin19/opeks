@@ -1,5 +1,7 @@
 # Folders
 node_modules/
+dist/
+.test-dist/
 .idea/
 1.0.0/
 

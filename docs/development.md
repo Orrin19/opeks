@@ -1,0 +1,140 @@
+# Разработка
+
+## Требования
+
+- Node.js **24.x** (см. `engines` в `package.json`).
+- npm.
+
+## Запуск
+
+```bash
+npm ci          # установка зависимостей
+cp .env.example .env   # и заполните своими значениями
+npm run dev     # запуск через ts-node (разработка)
+```
+
+Для продакшена:
+
+```bash
+npm run build   # компиляция TypeScript → dist/
+npm start       # node dist/index.js
+```
+
+## Скрипты (`npm run <script>`)
+
+| Скрипт         | Команда                                          | Назначение                          |
+| -------------- | ------------------------------------------------ | ----------------------------------- |
+| `dev`          | `ts-node src/index.ts`                           | запуск без сборки                   |
+| `build`        | `tsc`                                            | сборка в `dist/`                    |
+| `start`        | `node dist/index.js`                             | запуск собранного кода              |
+| `typecheck`    | `tsc --noEmit`                                   | проверка типов                      |
+| `lint`         | `eslint .`                                       | линт                                |
+| `lint:fix`     | `eslint . --fix`                                 | линт + автофикс                     |
+| `format`       | `prettier --write .`                             | форматирование                      |
+| `format:check` | `prettier --check .`                             | проверка форматирования             |
+| `test`         | `tsc -p tsconfig.test.json && node --test "..."` | юнит-тесты на `node:test`           |
+| `prepare`      | `husky`                                          | установка git-хуков (автоматически) |
+
+## Линт и формат
+
+- **ESLint 10** (flat config `eslint.config.mjs`) + `typescript-eslint` + `eslint-config-prettier`.
+- **Prettier 3** (`.prettierrc`): `singleQuote`, `trailingComma: all`, `printWidth: 100`,
+  `endOfLine: lf`.
+- Соглашения: запрещён `any` (warn), неиспользуемые переменные (warn; игнор `_`-префикса),
+  `console` разрешён только для `warn`/`error` (в `Logger` — полностью).
+
+## Тесты
+
+Юнит-тесты на встроенном `node:test` лежат в `test/*.test.ts` и покрывают чистые функции
+`utils/` (`random`, `text`, `time`). Тесты компилируются отдельной конфигурацией
+`tsconfig.test.json` в `.test-dist/`.
+
+Новые чистые функции (утилиты, парсинг, генерация) должны сопровождаться тестами.
+
+## Git-хуки (Husky)
+
+Pre-commit хук (`.husky/pre-commit`) выполняет `npm run build && npm run lint`.
+Не коммитьте код, не проходящий сборку и линт.
+
+## Рецепты «как добавить…»
+
+### Команду (слеш)
+
+1. Создайте `src/commands/MyCommand.ts`:
+   ```ts
+   export class MyCommand extends ChatInputCommand {
+     readonly name = 'my';
+     readonly description = '...';
+     constructor(private readonly ctx: AppContext) {
+       super();
+     }
+     async run(interaction: ChatInputCommandInteraction): Promise<void> {
+       await interaction.followUp({ content: '...' });
+     }
+   }
+   ```
+   - `run` пишет бизнес-логику; defer и ошибки — в базовом классе.
+   - Ответ — через `followUp` (после defer) или `editReply`.
+   - Зависимости — через `ctx` (или без конструктора, если не нужны).
+2. Зарегистрируйте в `src/commands/index.ts` (`new MyCommand(ctx)` в `createCommands`).
+3. Локализации `descriptionLocalizations`/`nameLocalizations` (ru/uk) сохраняйте.
+
+### Команду (контекстное меню)
+
+Наследуйте `MessageContextCommand`/`UserContextCommand`; defer (`ephemeral`) делайте в
+`run`, ответ — `editReply`. Пример — `Verdict.ts`.
+
+### Парсер
+
+1. Создайте `src/parsers/MyParser.ts`: класс-наследник `TextParser` с `matches` и `run`.
+2. Добавьте в `createParsers` (`src/parsers/index.ts`). Порядок = порядок перебора.
+
+### Слушатель
+
+1. Создайте `src/listeners/MyListener.ts`: класс-наследник `Listener` (`event` + `run`).
+2. Добавьте в `createListeners` (`src/listeners/index.ts`).
+
+### Сервис
+
+См. [services.md](services.md#как-добавить-сервис).
+
+## Версионирование и релизы
+
+Версия обновляется автоматически через `commit-and-tag-version` (форк `standard-version`)
+по conventional-коммитам. Соответствие префикса → bump:
+
+| Префикс                       | Bump          |
+| ----------------------------- | ------------- |
+| `fix:`                        | patch         |
+| `feat:`                       | minor         |
+| `BREAKING CHANGE:` / `feat!:` | major         |
+| `docs:`, `chore:`, `test:`, … | без изменений |
+
+Скрипты:
+
+| Скрипт                  | Действие                                                  |
+| ----------------------- | --------------------------------------------------------- |
+| `npm run release`       | авто-bump по коммитам + `CHANGELOG.md` + git-тег `vX.Y.Z` |
+| `npm run release:patch` | принудительный patch-bump                                 |
+| `npm run release:minor` | принудительный minor-bump                                 |
+| `npm run release:major` | принудительный major-bump                                 |
+
+Автозапуск релиза:
+
+- **Локальный merge в `master`** — хук Husky `post-merge` вызывает `npm run release`.
+- **Merge PR на GitHub** — workflow GitHub Actions (`.github/workflows/release.yml`)
+  срабатывает на push в `master`, выполняет `npm run release` и пушит обратно
+  bump-коммит и тег. Локальные git-хуки на серверах GitHub не выполняются, поэтому
+  для PR-мерджей нужен именно этот workflow.
+
+В обоих случаях `--noBumpWhenEmptyChanges` пропускает релиз, если bump-достойных
+коммитов нет (не будет лишних patch на docs/chore-мерджах).
+
+Релиз делает собственный коммит `chore(release): vX.Y.Z` и тег `vX.Y.Z`; при локальном
+релизе тег публикуется через `git push --follow-tags`.
+
+## Деплой
+
+- `Procfile`: `worker: npm ci && npm run build && npm start`.
+- `amvera.yml`: собирает через `additionalCommands: 'npm run build'`, запускает
+  `dist/index.js` (`command: npm start`).

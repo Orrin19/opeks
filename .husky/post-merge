@@ -1,0 +1,3 @@
+if [ "$(git branch --show-current)" = "master" ]; then
+  npm run release
+fi
