@@ -58,7 +58,8 @@ nekos.life). Полное описание — в каталоге `docs/`.
 
 Релиз: `npm run release` (или `release:patch` / `release:minor` / `release:major` для
 принудительного bump). Скрипт обновляет версию, `CHANGELOG.md` и создаёт git-тег
-`vX.Y.Z`. Хук Husky `post-merge` запускает релиз автоматически при merge в `master`.
+`vX.Y.Z`. Автозапуск: хук Husky `post-merge` при локальном merge в `master` и GitHub
+Actions (`.github/workflows/release.yml`) при merge PR на GitHub.
 
 **Всегда пишите сообщения коммитов в формате `type: описание`** — от этого зависит
 корректный bump версии.

@@ -119,11 +119,19 @@ Pre-commit хук (`.husky/pre-commit`) выполняет `npm run build && npm
 | `npm run release:minor` | принудительный minor-bump                                 |
 | `npm run release:major` | принудительный major-bump                                 |
 
-Хук Husky `post-merge` автоматически вызывает `npm run release` при merge в `master`
-(флаг `--noBumpWhenEmptyChanges` пропускает релиз, если bump-достойных коммитов нет).
+Автозапуск релиза:
 
-Релиз делает собственный коммит `chore(release): vX.Y.Z` и тег; для публикации тега на
-удалённый репозиторий используйте `git push --follow-tags`.
+- **Локальный merge в `master`** — хук Husky `post-merge` вызывает `npm run release`.
+- **Merge PR на GitHub** — workflow GitHub Actions (`.github/workflows/release.yml`)
+  срабатывает на push в `master`, выполняет `npm run release` и пушит обратно
+  bump-коммит и тег. Локальные git-хуки на серверах GitHub не выполняются, поэтому
+  для PR-мерджей нужен именно этот workflow.
+
+В обоих случаях `--noBumpWhenEmptyChanges` пропускает релиз, если bump-достойных
+коммитов нет (не будет лишних patch на docs/chore-мерджах).
+
+Релиз делает собственный коммит `chore(release): vX.Y.Z` и тег `vX.Y.Z`; при локальном
+релизе тег публикуется через `git push --follow-tags`.
 
 ## Деплой
 
