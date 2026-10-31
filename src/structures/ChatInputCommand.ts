@@ -25,7 +25,7 @@ export abstract class ChatInputCommand extends Command {
       description: this.description,
       descriptionLocalizations: this.descriptionLocalizations,
       options: this.options,
-      defaultMemberPermissions: this.defaultMemberPermissions,
+      defaultMemberPermissions: this.defaultMemberPermissions ?? null,
       type: this.type,
     };
   }
