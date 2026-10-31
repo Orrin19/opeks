@@ -16,9 +16,16 @@ export class ReadyListener extends Listener {
   async run(client: Client): Promise<void> {
     if (!client.user || !client.application) return;
 
-    await client.application.commands.set(
-      [...this.commands.values()].map((command) => command.toJSON()),
-    );
+    const commands = [...this.commands.values()];
+    try {
+      await client.application.commands.set(commands.map((command) => command.toJSON()));
+    } catch (error) {
+      this.logger.error(
+        `Failed to register slash commands: ${commands.map((command) => command.name).join(', ')}`,
+        error,
+      );
+      return;
+    }
     this.logger.info(`${client.user.username} is online`);
   }
 }

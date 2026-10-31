@@ -22,7 +22,7 @@ export const createServices = (config: Config, logger: Logger): Services => ({
   sauce: new SauceService(config, logger),
   traceMoe: new TraceMoeService(logger),
   nekos: new NekosService(logger),
-  dice: new DiceService(),
+  dice: new DiceService(config, logger),
 });
 
 export type { WikiArticle } from './WikiService';
