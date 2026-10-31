@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.1.2](https://github.com/Orrin19/opeks/compare/v3.1.1...v3.1.2) (2026-10-31)
+
+### Bug Fixes
+
+* interactions permissions issue is no more issue ([cd63238](https://github.com/Orrin19/opeks/commit/cd63238209256fa9b72aaf1254b5b14aa012c09a))
+
 ## [3.1.1](https://github.com/Orrin19/opeks/compare/v3.1.0...v3.1.1) (2026-10-31)
 
 ### Bug Fixes
