@@ -91,7 +91,13 @@ export class DiceService {
       this.requests.delete(requestId);
 
       const roll = getRandomInt(request.min, request.max);
-      const outcome = computeDiceOutcome(roll, request.modifiers, request.difficulty);
+      const outcome = computeDiceOutcome(
+        roll,
+        request.modifiers,
+        request.difficulty,
+        request.min,
+        request.max,
+      );
 
       const disabledRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
         new ButtonBuilder()
@@ -119,12 +125,16 @@ export class DiceService {
       const sign = outcome.modifierTotal > 0 ? '+' : '';
       fields.push({
         name: '➗ Модификаторы',
-        value: `${formatModifiers(request.modifiers)} = **${sign}${outcome.modifierTotal}**`,
+        value: `${formatModifiers(request.modifiers)}\n= **${sign}${outcome.modifierTotal}**`,
         inline: true,
       });
     }
 
-    fields.push({ name: '🧮 Итог', value: `**${outcome.total}**`, inline: true });
+    fields.push({
+      name: '🧮 Итог',
+      value: `**${outcome.total}**${this.criticalNote(outcome.critical)}`,
+      inline: true,
+    });
 
     if (request.difficulty !== null) {
       fields.push({
@@ -156,5 +166,11 @@ export class DiceService {
     if (total < threshold.min) return `≤ ${threshold.min}`;
     if (total > threshold.max) return `≥ ${threshold.max}`;
     return `${threshold.min}–${threshold.max}`;
+  }
+
+  private criticalNote(critical: DiceOutcome['critical']): string {
+    if (critical === 'success') return ' (крит. успех)';
+    if (critical === 'failure') return ' (крит. провал)';
+    return '';
   }
 }

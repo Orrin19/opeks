@@ -53,31 +53,54 @@ test('formatModifiers adds an explicit plus for positive values', () => {
       { value: 1, description: 'Ловкость' },
       { value: -2, description: 'Усталость' },
     ]),
-    '+1 Ловкость, -2 Усталость',
+    '+1 Ловкость\n-2 Усталость',
   );
   assert.equal(formatModifiers([]), '');
 });
 
 test('computeDiceOutcome computes total and success against a difficulty', () => {
   const modifiers = parseModifiers('+1 Ловкость, -2 Усталость');
-  const outcome = computeDiceOutcome(14, modifiers, 13);
+  const outcome = computeDiceOutcome(14, modifiers, 13, 1, 20);
 
   assert.equal(outcome.roll, 14);
   assert.equal(outcome.modifierTotal, -1);
   assert.equal(outcome.total, 13);
   assert.equal(outcome.success, true);
+  assert.equal(outcome.critical, null);
 });
 
 test('computeDiceOutcome marks a failed roll', () => {
-  const outcome = computeDiceOutcome(10, [{ value: 2 }], 13);
+  const outcome = computeDiceOutcome(10, [{ value: 2 }], 13, 1, 20);
   assert.equal(outcome.total, 12);
   assert.equal(outcome.success, false);
 });
 
 test('computeDiceOutcome has null success without a difficulty', () => {
-  const outcome = computeDiceOutcome(14, [], null);
+  const outcome = computeDiceOutcome(14, [], null, 1, 20);
   assert.equal(outcome.total, 14);
   assert.equal(outcome.success, null);
+});
+
+test('computeDiceOutcome ignores modifiers on a critical failure', () => {
+  const outcome = computeDiceOutcome(1, [{ value: 5 }, { value: 3 }], 15, 1, 20);
+  assert.equal(outcome.critical, 'failure');
+  assert.equal(outcome.modifierTotal, 0);
+  assert.equal(outcome.total, 1);
+});
+
+test('computeDiceOutcome ignores modifiers on a critical success', () => {
+  const outcome = computeDiceOutcome(20, [{ value: -10 }], 15, 1, 20);
+  assert.equal(outcome.critical, 'success');
+  assert.equal(outcome.modifierTotal, 0);
+  assert.equal(outcome.total, 20);
+  assert.equal(outcome.success, true);
+});
+
+test('computeDiceOutcome does not treat a fixed-value die as critical', () => {
+  const outcome = computeDiceOutcome(10, [{ value: 1 }], null, 10, 10);
+  assert.equal(outcome.critical, null);
+  assert.equal(outcome.modifierTotal, 1);
+  assert.equal(outcome.total, 11);
 });
 
 test('parseThresholds parses ranges with results', () => {
