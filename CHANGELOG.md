@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.2.0](https://github.com/Orrin19/opeks/compare/v3.1.2...v3.2.0) (2026-11-27)
+
+### Features
+
+* adding critical success and failure to dice commands ([600e089](https://github.com/Orrin19/opeks/commit/600e0894a67a70cdc25819ed282851a0f029afd0))
+
 ## [3.1.2](https://github.com/Orrin19/opeks/compare/v3.1.1...v3.1.2) (2026-10-31)
 
 ### Bug Fixes
