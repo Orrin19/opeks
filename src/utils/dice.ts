@@ -23,6 +23,8 @@ export interface DiceOutcome {
   total: number;
   /** `true`/`false` when a difficulty is set, otherwise `null`. */
   success: boolean | null;
+  /** `'failure'`/`'success'` on a critical roll, otherwise `null`. */
+  critical: 'failure' | 'success' | null;
 }
 
 const MODIFIER_PATTERN = /^([+-]?\d+)(?:\s+(.+))?$/;
@@ -63,15 +65,18 @@ export const formatModifiers = (modifiers: readonly ParsedModifier[]): string =>
       const sign = modifier.value > 0 ? '+' : '';
       return `${sign}${modifier.value}${modifier.description ? ` ${modifier.description}` : ''}`;
     })
-    .join(', ');
+    .join('\n');
 
 /** Computes the full outcome of a roll against an optional difficulty. */
 export const computeDiceOutcome = (
   roll: number,
   modifiers: readonly ParsedModifier[],
   difficulty: number | null,
+  min: number,
+  max: number,
 ): DiceOutcome => {
-  const modifierTotal = sumModifiers(modifiers);
+  const critical = min === max ? null : roll === min ? 'failure' : roll === max ? 'success' : null;
+  const modifierTotal = critical ? 0 : sumModifiers(modifiers);
   const total = roll + modifierTotal;
 
   return {
@@ -80,6 +85,7 @@ export const computeDiceOutcome = (
     modifierTotal,
     total,
     success: difficulty === null ? null : total >= difficulty,
+    critical,
   };
 };
 
